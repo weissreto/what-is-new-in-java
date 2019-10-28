@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +79,7 @@ class ClassGenerator
     print("public final class ");
     print(name.getGeneratorSimpleName());
     Class<?> clazz = getJavaClass();
-    generateTypeParameters(clazz.getTypeParameters());
+    print(new TypeVariablesConverter(clazz.getTypeParameters()).toName());
     println();
     print("{");
     println();
@@ -142,9 +139,9 @@ class ClassGenerator
       print("static ");
     }
 
-    generateTypeParameters(method.getTypeParameters());
+    print(new TypeVariablesConverter(method.getTypeParameters()).toName());
 
-    print(toTypeName(method.getGenericReturnType()));
+    print(new TypeConverter(imports, method.getGenericReturnType()).toName());
     print(" ");
     print(apiMethod.getName());
     print("(");
@@ -152,19 +149,6 @@ class ClassGenerator
     print(")");
     generateThrows(method.getExceptionTypes());
     println();
-  }
-
-  private void generateTypeParameters(TypeVariable<?>[] typeParameters)
-  {
-    if (ArrayUtils.isNotEmpty(typeParameters))
-    {      
-      print("<");
-      print(Arrays
-          .stream(typeParameters)
-          .map(this::toTypeVariableName)
-          .collect(Collectors.joining(", ")));
-      print("> ");
-    }
   }
 
   private void generateThrows(Class<?>[] exceptionTypes)
@@ -208,7 +192,7 @@ class ClassGenerator
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
-      print(toTypeName(method.getGenericReturnType()));
+      print(new TypeConverter(imports, method.getGenericReturnType()).toName());
       print(" result = ");
     }
     if (Modifier.isStatic(method.getModifiers()))
@@ -303,7 +287,7 @@ class ClassGenerator
   {
     return Arrays
         .stream(method.getParameters())
-        .map(parameter -> toTypeName(parameter.getParameterizedType())+" "+parameter.getName())
+        .map(parameter -> new TypeConverter(imports, parameter.getParameterizedType()).toName()+" "+parameter.getName())
         .collect(Collectors.joining(", "));
   }
   
@@ -323,81 +307,10 @@ class ClassGenerator
     }
     return type.getTypeName();
   }
-
-  private String toTypeName(Type type)
-  {
-    if (type instanceof Class)
-    {
-      toTypeName((Class<?>)type);
-    }
-    if (type instanceof ParameterizedType)
-    {
-      ParameterizedType pType = (ParameterizedType)type;
-      StringBuilder typeName = new StringBuilder(128);
-      typeName.append(toRawTypeName(pType.getRawType()));
-      typeName.append('<');
-      typeName.append(
-          Arrays
-              .stream(pType.getActualTypeArguments())
-              .map(this::toTypeName)
-              .collect(Collectors.joining(", ")));
-      typeName.append('>');
-      return typeName.toString();
-    }
-    return toRawTypeName(type);
-  }
   
-  private String toTypeName(Class<?> type)
-  {
-    if (type.isArray())
-    {
-      return toTypeName(type.getComponentType())+"[]";
-    }
-    StringBuilder typeName = new StringBuilder(128);
-    typeName.append(toRawTypeName(type));
-    if (ArrayUtils.isNotEmpty(type.getTypeParameters()))
-    {
-      typeName.append('<');
-      typeName.append(
-          Arrays
-              .stream(type.getTypeParameters())
-              .map(this::toTypeVariableName)
-              .collect(Collectors.joining(", ")));
-      typeName.append('>');
-    }
-    return typeName.toString();
-  }
-  
-  private String toTypeVariableName(TypeVariable<?> variable)
-  {
-    return variable.getName();
-//    if (ArrayUtils.isEmpty(variable.getBounds()))
-//    {
-//      return "?";
-//    }
-//    String typeName = variable.getBounds()[0].getTypeName();
-//    if (Object.class.getName().equals(typeName))
-//    {
-//      return "?";
-//    }
-//    return typeName;    
-  }
-  
-  private String toRawTypeName(Type type)
-  {
-    String typeName = type.getTypeName();
-    String packageName = StringUtils.substringBeforeLast(typeName, ".");
-    if ("java.lang".equals(packageName))
-    {
-      return StringUtils.substringAfterLast(typeName, ".");
-    }
-    typeName = imports.toSimpleNameIfImported(typeName);
-    return typeName;
-  }
-
   private void print(Class<?> type)
   {
-    print(toTypeName(type));
+    print(new TypeConverter(imports, type).toName());
   }
   
   private void print(Object text) 
