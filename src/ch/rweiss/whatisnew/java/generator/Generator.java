@@ -1,6 +1,5 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,9 +31,9 @@ public class Generator
     {
       Path outputFile = name.getGeneratorJavaFile(outputPath);
       Files.createDirectories(outputFile.getParent());
-      try (BufferedWriter writer = Files.newBufferedWriter(outputFile))
+      try (Printer printer = new Printer(outputFile))
       {
-        new ClassGenerator(name, apiClass, writer).generate();
+        new ClassGenerator(name, apiClass, printer).generate();
       }
     }
     catch(WhatIsNewInException | IOException ex)

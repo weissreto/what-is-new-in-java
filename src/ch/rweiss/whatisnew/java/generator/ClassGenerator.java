@@ -1,7 +1,5 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -9,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -23,18 +20,16 @@ import ch.rweiss.whatisnew.java.model.ApiMethod;
 class ClassGenerator
 {
   private final ClassName name;
-  private final BufferedWriter writer;
+  private final Printer printer;
   private final ApiClass apiClass;
-  private int indent;
-  private boolean newLine = true;
   private boolean needsCreateMethod = false;
   private final Imports imports = new Imports();
 
-  ClassGenerator(ClassName name, ApiClass apiClass, BufferedWriter writer)
+  ClassGenerator(ClassName name, ApiClass apiClass, Printer printer)
   {
     this.name = name;
     this.apiClass = apiClass;
-    this.writer = writer;
+    this.printer = printer;
   }
 
   void generate()
@@ -46,15 +41,15 @@ class ClassGenerator
 
   private void generatePackage()
   {
-    print("package ");
-    print(name.getGeneratorPackageName());
-    print(";");
+    printer.print("package ");
+    printer.print(name.getGeneratorPackageName());
+    printer.print(";");
   }
 
   private void generateImports()
   {
-    println();
-    println();
+    printer.println();
+    printer.println();
     imports.add(name.getApiFullQualifiedName());
     apiClass
         .getMethods()
@@ -63,32 +58,32 @@ class ClassGenerator
         .flatMap(ClassGenerator::getTypeNamesToImport)
         .forEach(imports::add);
     imports.forEach(this::generateImport);
-    println();
+    printer.println();
   }
   
   private void generateImport(String className)
   {
-    print("import ");
-    print(className);
-    print(";");
-    println();
+    printer.print("import ");
+    printer.print(className);
+    printer.print(";");
+    printer.println();
   }
 
   private void generateClass()
   {
-    print("public final class ");
-    print(name.getGeneratorSimpleName());
+    printer.print("public final class ");
+    printer.print(name.getGeneratorSimpleName());
     Class<?> clazz = getJavaClass();
-    print(new TypeVariablesConverter(clazz.getTypeParameters()).toName());
-    println();
-    print("{");
-    println();
-    indent(2);
+    new TypeVariablesGenerator(printer, clazz.getTypeParameters()).generate();
+    printer.println();
+    printer.print("{");
+    printer.println();
+    printer.indent(2);
     apiClass.getMethods().forEach(this::generate);
     generateCreateMethod();
-    indent(0);
-    print("}");
-    println();
+    printer.indent(0);
+    printer.print("}");
+    printer.println();
   }
 
   void generate(ApiMethod apiMethod)
@@ -120,35 +115,34 @@ class ClassGenerator
 
   private void generateJavaDoc(ApiMethod method)
   {
-    print("/**");
-    println();
-    print(" * New method <code>"+method.getName()+"</code>");
-    println();
-    print(" * @Since ");
-    print(method.getSince());
-    println();
-    print(" */");
-    println();
+    printer.print("/**");
+    printer.println();
+    printer.print(" * New method <code>"+method.getName()+"</code>");
+    printer.println();
+    printer.print(" * @Since ");
+    printer.print(method.getSince());
+    printer.println();
+    printer.print(" */");
+    printer.println();
   }
 
   private void generateMethodDeclaration(ApiMethod apiMethod, Method method)
   {
-    print("public ");
+    printer.print("public ");
     if (Modifier.isStatic(method.getModifiers()))
     {
-      print("static ");
+      printer.print("static ");
     }
 
-    print(new TypeVariablesConverter(method.getTypeParameters()).toName());
-
-    print(new TypeConverter(imports, method.getGenericReturnType()).toName());
-    print(" ");
-    print(apiMethod.getName());
-    print("(");
-    print(getParameterList(method));
-    print(")");
+    new TypeVariablesGenerator(printer, method.getTypeParameters()).generate();
+    new TypeNameGenerator(imports, printer, method.getGenericReturnType()).generate();
+    printer.print(" ");
+    printer.print(apiMethod.getName());
+    printer.print("(");
+    generateParameterList(method);
+    printer.print(")");
     generateThrows(method.getExceptionTypes());
-    println();
+    printer.println();
   }
 
   private void generateThrows(Class<?>[] exceptionTypes)
@@ -157,34 +151,37 @@ class ClassGenerator
     {
       return;
     }
-    print(" throws ");
-    print(Arrays.stream(exceptionTypes).map(Class::getName).collect(Collectors.joining(", ")));    
+    printer.print(" throws ");
+    Arrays
+        .stream(exceptionTypes)
+        .map(Class::getName)
+        .collect(printer.toPrintedList(", "));    
   }
 
   private void generateMethodBody(ApiMethod apiMethod, Method method)
   {
-    print("{");
-    println();    
-    indent(4);
+    printer.print("{");
+    printer.println();    
+    printer.indent(4);
     generateTesteeObjectCreation(method);
     generateMethodCall(apiMethod, method);
     generateReturn(method);
-    indent(2);
-    print("}");
-    println(); 
-    println(); 
+    printer.indent(2);
+    printer.print("}");
+    printer.println(); 
+    printer.println(); 
   }
 
   private void generateTesteeObjectCreation(Method method)
   {
     if (!Modifier.isStatic(method.getModifiers()))
     {
-      print(getJavaClass());
-      print(" ");
-      print("testee = create();");
+      new TypeNameGenerator(imports, printer, getJavaClass()).generate();
+      printer.print(" ");
+      printer.print("testee = create();");
       needsCreateMethod = true;
-      println();
-      println();
+      printer.println();
+      printer.println();
     }
   }
 
@@ -192,31 +189,31 @@ class ClassGenerator
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
-      print(new TypeConverter(imports, method.getGenericReturnType()).toName());
-      print(" result = ");
+      new TypeNameGenerator(imports, printer, method.getGenericReturnType()).generate();
+      printer.print(" result = ");
     }
     if (Modifier.isStatic(method.getModifiers()))
     {
-      print(imports.toSimpleNameIfImported(getJavaClass().getName()));
-      print(".");
+      printer.print(imports.toSimpleNameIfImported(getJavaClass().getName()));
+      printer.print(".");
     }
     else
     {
-      print("testee.");
+      printer.print("testee.");
     }
-    print(apiMethod.getName());
-    print("(");
-    print(getParameterNameList(method));
-    print(");");
-    println();
+    printer.print(apiMethod.getName());
+    printer.print("(");
+    generateParameterNameList(method);
+    printer.print(");");
+    printer.println();
   }
 
   private void generateReturn(Method method)
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
-      print("return result;");
-      println();
+      printer.print("return result;");
+      printer.println();
     }
   }
 
@@ -226,16 +223,16 @@ class ClassGenerator
     {
       return;
     }
-    print("private <O> O create()");    
-    println();
-    print("{");
-    println();
-    indent(4);
-    print("return null;");
-    println();
-    indent(2);
-    print("}");
-    println();
+    printer.print("private <O> O create()");    
+    printer.println();
+    printer.print("{");
+    printer.println();
+    printer.indent(4);
+    printer.print("return null;");
+    printer.println();
+    printer.indent(2);
+    printer.print("}");
+    printer.println();
   }
 
   private Class<?> getJavaClass()
@@ -275,20 +272,24 @@ class ClassGenerator
     return typeNames.stream();
   }
   
-  private static String getParameterNameList(Method method)
+  private void generateParameterNameList(Method method)
   {
-    return Arrays
+    Arrays
         .stream(method.getParameters())
         .map(Parameter::getName)
-        .collect(Collectors.joining(", "));
+        .collect(printer.toPrintedList(", "));
   }
   
-  private String getParameterList(Method method)
+  private void generateParameterList(Method method)
   {
-    return Arrays
-        .stream(method.getParameters())
-        .map(parameter -> new TypeConverter(imports, parameter.getParameterizedType()).toName()+" "+parameter.getName())
-        .collect(Collectors.joining(", "));
+    printer.forEachPrint(method.getParameters(), ", ", this::generateParameter);
+  }
+    
+  private void generateParameter(Parameter parameter)
+  {
+    new TypeNameGenerator(imports, printer, parameter.getParameterizedType()).generate();
+    printer.print(' ');
+    printer.print(parameter.getName());
   }
   
   private static String toImportTypeName(Class<?> type)
@@ -306,48 +307,5 @@ class ClassGenerator
       return null;
     }
     return type.getTypeName();
-  }
-  
-  private void print(Class<?> type)
-  {
-    print(new TypeConverter(imports, type).toName());
-  }
-  
-  private void print(Object text) 
-  {
-    try
-    {
-      if (newLine )
-      {
-        for (int pos = 0; pos < indent; pos++)
-        {
-          writer.append(' ');
-        }
-      }      
-      writer.append(text.toString());
-      newLine = false;
-    }
-    catch(IOException ex)
-    {
-      throw new WhatIsNewInException(ex);
-    }
-  }
-  
-  private void println()
-  {
-    try
-    {
-      writer.append('\n');
-      newLine = true;
-    }
-    catch(IOException ex)
-    {
-      throw new WhatIsNewInException(ex);
-    }
-  }
-
-  private void indent(int ind)
-  {
-    this.indent = ind;
-  }
+  }   
 }
