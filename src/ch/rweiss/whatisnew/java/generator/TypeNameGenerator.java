@@ -42,11 +42,6 @@ class TypeNameGenerator
   
   private void generate(Class<?> clazz)
   {
-    if (clazz.isArray())
-    {
-      generate(clazz.getComponentType());
-      printer.print("[]");
-    }
     generateRawName(clazz);
     new TypeVariablesGenerator(printer, clazz.getTypeParameters()).generate();
   }  
@@ -54,13 +49,16 @@ class TypeNameGenerator
   private void generateRawName(Type rawType)
   {
     String typeName = rawType.getTypeName();
+    typeName = typeName.replace('$', '.');
     String packageName = StringUtils.substringBeforeLast(typeName, ".");
     if ("java.lang".equals(packageName))
     {
-      printer.print(StringUtils.substringAfterLast(typeName, "."));
-      return;
+      typeName = StringUtils.substringAfterLast(typeName, ".");
     }
-    typeName = imports.toSimpleNameIfImported(typeName);
+    else
+    {
+      typeName = imports.toSimpleNameIfImported(typeName);
+    }
     printer.print(typeName);
   }
   
