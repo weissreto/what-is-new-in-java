@@ -1,8 +1,11 @@
 package ch.rweiss.whatisnew.java.generator;
 
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,9 +99,9 @@ class ClassGenerator
 
   private Method getJavaMethod(ApiMethod apiMethod)
   {
+    Class<?> clazz = getJavaClass();
     try
     {
-      Class<?> clazz = getJavaClass();
       Class<?>[] parameterTypes = apiMethod
               .getArgumentTypes()
               .stream()
@@ -110,6 +113,49 @@ class ClassGenerator
     {
       throw new WhatIsNewInException(ex);
     }
+    catch(WhatIsNewInException ex)
+    {
+      return Arrays
+        .stream(clazz.getDeclaredMethods())
+        .filter(method -> matches(method, apiMethod))
+        .findAny()
+        .orElseThrow(() -> new WhatIsNewInException("Could not find method "+apiMethod.getName()));
+    }
+  }
+
+  private boolean matches(Method method, ApiMethod apiMethod)
+  {
+    return method.getName().equals(apiMethod.getName()) &&
+           method.getParameterCount() == apiMethod.getArgumentTypes().size() &&
+           matches(method.getParameters(), apiMethod.getArgumentTypes());
+  }
+
+  private boolean matches(Parameter[] parameters, List<String> argumentTypes)
+  {
+    for (int pos = 0; pos < parameters.length; pos++)
+    {
+      Parameter parameter = parameters[pos];
+      String argumentType = argumentTypes.get(pos);
+      if (argumentType.endsWith("..."))
+      {
+        argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
+      }
+      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
+      Type type = parameter.getParameterizedType();
+      if (type instanceof TypeVariable)
+      {
+        parameterType = ((TypeVariable<?>) type).getName();
+      }
+      else if (type instanceof GenericArrayType)
+      {
+        parameterType = ((GenericArrayType) type).getGenericComponentType().getTypeName()+"[]";
+      }
+      if (!parameterType.equals(argumentType))
+      {
+        return false;
+      }
+    }
+    return true;
   }
 
   private void generateJavaDoc(ApiMethod method)
@@ -134,12 +180,16 @@ class ClassGenerator
     }
 
     new TypeVariablesGenerator(printer, method.getTypeParameters()).generate();
+    if (ArrayUtils.isNotEmpty(method.getTypeParameters()))
+    {
+      printer.print(' ');
+    }
     new TypeNameGenerator(imports, printer, method.getGenericReturnType()).generate();
-    printer.print(" ");
+    printer.print(' ');
     printer.print(apiMethod.getName());
-    printer.print("(");
+    printer.print('(');
     generateParameterList(method);
-    printer.print(")");
+    printer.print(')');
     generateThrows(method.getExceptionTypes());
     printer.println();
   }
