@@ -11,15 +11,29 @@ class Imports
   private final List<String> typeNames = new ArrayList<>();
   private final List<String> simpleTypeNames = new ArrayList<>();
   
-  void add(String typeName)
+  void add(Class<?> type)
   {
-    String simpleName = toSimpleName(typeName);
+    if (type.isArray())
+    {
+      add(type.getComponentType());
+      return;
+    }
+    if (type.isPrimitive())
+    {
+      return;
+    }
+    String rawTypeName = RawTypeNameGenerator.toRawName(type.getTypeName());
+    if (RawTypeNameGenerator.isJavaLangPackage(rawTypeName))
+    {
+      return;
+    }
+    String simpleName = toSimpleName(rawTypeName);
     if (simpleTypeNames.contains(simpleName))
     {
       return;
     }
     simpleTypeNames.add(simpleName);
-    typeNames.add(typeName);
+    typeNames.add(rawTypeName);
   }
 
   void forEach(Consumer<String> consumer)

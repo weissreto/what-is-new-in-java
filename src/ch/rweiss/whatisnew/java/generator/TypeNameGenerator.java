@@ -3,8 +3,6 @@ package ch.rweiss.whatisnew.java.generator;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import org.apache.commons.lang3.StringUtils;
-
 class TypeNameGenerator
 {
   private final Imports imports;
@@ -18,7 +16,7 @@ class TypeNameGenerator
     this.type = type;
   }
 
-  public void generate()
+  void generate()
   {
     if (type instanceof Class)
     {
@@ -28,7 +26,7 @@ class TypeNameGenerator
     if (type instanceof ParameterizedType)
     {
       ParameterizedType pType = (ParameterizedType)type;
-      generateRawName(pType.getRawType());
+      new RawTypeNameGenerator(imports, printer, pType.getRawType()).generate();
       printer.print('<');
       printer.forEachPrint(
           pType.getActualTypeArguments(), 
@@ -37,29 +35,12 @@ class TypeNameGenerator
       printer.print('>');
       return;
     }
-    generateRawName(type);
+    new RawTypeNameGenerator(imports, printer, type).generate();
   }
   
   private void generate(Class<?> clazz)
   {
-    generateRawName(clazz);
+    new RawTypeNameGenerator(imports, printer, clazz).generate();
     new TypeVariablesGenerator(printer, clazz.getTypeParameters()).generate();
   }  
-
-  private void generateRawName(Type rawType)
-  {
-    String typeName = rawType.getTypeName();
-    typeName = typeName.replace('$', '.');
-    String packageName = StringUtils.substringBeforeLast(typeName, ".");
-    if ("java.lang".equals(packageName))
-    {
-      typeName = StringUtils.substringAfterLast(typeName, ".");
-    }
-    else
-    {
-      typeName = imports.toSimpleNameIfImported(typeName);
-    }
-    printer.print(typeName);
-  }
-  
 }

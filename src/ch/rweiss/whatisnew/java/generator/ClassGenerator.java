@@ -6,7 +6,6 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -50,12 +49,12 @@ class ClassGenerator
   {
     printer.println();
     printer.println();
-    imports.add(name.getApiFullQualifiedName());
+    imports.add(getJavaClass());
     apiClass
         .getMethods()
         .stream()
         .map(this::getJavaMethod)
-        .flatMap(ClassGenerator::getTypeNamesToImport)
+        .flatMap(ClassGenerator::getTypeToImport)
         .forEach(imports::add);
     imports.forEach(this::generateImport);
     printer.println();
@@ -194,7 +193,7 @@ class ClassGenerator
     }
     if (Modifier.isStatic(method.getModifiers()))
     {
-      printer.print(imports.toSimpleNameIfImported(getJavaClass().getName()));
+      new RawTypeNameGenerator(imports, printer, getJavaClass()).generate();
       printer.print(".");
     }
     else
@@ -256,20 +255,12 @@ class ClassGenerator
     }
   }
   
-  private static Stream<String> getTypeNamesToImport(Method method)
+  private static Stream<Class<?>> getTypeToImport(Method method)
   {
-    List<String> typeNames = new ArrayList<>();
-    String returnType = toImportTypeName(method.getReturnType());
-    if (returnType != null)
-    {
-      typeNames.add(returnType);
-    }
-    Arrays
-        .stream(method.getParameterTypes())
-        .map(ClassGenerator::toImportTypeName)
-        .filter(Objects::nonNull)
-        .forEach(typeNames::add);    
-    return typeNames.stream();
+    List<Class<?>> types = new ArrayList<>();
+    types.add(method.getReturnType());
+    types.addAll(Arrays.asList(method.getParameterTypes()));
+    return types.stream();
   }
   
   private void generateParameterNameList(Method method)
@@ -291,21 +282,4 @@ class ClassGenerator
     printer.print(' ');
     printer.print(parameter.getName());
   }
-  
-  private static String toImportTypeName(Class<?> type)
-  {
-    if (type.isArray())
-    {
-      return toImportTypeName(type.getComponentType());
-    }
-    if (type.isPrimitive())
-    {
-      return null;
-    }
-    if (StringUtils.startsWith(type.getTypeName(), "java.lang."))
-    {
-      return null;
-    }
-    return type.getTypeName();
-  }   
 }
