@@ -39,7 +39,7 @@ public class Generator
     }
     catch(WhatIsNewInException | IOException ex)
     {
-      throw new WhatIsNewInException("Could not generate java class for "+name.getApiFullQualifiedName(), ex);
+      System.err.println("Could not generate java class for "+name.getApiFullQualifiedName()+" ("+ex.getMessage()+")");
     }
   }
 }

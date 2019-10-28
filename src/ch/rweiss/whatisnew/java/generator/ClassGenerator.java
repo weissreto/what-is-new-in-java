@@ -5,8 +5,15 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
@@ -23,6 +30,8 @@ class ClassGenerator
   private final ApiClass apiClass;
   private int indent;
   private boolean newLine = true;
+  private boolean needsCreateMethod = false;
+  private final Imports imports = new Imports();
 
   ClassGenerator(ClassName name, ApiClass apiClass, BufferedWriter writer)
   {
@@ -33,18 +42,47 @@ class ClassGenerator
 
   void generate()
   {
+    generatePackage();
+    generateImports();
+    generateClass();
+  }
+
+  private void generatePackage()
+  {
     print("package ");
     print(name.getGeneratorPackageName());
     print(";");
+  }
+
+  private void generateImports()
+  {
     println();
     println();
+    imports.add(name.getApiFullQualifiedName());
+    apiClass
+        .getMethods()
+        .stream()
+        .map(this::getJavaMethod)
+        .flatMap(ClassGenerator::getTypeNamesToImport)
+        .forEach(imports::add);
+    imports.forEach(this::generateImport);
+    println();
+  }
+  
+  private void generateImport(String className)
+  {
     print("import ");
-    print(name.getApiFullQualifiedName());
+    print(className);
     print(";");
     println();
-    println();
+  }
+
+  private void generateClass()
+  {
     print("public final class ");
     print(name.getGeneratorSimpleName());
+    Class<?> clazz = getJavaClass();
+    generateTypeParameters(clazz.getTypeParameters());
     println();
     print("{");
     println();
@@ -55,60 +93,127 @@ class ClassGenerator
     print("}");
     println();
   }
-  
-  private void generateCreateMethod()
-  {
-    print("private <T> T create()");    
-    println();
-    print("{");
-    println();
-    indent(4);
-    print("return null;");
-    println();
-    indent(2);
-    print("}");
-    println();
-  }
 
   void generate(ApiMethod apiMethod)
   {
     Method method = getJavaMethod(apiMethod);
 
     generateJavaDoc(apiMethod);
+    generateMethodDeclaration(apiMethod, method);
+    generateMethodBody(apiMethod, method);
+  }
+
+  private Method getJavaMethod(ApiMethod apiMethod)
+  {
+    try
+    {
+      Class<?> clazz = getJavaClass();
+      Class<?>[] parameterTypes = apiMethod
+              .getArgumentTypes()
+              .stream()
+              .map(ClassGenerator::getJavaClass)
+              .toArray(Class[]::new);
+      return clazz.getDeclaredMethod(apiMethod.getName(), parameterTypes);
+    }
+    catch (NoSuchMethodException | SecurityException ex)
+    {
+      throw new WhatIsNewInException(ex);
+    }
+  }
+
+  private void generateJavaDoc(ApiMethod method)
+  {
+    print("/**");
     println();
-    print("public void ");
+    print(" * New method <code>"+method.getName()+"</code>");
+    println();
+    print(" * @Since ");
+    print(method.getSince());
+    println();
+    print(" */");
+    println();
+  }
+
+  private void generateMethodDeclaration(ApiMethod apiMethod, Method method)
+  {
+    print("public ");
+    if (Modifier.isStatic(method.getModifiers()))
+    {
+      print("static ");
+    }
+
+    generateTypeParameters(method.getTypeParameters());
+
+    print(toTypeName(method.getGenericReturnType()));
+    print(" ");
     print(apiMethod.getName());
     print("(");
+    print(getParameterList(method));
     print(")");
     generateThrows(method.getExceptionTypes());
     println();
+  }
+
+  private void generateTypeParameters(TypeVariable<?>[] typeParameters)
+  {
+    if (ArrayUtils.isNotEmpty(typeParameters))
+    {      
+      print("<");
+      print(Arrays
+          .stream(typeParameters)
+          .map(this::toTypeVariableName)
+          .collect(Collectors.joining(", ")));
+      print("> ");
+    }
+  }
+
+  private void generateThrows(Class<?>[] exceptionTypes)
+  {
+    if (ArrayUtils.isEmpty(exceptionTypes))
+    {
+      return;
+    }
+    print(" throws ");
+    print(Arrays.stream(exceptionTypes).map(Class::getName).collect(Collectors.joining(", ")));    
+  }
+
+  private void generateMethodBody(ApiMethod apiMethod, Method method)
+  {
     print("{");
     println();    
     indent(4);
+    generateTesteeObjectCreation(method);
+    generateMethodCall(apiMethod, method);
+    generateReturn(method);
+    indent(2);
+    print("}");
+    println(); 
+    println(); 
+  }
+
+  private void generateTesteeObjectCreation(Method method)
+  {
     if (!Modifier.isStatic(method.getModifiers()))
     {
-      print(name.getApiSimpleName());
+      print(getJavaClass());
       print(" ");
       print("testee = create();");
+      needsCreateMethod = true;
+      println();
       println();
     }
-    for (Parameter parameter : method.getParameters())
-    {
-      print(parameter.getType());
-      print(" ");
-      print(parameter.getName());
-      print(" = create();");
-      println();
-    }
-    
+  }
+
+  private void generateMethodCall(ApiMethod apiMethod, Method method)
+  {
     if (!method.getReturnType().equals(Void.TYPE))
     {
-      print(method.getReturnType());
+      print(toTypeName(method.getGenericReturnType()));
       print(" result = ");
     }
     if (Modifier.isStatic(method.getModifiers()))
     {
-      print(name.getApiSimpleName());
+      print(imports.toSimpleNameIfImported(getJavaClass().getName()));
       print(".");
     }
     else
@@ -120,34 +225,33 @@ class ClassGenerator
     print(getParameterNameList(method));
     print(");");
     println();
-    indent(2);
-    print("}");
-    println(); 
-    println(); 
   }
 
-  private void generateThrows(Class<?>[] exceptionTypes)
+  private void generateReturn(Method method)
   {
-    if (ArrayUtils.isEmpty(exceptionTypes))
+    if (!method.getReturnType().equals(Void.TYPE))
+    {
+      print("return result;");
+      println();
+    }
+  }
+
+  private void generateCreateMethod()
+  {
+    if (!needsCreateMethod)
     {
       return;
     }
-    print(" throws ");
-    print(Arrays.stream(exceptionTypes).map(Class::getName).collect(Collectors.joining(", ")));
-  }
-
-  private Method getJavaMethod(ApiMethod apiMethod)
-  {
-    try
-    {
-      Class<?> clazz = getJavaClass();
-      Class<?>[] parameterTypes = apiMethod.getArgumentTypes().stream().map(this::getJavaClass).toArray(Class[]::new);
-      return clazz.getDeclaredMethod(apiMethod.getName(), parameterTypes);
-    }
-    catch (NoSuchMethodException | SecurityException ex)
-    {
-      throw new WhatIsNewInException(ex);
-    }
+    print("private <O> O create()");    
+    println();
+    print("{");
+    println();
+    indent(4);
+    print("return null;");
+    println();
+    indent(2);
+    print("}");
+    println();
   }
 
   private Class<?> getJavaClass()
@@ -155,7 +259,7 @@ class ClassGenerator
     return getJavaClass(name.getApiFullQualifiedName());
   }
   
-  private Class<?> getJavaClass(String fullQualifiedName)
+  private static Class<?> getJavaClass(String fullQualifiedName)
   {
     if (fullQualifiedName.endsWith("..."))
     {
@@ -170,35 +274,130 @@ class ClassGenerator
       throw new WhatIsNewInException(ex);
     }
   }
-
-  private String getParameterNameList(Method method)
+  
+  private static Stream<String> getTypeNamesToImport(Method method)
   {
-    return Arrays.stream(method.getParameters()).map(Parameter::getName).collect(Collectors.joining(", "));
+    List<String> typeNames = new ArrayList<>();
+    String returnType = toImportTypeName(method.getReturnType());
+    if (returnType != null)
+    {
+      typeNames.add(returnType);
+    }
+    Arrays
+        .stream(method.getParameterTypes())
+        .map(ClassGenerator::toImportTypeName)
+        .filter(Objects::nonNull)
+        .forEach(typeNames::add);    
+    return typeNames.stream();
   }
   
-  private void generateJavaDoc(ApiMethod method)
+  private static String getParameterNameList(Method method)
   {
-    print("/**");
-    println();
-    print(" * New method <code>"+method.getName()+"</code>");
-    println();
-    print(" * @Since ");
-    print(method.getSince());
-    println();
-    print(" */");
+    return Arrays
+        .stream(method.getParameters())
+        .map(Parameter::getName)
+        .collect(Collectors.joining(", "));
+  }
+  
+  private String getParameterList(Method method)
+  {
+    return Arrays
+        .stream(method.getParameters())
+        .map(parameter -> toTypeName(parameter.getParameterizedType())+" "+parameter.getName())
+        .collect(Collectors.joining(", "));
+  }
+  
+  private static String toImportTypeName(Class<?> type)
+  {
+    if (type.isArray())
+    {
+      return toImportTypeName(type.getComponentType());
+    }
+    if (type.isPrimitive())
+    {
+      return null;
+    }
+    if (StringUtils.startsWith(type.getTypeName(), "java.lang."))
+    {
+      return null;
+    }
+    return type.getTypeName();
+  }
+
+  private String toTypeName(Type type)
+  {
+    if (type instanceof Class)
+    {
+      toTypeName((Class<?>)type);
+    }
+    if (type instanceof ParameterizedType)
+    {
+      ParameterizedType pType = (ParameterizedType)type;
+      StringBuilder typeName = new StringBuilder(128);
+      typeName.append(toRawTypeName(pType.getRawType()));
+      typeName.append('<');
+      typeName.append(
+          Arrays
+              .stream(pType.getActualTypeArguments())
+              .map(this::toTypeName)
+              .collect(Collectors.joining(", ")));
+      typeName.append('>');
+      return typeName.toString();
+    }
+    return toRawTypeName(type);
+  }
+  
+  private String toTypeName(Class<?> type)
+  {
+    if (type.isArray())
+    {
+      return toTypeName(type.getComponentType())+"[]";
+    }
+    StringBuilder typeName = new StringBuilder(128);
+    typeName.append(toRawTypeName(type));
+    if (ArrayUtils.isNotEmpty(type.getTypeParameters()))
+    {
+      typeName.append('<');
+      typeName.append(
+          Arrays
+              .stream(type.getTypeParameters())
+              .map(this::toTypeVariableName)
+              .collect(Collectors.joining(", ")));
+      typeName.append('>');
+    }
+    return typeName.toString();
+  }
+  
+  private String toTypeVariableName(TypeVariable<?> variable)
+  {
+    return variable.getName();
+//    if (ArrayUtils.isEmpty(variable.getBounds()))
+//    {
+//      return "?";
+//    }
+//    String typeName = variable.getBounds()[0].getTypeName();
+//    if (Object.class.getName().equals(typeName))
+//    {
+//      return "?";
+//    }
+//    return typeName;    
+  }
+  
+  private String toRawTypeName(Type type)
+  {
+    String typeName = type.getTypeName();
+    String packageName = StringUtils.substringBeforeLast(typeName, ".");
+    if ("java.lang".equals(packageName))
+    {
+      return StringUtils.substringAfterLast(typeName, ".");
+    }
+    typeName = imports.toSimpleNameIfImported(typeName);
+    return typeName;
   }
 
   private void print(Class<?> type)
   {
-    if (type.isArray())
-    {
-      print(type.getComponentType());
-      print("[]");
-    }
-    else
-    {
-      print(type.getName());
-    }
+    print(toTypeName(type));
   }
   
   private void print(Object text) 

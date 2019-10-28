@@ -15,10 +15,10 @@ public class WhatIsNewInJava
   public static void main(String[] args) throws IOException
   {
     Path root = Paths.get(args[0]);
-    Path outputPath = Paths.get("../Generated/src");
+    Path outputPath = Paths.get("../workspace/Generated/src");
     Directory.delete(outputPath);
     ApiDoc apiDoc = ApiDocParser.parse(root);
-    apiDoc = ApiDocFilter.filter(apiDoc, Version.valueOf("11"));
+    apiDoc = ApiDocFilter.filter(apiDoc, Version.valueOf("9"));
     new Generator(apiDoc, outputPath).generate();
   }
 }
