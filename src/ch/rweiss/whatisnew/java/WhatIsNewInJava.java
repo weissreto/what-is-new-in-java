@@ -18,7 +18,7 @@ public class WhatIsNewInJava
     Path outputPath = Paths.get("../workspace/Generated/src");
     Directory.delete(outputPath);
     ApiDoc apiDoc = ApiDocParser.parse(root);
-    apiDoc = ApiDocFilter.filter(apiDoc, Version.valueOf("9"));
+    apiDoc = ApiDocFilter.filter(apiDoc, Version.valueOf("11"));
     new Generator(apiDoc, outputPath).generate();
   }
 }

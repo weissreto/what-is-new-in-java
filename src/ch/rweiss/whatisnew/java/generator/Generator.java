@@ -1,6 +1,7 @@
 package ch.rweiss.whatisnew.java.generator;
 
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -29,6 +30,11 @@ public class Generator
     ClassName name = new ClassName(apiClass.getName());
     try
     {
+      if (!isPublic(name))
+      {
+        return;
+      }
+        
       Path outputFile = name.getGeneratorJavaFile(outputPath);
       Files.createDirectories(outputFile.getParent());
       try (Printer printer = new Printer(outputFile))
@@ -40,5 +46,12 @@ public class Generator
     {
       System.err.println("Could not generate java class for "+name.getApiFullQualifiedName()+" ("+ex.getMessage()+")");
     }
+  }
+
+  private boolean isPublic(ClassName name)
+  {
+    Class<?> clazz = ClassGenerator.getJavaClass(name);
+    return Modifier.isPublic(clazz.getModifiers());
+    
   }
 }

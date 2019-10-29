@@ -9,6 +9,7 @@ import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -34,11 +35,18 @@ class ClassGenerator
     this.printer = printer;
   }
 
-  void generate()
+  boolean generate()
   {
+    Class<?> clazz = getJavaClass();
+    if (!Modifier.isPublic(clazz.getModifiers()))
+    {
+      return false;
+    }
+    
     generatePackage();
     generateImports();
     generateClass();
+    return true;
   }
 
   private void generatePackage()
@@ -57,6 +65,7 @@ class ClassGenerator
         .getMethods()
         .stream()
         .map(this::getJavaMethod)
+        .filter(Objects::nonNull)
         .flatMap(ClassGenerator::getTypeToImport)
         .forEach(imports::add);
     imports.forEach(this::generateImport);
@@ -76,7 +85,7 @@ class ClassGenerator
     printer.print("public final class ");
     printer.print(name.getGeneratorSimpleName());
     Class<?> clazz = getJavaClass();
-    new TypeVariablesGenerator(printer, clazz.getTypeParameters()).generate();
+    new TypeVariablesDeclarationGenerator(imports, printer, clazz.getTypeParameters()).generate();
     printer.println();
     printer.print("{");
     printer.println();
@@ -91,13 +100,26 @@ class ClassGenerator
   void generate(ApiMethod apiMethod)
   {
     Method method = getJavaMethod(apiMethod);
-
+    if (method == null)
+    {
+      return;
+    }
     generateJavaDoc(apiMethod);
     generateMethodDeclaration(apiMethod, method);
     generateMethodBody(apiMethod, method);
   }
 
   private Method getJavaMethod(ApiMethod apiMethod)
+  {
+    Method method = resolveMethod(apiMethod);
+    if (Modifier.isPublic(method.getModifiers()))
+    {
+      return method;
+    }
+    return null;
+  }
+
+  private Method resolveMethod(ApiMethod apiMethod)
   {
     Class<?> clazz = getJavaClass();
     try
@@ -179,7 +201,7 @@ class ClassGenerator
       printer.print("static ");
     }
 
-    new TypeVariablesGenerator(printer, method.getTypeParameters()).generate();
+    new TypeVariablesDeclarationGenerator(imports, printer, method.getTypeParameters()).generate();
     if (ArrayUtils.isNotEmpty(method.getTypeParameters()))
     {
       printer.print(' ');
@@ -286,9 +308,14 @@ class ClassGenerator
 
   private Class<?> getJavaClass()
   {
-    return getJavaClass(name.getApiFullQualifiedName());
+    return getJavaClass(name);
   }
   
+  static Class<?> getJavaClass(ClassName name)
+  {
+    return getJavaClass(name.getApiFullQualifiedName());
+  }
+
   private static Class<?> getJavaClass(String fullQualifiedName)
   {
     if (fullQualifiedName.endsWith("..."))
