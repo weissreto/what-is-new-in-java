@@ -12,17 +12,17 @@ import ch.rweiss.whatisnew.java.model.Version;
 public class ApiDocFilter
 {
   private final ApiDoc apiDoc;
-  private final Version version;
+  private final List<Version> versions;
 
-  private ApiDocFilter(ApiDoc apiDoc, Version version)
+  private ApiDocFilter(ApiDoc apiDoc, List<Version> versions)
   {
     this.apiDoc = apiDoc;
-    this.version = version;
+    this.versions = versions;
   }
 
-  public static ApiDoc filter(ApiDoc apiDoc, Version version)
+  public static ApiDoc filter(ApiDoc apiDoc, List<Version> versions)
   {
-    return new ApiDocFilter(apiDoc, version).filter();
+    return new ApiDocFilter(apiDoc, versions).filter();
   }
 
   private ApiDoc filter()
@@ -52,6 +52,10 @@ public class ApiDocFilter
   
   private boolean filter(ApiMethod method)
   {
-    return method.getSince().equals(version);
+    if (versions.isEmpty())
+    {
+      return true;
+    }
+    return versions.contains(method.getSince());
   }
 }

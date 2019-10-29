@@ -52,6 +52,5 @@ public class Generator
   {
     Class<?> clazz = ClassGenerator.getJavaClass(name);
     return Modifier.isPublic(clazz.getModifiers());
-    
   }
 }
