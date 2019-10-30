@@ -57,7 +57,7 @@ public class WhatIsNewInJava
     Directory.delete(outputPath);
     ApiDoc apiDoc = ApiDocParser.parse(root);
     apiDoc = ApiDocFilter.filter(apiDoc, filterArgs);
-    new Generator(apiDoc, outputPath).generate();
+    new Generator(apiDoc, filterArgs, outputPath).generate();
   }
 
   private static void printHelp()

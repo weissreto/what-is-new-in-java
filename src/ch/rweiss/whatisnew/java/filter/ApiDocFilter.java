@@ -38,6 +38,10 @@ public class ApiDocFilter
   
   private ApiClass filter(ApiClass apiClass)
   {
+    if (filter(apiClass.getSince()))
+    {
+      return apiClass;
+    }
     List<ApiMethod> filteredMethods = apiClass
             .getMethods()
             .stream()
@@ -47,7 +51,7 @@ public class ApiDocFilter
     {
       return null;
     }
-    return new ApiClass(apiClass.getName(), apiClass.getConstructors(), filteredMethods, apiClass.getFields());
+    return new ApiClass(apiClass.getName(), apiClass.getConstructors(), filteredMethods, apiClass.getFields(), apiClass.getSince());
   }
   
   private boolean filter(ApiMethod method)
@@ -56,6 +60,11 @@ public class ApiDocFilter
     {
       return true;
     }
-    return versions.contains(method.getSince());
+    return filter(method.getSince());
+  }
+
+  private boolean filter(Version version)
+  {
+    return versions.contains(version);
   }
 }

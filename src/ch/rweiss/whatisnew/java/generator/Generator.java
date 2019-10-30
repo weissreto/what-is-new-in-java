@@ -4,19 +4,23 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
 import ch.rweiss.whatisnew.java.model.ApiClass;
 import ch.rweiss.whatisnew.java.model.ApiDoc;
+import ch.rweiss.whatisnew.java.model.Version;
 
 public class Generator
 {
   private final ApiDoc apiDoc;
   private final Path outputPath;
+  private final List<Version> versions;
 
-  public Generator(ApiDoc apiDoc, Path outputPath)
+  public Generator(ApiDoc apiDoc, List<Version> versions, Path outputPath)
   {
     this.apiDoc = apiDoc;
+    this.versions = versions;
     this.outputPath = outputPath;
   }
 
@@ -39,7 +43,7 @@ public class Generator
       Files.createDirectories(outputFile.getParent());
       try (Printer printer = new Printer(outputFile))
       {
-        new ClassGenerator(name, apiClass, printer).generate();
+        new ClassGenerator(name, apiClass, versions, printer).generate();
       }
     }
     catch(WhatIsNewInException | IOException ex)

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.rweiss.whatisnew.java.WhatIsNewInException;
 import ch.rweiss.whatisnew.java.model.ApiClass;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
@@ -57,20 +58,34 @@ public class ClassFileParser
         }
         else
         {
+          if (previousTag == null)
+          {
+            throw new WhatIsNewInException("Found @since but no tag");
+          }
           previousTag.setSince(Version.valueOf(since));
           break;
         }
       }
     }
 
-    List<ApiMethod> methods = toMethods(tags);
+    List<ApiMethod> methods = toMethods(tags);    
     
     String relativePathStr = relativePath.toString();
     relativePathStr = StringUtils.removeEnd(relativePathStr, ".html");
     String className = StringUtils.replace(relativePathStr, FileSystems.getDefault().getSeparator(), ".");
-    
     return new ApiClass(className, Collections.emptyList(), methods,
-            Collections.emptyList());
+            Collections.emptyList(), toClassSince(tags));
+  }
+
+  private Version toClassSince(List<Tag> tags)
+  {
+    return tags
+        .stream()
+        .takeWhile(tag -> !tag.tag.contains(".summary"))
+        .filter(tag -> !Version.UNDEFINED.equals(tag.since))
+        .map(tag -> tag.since)
+        .findAny()
+        .orElse(Version.UNDEFINED);
   }
 
   private List<ApiMethod> toMethods(List<Tag> tags)
@@ -123,6 +138,12 @@ public class ClassFileParser
     public void setSince(Version since)
     {
       this.since = since;
+    }
+    
+    @Override
+    public String toString()
+    {
+      return "Tag [tag="+tag+",pos="+startPos+" since= "+since+"]";
     }
   }
 
