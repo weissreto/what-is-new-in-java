@@ -29,6 +29,7 @@ class ClassGenerator
   private boolean needsCreateMethod = false;
   private final Imports imports = new Imports();
   private final List<Version> versions;
+  private final List<Method> alreadyGeneratedMethods = new ArrayList<>();
 
   ClassGenerator(ClassName name, ApiClass apiClass, List<Version> versions, Printer printer)
   {
@@ -85,6 +86,10 @@ class ClassGenerator
 
   private void generateClass()
   {
+    if (name.getApiFullQualifiedName().equals("java.util.List"))
+    {
+      System.out.println("gugu");
+    }
     generateJavaDoc();
     printer.print("public final class ");
     printer.print(name.getGeneratorSimpleName());
@@ -152,6 +157,11 @@ class ClassGenerator
     {
       return;
     }
+    if (alreadyGeneratedMethods.contains(method))
+    {
+      return;
+    }
+    alreadyGeneratedMethods.add(method);
     generateJavaDoc(apiMethod);
     generateMethodDeclaration(apiMethod, method);
     generateMethodBody(apiMethod, method);
@@ -160,6 +170,11 @@ class ClassGenerator
   private Method getJavaMethod(ApiMethod apiMethod)
   {
     Method method = resolveMethod(apiMethod);
+    if (method == null)
+    {
+      System.err.println("Could not generate method "+apiMethod.getName()+" for class "+name.getApiFullQualifiedName());
+      return null;
+    }
     if (Modifier.isPublic(method.getModifiers()))
     {
       return method;
@@ -170,6 +185,27 @@ class ClassGenerator
   private Method resolveMethod(ApiMethod apiMethod)
   {
     Class<?> clazz = getJavaClass();
+    Method method = findDeclaredMethodWithParamTypes(clazz, apiMethod);
+    if (method != null)
+    {
+      return method;
+    }
+    method = findDeclaredMethodWithTypeVariableParams(clazz, apiMethod);
+    if (method != null)
+    {
+      return method;
+    }
+    method = findPublicMethodWithParamTypes(clazz, apiMethod);
+    if (method != null)
+    {
+      return method;
+    }
+    return null;
+  }
+
+
+  private Method findDeclaredMethodWithParamTypes(Class<?> clazz, ApiMethod apiMethod)
+  {
     try
     {
       Class<?>[] parameterTypes = apiMethod
@@ -179,17 +215,35 @@ class ClassGenerator
               .toArray(Class[]::new);
       return clazz.getDeclaredMethod(apiMethod.getName(), parameterTypes);
     }
-    catch (NoSuchMethodException | SecurityException ex)
+    catch(NoSuchMethodException | SecurityException ex)
     {
-      throw new WhatIsNewInException(ex);
+      return null;
     }
-    catch(WhatIsNewInException ex)
+  }
+
+  private Method findDeclaredMethodWithTypeVariableParams(Class<?> clazz, ApiMethod apiMethod)
+  {
+    return Arrays
+            .stream(clazz.getDeclaredMethods())
+            .filter(method -> matches(method, apiMethod))
+            .findAny()
+            .orElse(null);
+  }
+
+  private Method findPublicMethodWithParamTypes(Class<?> clazz, ApiMethod apiMethod)
+  {
+    try
     {
-      return Arrays
-        .stream(clazz.getDeclaredMethods())
-        .filter(method -> matches(method, apiMethod))
-        .findAny()
-        .orElseThrow(() -> new WhatIsNewInException("Could not find method "+apiMethod.getName()));
+      Class<?>[] parameterTypes = apiMethod
+              .getArgumentTypes()
+              .stream()
+              .map(ClassGenerator::getJavaClass)
+              .toArray(Class[]::new);
+      return clazz.getMethod(apiMethod.getName(), parameterTypes);
+    }
+    catch(NoSuchMethodException | SecurityException ex)
+    {
+      return null;
     }
   }
 
