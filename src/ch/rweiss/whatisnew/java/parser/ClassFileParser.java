@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
 import ch.rweiss.whatisnew.java.model.ApiClass;
+import ch.rweiss.whatisnew.java.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
@@ -69,11 +70,12 @@ public class ClassFileParser
     }
 
     List<ApiMethod> methods = toMethods(tags);    
+    List<ApiConstructor> constructors = toConstructors(tags);
     
     String relativePathStr = relativePath.toString();
     relativePathStr = StringUtils.removeEnd(relativePathStr, ".html");
     String className = StringUtils.replace(relativePathStr, FileSystems.getDefault().getSeparator(), ".");
-    return new ApiClass(className, Collections.emptyList(), methods,
+    return new ApiClass(className, constructors, methods,
             Collections.emptyList(), toClassSince(tags));
   }
 
@@ -97,10 +99,27 @@ public class ClassFileParser
             .collect(Collectors.toList());
   }
 
+  private List<ApiConstructor> toConstructors(List<Tag> tags)
+  {
+    return tags
+            .stream()
+            .filter(this::isConstructor)
+            .map(this::parseConstructor)
+            .collect(Collectors.toList());
+  }
+
   private boolean isMethod(Tag tag)
   {
     String signature = tag.tag;
     return !StringUtils.startsWith(signature, "&lt;init&gt;") &&
+            StringUtils.contains(signature, '(') &&
+            StringUtils.contains(signature, ')');
+  }
+
+  private boolean isConstructor(Tag tag)
+  {
+    String signature = tag.tag;
+    return StringUtils.startsWith(signature, "&lt;init&gt;") &&
             StringUtils.contains(signature, '(') &&
             StringUtils.contains(signature, ')');
   }
@@ -113,6 +132,15 @@ public class ClassFileParser
     List<String> argumentTypes = parseArgumentTypes(args);
     return new ApiMethod(name, argumentTypes, tag.since);
   }
+  
+  private ApiConstructor parseConstructor(Tag tag)
+  {
+    String signature = tag.tag;
+    String args = StringUtils.substringBetween(signature, "(", ")");
+    List<String> argumentTypes = parseArgumentTypes(args);
+    return new ApiConstructor(argumentTypes, tag.since);
+  }
+
 
   private List<String> parseArgumentTypes(String args)
   {

@@ -4,14 +4,22 @@ import java.util.List;
 
 public class ApiConstructor
 {
-  private final boolean isVarArg;
   private final List<String> argumentTypes;
   private final Version since;
 
-  public ApiConstructor(List<String> argumentTypes, boolean isVarArg, Version since)
+  public ApiConstructor(List<String> argumentTypes, Version since)
   {
     this.argumentTypes = argumentTypes;
-    this.isVarArg = isVarArg;
     this.since = since;
+  }
+
+  public Version getSince()
+  {
+    return since;
+  }
+
+  public List<String> getArgumentTypes()
+  {
+    return argumentTypes;
   }
 }

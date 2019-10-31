@@ -1,23 +1,17 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
 import ch.rweiss.whatisnew.java.model.ApiClass;
+import ch.rweiss.whatisnew.java.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
@@ -68,12 +62,15 @@ class ClassGenerator
     apiClass
         .getMethods()
         .stream()
-        .map(this::getJavaMethod)
-        .filter(Objects::nonNull)
-        .flatMap(ClassGenerator::getTypeToImport)
+        .flatMap(this::getTypesToImport)
         .forEach(imports::add);
     imports.forEach(this::generateImport);
     printer.println();
+  }
+  
+  Stream<Class<?>> getTypesToImport(ApiMethod method)
+  {
+    return new MethodGenerator(this, method).getTypesToImport();
   }
   
   private void generateImport(String className)
@@ -86,10 +83,6 @@ class ClassGenerator
 
   private void generateClass()
   {
-    if (name.getApiFullQualifiedName().equals("java.util.List"))
-    {
-      System.out.println("gugu");
-    }
     generateJavaDoc();
     printer.print("public final class ");
     printer.print(name.getGeneratorSimpleName());
@@ -99,6 +92,10 @@ class ClassGenerator
     printer.print("{");
     printer.println();
     printer.indent(2);
+    if (!Modifier.isAbstract(clazz.getModifiers()))
+    {
+      apiClass.getConstructors().forEach(this::generate);
+    }
     apiClass.getMethods().forEach(this::generate);
     generateCreateMethod();
     printer.indent(0);
@@ -152,258 +149,12 @@ class ClassGenerator
 
   void generate(ApiMethod apiMethod)
   {
-    Method method = getJavaMethod(apiMethod);
-    if (method == null)
-    {
-      return;
-    }
-    if (alreadyGeneratedMethods.contains(method))
-    {
-      return;
-    }
-    alreadyGeneratedMethods.add(method);
-    generateJavaDoc(apiMethod);
-    generateMethodDeclaration(apiMethod, method);
-    generateMethodBody(apiMethod, method);
+    new MethodGenerator(this, apiMethod).generate();
   }
 
-  private Method getJavaMethod(ApiMethod apiMethod)
+  void generate(ApiConstructor apiConstructor)
   {
-    Method method = resolveMethod(apiMethod);
-    if (method == null)
-    {
-      System.err.println("Could not generate method "+apiMethod.getName()+" for class "+name.getApiFullQualifiedName());
-      return null;
-    }
-    if (Modifier.isPublic(method.getModifiers()))
-    {
-      return method;
-    }
-    return null;
-  }
-
-  private Method resolveMethod(ApiMethod apiMethod)
-  {
-    Class<?> clazz = getJavaClass();
-    Method method = findDeclaredMethodWithParamTypes(clazz, apiMethod);
-    if (method != null)
-    {
-      return method;
-    }
-    method = findDeclaredMethodWithTypeVariableParams(clazz, apiMethod);
-    if (method != null)
-    {
-      return method;
-    }
-    method = findPublicMethodWithParamTypes(clazz, apiMethod);
-    if (method != null)
-    {
-      return method;
-    }
-    return null;
-  }
-
-
-  private Method findDeclaredMethodWithParamTypes(Class<?> clazz, ApiMethod apiMethod)
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiMethod
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return clazz.getDeclaredMethod(apiMethod.getName(), parameterTypes);
-    }
-    catch(NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private Method findDeclaredMethodWithTypeVariableParams(Class<?> clazz, ApiMethod apiMethod)
-  {
-    return Arrays
-            .stream(clazz.getDeclaredMethods())
-            .filter(method -> matches(method, apiMethod))
-            .findAny()
-            .orElse(null);
-  }
-
-  private Method findPublicMethodWithParamTypes(Class<?> clazz, ApiMethod apiMethod)
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiMethod
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return clazz.getMethod(apiMethod.getName(), parameterTypes);
-    }
-    catch(NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private boolean matches(Method method, ApiMethod apiMethod)
-  {
-    return method.getName().equals(apiMethod.getName()) &&
-           method.getParameterCount() == apiMethod.getArgumentTypes().size() &&
-           matches(method.getParameters(), apiMethod.getArgumentTypes());
-  }
-
-  private boolean matches(Parameter[] parameters, List<String> argumentTypes)
-  {
-    for (int pos = 0; pos < parameters.length; pos++)
-    {
-      Parameter parameter = parameters[pos];
-      String argumentType = argumentTypes.get(pos);
-      if (argumentType.endsWith("..."))
-      {
-        argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
-      }
-      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
-      Type type = parameter.getParameterizedType();
-      if (type instanceof TypeVariable)
-      {
-        parameterType = ((TypeVariable<?>) type).getName();
-      }
-      else if (type instanceof GenericArrayType)
-      {
-        parameterType = ((GenericArrayType) type).getGenericComponentType().getTypeName()+"[]";
-      }
-      if (!parameterType.equals(argumentType))
-      {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private void generateJavaDoc(ApiMethod method)
-  {
-    printer.print("/**");
-    printer.println();
-    printer.print(" * Example call to new method {@link ");
-    printer.print(name.getApiSimpleName());
-    printer.print("#");
-    printer.print(method.getName());
-    printer.print("}");
-    printer.println();
-    printer.print(" * @since ");
-    if (method.getSince().equals(Version.UNDEFINED))
-    {
-      printer.print(apiClass.getSince());
-    }
-    else
-    {
-      printer.print(method.getSince());
-    }
-    printer.println();
-    printer.print(" * @see ");
-    printer.print(name.getApiSimpleName());
-    printer.print("#");
-    printer.print(method.getName());
-    printer.println();
-    printer.print(" */");
-    printer.println();
-  }
-
-  private void generateMethodDeclaration(ApiMethod apiMethod, Method method)
-  {
-    printer.print("public ");
-    if (Modifier.isStatic(method.getModifiers()))
-    {
-      printer.print("static ");
-    }
-
-    new TypeVariablesDeclarationGenerator(imports, printer, method.getTypeParameters()).generate();
-    if (ArrayUtils.isNotEmpty(method.getTypeParameters()))
-    {
-      printer.print(' ');
-    }
-    new TypeNameGenerator(imports, printer, method.getGenericReturnType()).generate();
-    printer.print(' ');
-    printer.print(apiMethod.getName());
-    printer.print('(');
-    generateParameterList(method);
-    printer.print(')');
-    generateThrows(method.getExceptionTypes());
-    printer.println();
-  }
-
-  private void generateThrows(Class<?>[] exceptionTypes)
-  {
-    if (ArrayUtils.isEmpty(exceptionTypes))
-    {
-      return;
-    }
-    printer.print(" throws ");
-    Arrays
-        .stream(exceptionTypes)
-        .map(Class::getName)
-        .collect(printer.toPrintedList(", "));    
-  }
-
-  private void generateMethodBody(ApiMethod apiMethod, Method method)
-  {
-    printer.print("{");
-    printer.println();    
-    printer.indent(4);
-    generateTesteeObjectCreation(method);
-    generateMethodCall(apiMethod, method);
-    generateReturn(method);
-    printer.indent(2);
-    printer.print("}");
-    printer.println(); 
-    printer.println(); 
-  }
-
-  private void generateTesteeObjectCreation(Method method)
-  {
-    if (!Modifier.isStatic(method.getModifiers()))
-    {
-      new TypeNameGenerator(imports, printer, getJavaClass()).generate();
-      printer.print(" ");
-      printer.print("testee = create();");
-      needsCreateMethod = true;
-      printer.println();
-      printer.println();
-    }
-  }
-
-  private void generateMethodCall(ApiMethod apiMethod, Method method)
-  {
-    if (!method.getReturnType().equals(Void.TYPE))
-    {
-      new TypeNameGenerator(imports, printer, method.getGenericReturnType()).generate();
-      printer.print(" result = ");
-    }
-    if (Modifier.isStatic(method.getModifiers()))
-    {
-      new RawTypeNameGenerator(imports, printer, getJavaClass()).generate();
-      printer.print(".");
-    }
-    else
-    {
-      printer.print("testee.");
-    }
-    printer.print(apiMethod.getName());
-    printer.print("(");
-    generateParameterNameList(method);
-    printer.print(");");
-    printer.println();
-  }
-
-  private void generateReturn(Method method)
-  {
-    if (!method.getReturnType().equals(Void.TYPE))
-    {
-      printer.print("return result;");
-      printer.println();
-    }
+    new ConstructorGenerator(this, apiConstructor).generate();
   }
 
   private void generateCreateMethod()
@@ -424,7 +175,7 @@ class ClassGenerator
     printer.println();
   }
 
-  private Class<?> getJavaClass()
+  Class<?> getJavaClass()
   {
     return getJavaClass(name);
   }
@@ -434,7 +185,7 @@ class ClassGenerator
     return getJavaClass(name.getApiFullQualifiedName());
   }
 
-  private static Class<?> getJavaClass(String fullQualifiedName)
+  static Class<?> getJavaClass(String fullQualifiedName)
   {
     if (fullQualifiedName.endsWith("..."))
     {
@@ -449,32 +200,39 @@ class ClassGenerator
       throw new WhatIsNewInException(ex);
     }
   }
-  
-  private static Stream<Class<?>> getTypeToImport(Method method)
+
+  Printer getPrinter()
   {
-    List<Class<?>> types = new ArrayList<>();
-    types.add(method.getReturnType());
-    types.addAll(Arrays.asList(method.getParameterTypes()));
-    return types.stream();
+    return printer;
   }
-  
-  private void generateParameterNameList(Method method)
+
+  boolean methodAlreadyGenerated(Method method)
   {
-    Arrays
-        .stream(method.getParameters())
-        .map(Parameter::getName)
-        .collect(printer.toPrintedList(", "));
+    return alreadyGeneratedMethods.contains(method);
   }
-  
-  private void generateParameterList(Method method)
+
+  void addGeneratedMethod(Method method)
   {
-    printer.forEachPrint(method.getParameters(), ", ", this::generateParameter);
+    alreadyGeneratedMethods.add(method);
   }
-    
-  private void generateParameter(Parameter parameter)
+
+  ApiClass getApiClass()
   {
-    new TypeNameGenerator(imports, printer, parameter.getParameterizedType()).generate();
-    printer.print(' ');
-    printer.print(parameter.getName());
+    return apiClass;
+  }
+
+  Imports getImports()
+  {
+    return imports;
+  }
+
+  void needsCreateMethod()
+  {
+    needsCreateMethod = true;  
+  }
+
+  ClassName getName()
+  {
+    return this.name;
   }
 }
