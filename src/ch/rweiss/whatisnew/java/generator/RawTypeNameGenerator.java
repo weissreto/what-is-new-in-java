@@ -4,7 +4,7 @@ import java.lang.reflect.Type;
 
 import org.apache.commons.lang3.StringUtils;
 
-class RawTypeNameGenerator
+public class RawTypeNameGenerator
 {
   private final Imports imports;
   private final Printer printer;
@@ -31,7 +31,7 @@ class RawTypeNameGenerator
     printer.print(typeName);
   }
 
-  static String toRawName(Type rawType)
+  public static String toRawName(Type rawType)
   {
     String typeName = rawType.getTypeName();
     return toRawName(typeName);

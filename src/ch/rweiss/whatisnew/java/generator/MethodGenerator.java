@@ -1,165 +1,40 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
+import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
 class MethodGenerator
 {
-  private ApiMethod apiMethod;
+  private JavaMethod method;
   private Printer printer;
   private ClassGenerator classGenerator;
 
-  MethodGenerator(ClassGenerator classGenerator, ApiMethod apiMethod)
+  MethodGenerator(ClassGenerator classGenerator, JavaMethod method)
   {
     this.classGenerator = classGenerator;
-    this.apiMethod = apiMethod;
+    this.method = method;
     this.printer = classGenerator.getPrinter();
   }
 
   void generate()
   {
-    Method method = getJavaMethod();
-    if (method == null)
+    if (classGenerator.methodAlreadyGenerated(method.getJava()))
     {
       return;
     }
-    if (classGenerator.methodAlreadyGenerated(method))
-    {
-      return;
-    }
-    classGenerator.addGeneratedMethod(method);
+    classGenerator.addGeneratedMethod(method.getJava());
 
     generateJavaDoc();
-    generateDeclaration(method);
-    generateBody(method);
-  }
-  
-  private Method getJavaMethod()
-  {
-    Method method = resolve();
-    if (method == null)
-    {
-      System.err.println("Could not generate method "+apiMethod.getName()+" for class "+classGenerator.getJavaClass().getName());
-      return null;
-    }
-    if (Modifier.isPublic(method.getModifiers()))
-    {
-      return method;
-    }
-    return null;
-  }
-
-  private Method resolve()
-  {
-    Method method = findDeclaredWithParamTypes();
-    if (method != null)
-    {
-      return method;
-    }
-    method = findDeclaredWithTypeVariableParams();
-    if (method != null)
-    {
-      return method;
-    }
-    method = findPublicWithParamTypes();
-    if (method != null)
-    {
-      return method;
-    }
-    return null;
-  }
-
-  private Method findDeclaredWithParamTypes()
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiMethod
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return classGenerator.getJavaClass().getDeclaredMethod(apiMethod.getName(), parameterTypes);
-    }
-    catch(WhatIsNewInException | NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private Method findDeclaredWithTypeVariableParams()
-  {
-    return Arrays
-            .stream(classGenerator.getJavaClass().getDeclaredMethods())
-            .filter(method -> matches(method))
-            .findAny()
-            .orElse(null);
-  }
-
-  private Method findPublicWithParamTypes()
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiMethod
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return classGenerator.getJavaClass().getMethod(apiMethod.getName(), parameterTypes);
-    }
-    catch(WhatIsNewInException | NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private boolean matches(Method method)
-  {
-    return method.getName().equals(apiMethod.getName()) &&
-           method.getParameterCount() == apiMethod.getArgumentTypes().size() &&
-           matches(method.getParameters(), apiMethod.getArgumentTypes());
-  }
-
-  private boolean matches(Parameter[] parameters, List<String> argumentTypes)
-  {
-    for (int pos = 0; pos < parameters.length; pos++)
-    {
-      Parameter parameter = parameters[pos];
-      String argumentType = argumentTypes.get(pos);
-      if (argumentType.endsWith("..."))
-      {
-        argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
-      }
-      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
-      Type type = parameter.getParameterizedType();
-      if (type instanceof TypeVariable)
-      {
-        parameterType = ((TypeVariable<?>) type).getName();
-      }
-      else if (type instanceof GenericArrayType)
-      {
-        parameterType = ((GenericArrayType) type).getGenericComponentType().getTypeName()+"[]";
-      }
-      if (!parameterType.equals(argumentType))
-      {
-        return false;
-      }
-    }
-    return true;
+    generateDeclaration();
+    generateBody();
   }
 
   private void generateJavaDoc()
@@ -167,34 +42,34 @@ class MethodGenerator
     printer.print("/**");
     printer.println();
     printer.print(" * Example call to new method {@link ");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("#");
-    printer.print(apiMethod.getName());
+    printer.print(method.getName());
     printer.print("}");
     printer.println();
     printer.print(" * @since ");
-    if (apiMethod.getSince().equals(Version.UNDEFINED))
+    if (method.getSince().equals(Version.UNDEFINED))
     {
-      printer.print(classGenerator.getApiClass().getSince());
+      printer.print(classGenerator.getClazz().getSince());
     }
     else
     {
-      printer.print(apiMethod.getSince());
+      printer.print(method.getSince());
     }
     printer.println();
     printer.print(" * @see ");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("#");
-    printer.print(apiMethod.getName());
+    printer.print(method.getName());
     printer.println();
     printer.print(" */");
     printer.println();
   }
 
-  private void generateDeclaration(Method method)
+  private void generateDeclaration()
   {
     printer.print("public ");
-    if (Modifier.isStatic(method.getModifiers()))
+    if (method.isStatic())
     {
       printer.print("static ");
     }
@@ -206,16 +81,17 @@ class MethodGenerator
     }
     new TypeNameGenerator(classGenerator.getImports(), printer, method.getGenericReturnType()).generate();
     printer.print(' ');
-    printer.print(apiMethod.getName());
+    printer.print(method.getName());
     printer.print('(');
-    generateParameterList(method);
+    generateParameterList();
     printer.print(')');
-    generateThrows(method.getExceptionTypes());
+    generateThrows();
     printer.println();
   }
 
-  private void generateThrows(Class<?>[] exceptionTypes)
+  private void generateThrows()
   {
+    Class<?>[] exceptionTypes = method.getExceptionTypes();
     if (ArrayUtils.isEmpty(exceptionTypes))
     {
       return;
@@ -227,25 +103,25 @@ class MethodGenerator
         .collect(printer.toPrintedList(", "));    
   }
 
-  private void generateBody(Method method)
+  private void generateBody()
   {
     printer.print("{");
     printer.println();    
     printer.indent(4);
-    generateTesteeObjectCreation(method);
-    generateCall(method);
-    generateReturn(method);
+    generateTesteeObjectCreation();
+    generateCall();
+    generateReturn();
     printer.indent(2);
     printer.print("}");
     printer.println(); 
     printer.println(); 
   }
 
-  private void generateTesteeObjectCreation(Method method)
+  private void generateTesteeObjectCreation()
   {
-    if (!Modifier.isStatic(method.getModifiers()))
+    if (!method.isStatic())
     {
-      new TypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getJavaClass()).generate();
+      new TypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getClazz().getJava()).generate();
       printer.print(" ");
       printer.print("testee = create();");
       classGenerator.needsCreateMethod();
@@ -254,30 +130,30 @@ class MethodGenerator
     }
   }
 
-  private void generateCall(Method method)
+  private void generateCall()
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
       new TypeNameGenerator(classGenerator.getImports(), printer, method.getGenericReturnType()).generate();
       printer.print(" result = ");
     }
-    if (Modifier.isStatic(method.getModifiers()))
+    if (method.isStatic())
     {
-      new RawTypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getJavaClass()).generate();
+      new RawTypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getClazz().getJava()).generate();
       printer.print(".");
     }
     else
     {
       printer.print("testee.");
     }
-    printer.print(apiMethod.getName());
+    printer.print(method.getName());
     printer.print("(");
-    generateParameterNameList(method);
+    generateParameterNameList();
     printer.print(");");
     printer.println();
   }
 
-  private void generateReturn(Method method)
+  private void generateReturn()
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
@@ -286,7 +162,7 @@ class MethodGenerator
     }
   }
   
-  private void generateParameterNameList(Method method)
+  private void generateParameterNameList()
   {
     Arrays
         .stream(method.getParameters())
@@ -294,18 +170,13 @@ class MethodGenerator
         .collect(printer.toPrintedList(", "));
   }
   
-  private void generateParameterList(Method method)
+  private void generateParameterList()
   {
     printer.forEachPrint(method.getParameters(), ", ", this::generateParameter);
   }
   
   Stream<Class<?>> getTypesToImport()
   {
-    Method method = getJavaMethod();
-    if (method == null)
-    {
-      return Stream.empty();
-    }
     List<Class<?>> types = new ArrayList<>();
     types.add(method.getReturnType());
     types.addAll(Arrays.asList(method.getParameterTypes()));

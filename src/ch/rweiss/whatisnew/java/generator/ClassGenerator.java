@@ -6,51 +6,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
+import ch.rweiss.whatisnew.java.generator.model.JavaClass;
+import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
+import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
 class ClassGenerator
 {
-  private final ClassName name;
   private final Printer printer;
-  private final ApiClass apiClass;
+  private final JavaClass clazz;
   private boolean needsCreateMethod = false;
   private final Imports imports = new Imports();
   private final List<Version> versions;
   private final List<Method> alreadyGeneratedMethods = new ArrayList<>();
 
-  ClassGenerator(ClassName name, ApiClass apiClass, List<Version> versions, Printer printer)
+  ClassGenerator(JavaClass api, List<Version> versions, Printer printer)
   {
-    this.name = name;
-    this.apiClass = apiClass;
+    this.clazz = api;
     this.versions = versions;
     this.printer = printer;
   }
 
-  boolean generate()
+  void generate()
   {
-    Class<?> clazz = getJavaClass();
-    if (!Modifier.isPublic(clazz.getModifiers()))
-    {
-      return false;
-    }
-    
     generatePackage();
     generateImports();
     generateClass();
-    return true;
   }
 
   private void generatePackage()
   {
     printer.print("package ");
-    printer.print(name.getGeneratorPackageName());
+    printer.print(clazz.getGeneratorPackageName());
     printer.print(";");
   }
 
@@ -58,9 +45,12 @@ class ClassGenerator
   {
     printer.println();
     printer.println();
-    imports.add(getJavaClass());
-    apiClass
-        .getMethods()
+    imports.add(clazz.getJava());
+    clazz.getConstructors()
+        .stream()
+        .flatMap(this::getTypesToImport)
+        .forEach(imports::add);
+    clazz.getMethods()
         .stream()
         .flatMap(this::getTypesToImport)
         .forEach(imports::add);
@@ -68,11 +58,16 @@ class ClassGenerator
     printer.println();
   }
   
-  Stream<Class<?>> getTypesToImport(ApiMethod method)
+  Stream<Class<?>> getTypesToImport(JavaMethod method)
   {
     return new MethodGenerator(this, method).getTypesToImport();
   }
   
+  Stream<Class<?>> getTypesToImport(JavaConstructor method)
+  {
+    return new ConstructorGenerator(this, method).getTypesToImport();
+  }
+
   private void generateImport(String className)
   {
     printer.print("import ");
@@ -85,18 +80,17 @@ class ClassGenerator
   {
     generateJavaDoc();
     printer.print("public final class ");
-    printer.print(name.getGeneratorSimpleName());
-    Class<?> clazz = getJavaClass();
-    new TypeVariablesDeclarationGenerator(imports, printer, clazz.getTypeParameters()).generate();
+    printer.print(clazz.getGeneratorSimpleName());
+    new TypeVariablesDeclarationGenerator(imports, printer, clazz.getJava().getTypeParameters()).generate();
     printer.println();
     printer.print("{");
     printer.println();
     printer.indent(2);
-    if (!Modifier.isAbstract(clazz.getModifiers()))
+    if (!Modifier.isAbstract(clazz.getJava().getModifiers()))
     {
-      apiClass.getConstructors().forEach(this::generate);
+      clazz.getConstructors().forEach(this::generate);
     }
-    apiClass.getMethods().forEach(this::generate);
+    clazz.getMethods().forEach(this::generate);
     generateCreateMethod();
     printer.indent(0);
     printer.print("}");
@@ -112,7 +106,7 @@ class ClassGenerator
     printer.print(" *");
     printer.println();
     printer.print(" * This class provides an example call to each method in class {@link ");
-    printer.print(name.getApiSimpleName());
+    printer.print(clazz.getSimpleName());
     printer.print("}");
     printer.println();
     printer.print(" * that were newly introduced in");
@@ -127,8 +121,8 @@ class ClassGenerator
     printer.print(" *");
     printer.println();
     printer.print(" * {@link ");
-    printer.print(name.getApiSimpleName());
-    if (versions.contains(apiClass.getSince()))
+    printer.print(clazz.getSimpleName());
+    if (versions.contains(clazz.getSince()))
     {
       printer.print("} is a completely new class");
     }
@@ -138,23 +132,23 @@ class ClassGenerator
     }
     printer.println();
     printer.print(" * @since ");
-    printer.print(apiClass.getSince());
+    printer.print(clazz.getSince());
     printer.println();
     printer.print(" * @see ");
-    printer.print(name.getApiSimpleName());
+    printer.print(clazz.getSimpleName());
     printer.println();
     printer.print(" */");
     printer.println();
   }
 
-  void generate(ApiMethod apiMethod)
+  void generate(JavaMethod method)
   {
-    new MethodGenerator(this, apiMethod).generate();
+    new MethodGenerator(this, method).generate();
   }
 
-  void generate(ApiConstructor apiConstructor)
+  void generate(JavaConstructor constructor)
   {
-    new ConstructorGenerator(this, apiConstructor).generate();
+    new ConstructorGenerator(this, constructor).generate();
   }
 
   private void generateCreateMethod()
@@ -175,32 +169,6 @@ class ClassGenerator
     printer.println();
   }
 
-  Class<?> getJavaClass()
-  {
-    return getJavaClass(name);
-  }
-  
-  static Class<?> getJavaClass(ClassName name)
-  {
-    return getJavaClass(name.getApiFullQualifiedName());
-  }
-
-  static Class<?> getJavaClass(String fullQualifiedName)
-  {
-    if (fullQualifiedName.endsWith("..."))
-    {
-      fullQualifiedName = StringUtils.removeEnd(fullQualifiedName, "...") + "[]";
-    }
-    try
-    {
-      return ClassUtils.getClass(fullQualifiedName);
-    }
-    catch (ClassNotFoundException ex)
-    {
-      throw new WhatIsNewInException(ex);
-    }
-  }
-
   Printer getPrinter()
   {
     return printer;
@@ -216,9 +184,9 @@ class ClassGenerator
     alreadyGeneratedMethods.add(method);
   }
 
-  ApiClass getApiClass()
+  JavaClass getClazz()
   {
-    return apiClass;
+    return clazz;
   }
 
   Imports getImports()
@@ -229,10 +197,5 @@ class ClassGenerator
   void needsCreateMethod()
   {
     needsCreateMethod = true;  
-  }
-
-  ClassName getName()
-  {
-    return this.name;
   }
 }

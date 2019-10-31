@@ -1,46 +1,34 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
+import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.model.Version;
 
 class ConstructorGenerator
 {
   private final ClassGenerator classGenerator;
-  private final ApiConstructor apiConstructor;
+  private final JavaConstructor constructor;
   private final Printer printer;
 
-  ConstructorGenerator(ClassGenerator classGenerator, ApiConstructor apiConstructor)
+  ConstructorGenerator(ClassGenerator classGenerator, JavaConstructor constructor)
   {
     this.classGenerator = classGenerator;
-    this.apiConstructor = apiConstructor;
+    this.constructor = constructor;
     this.printer = classGenerator.getPrinter();
   }
 
   public void generate()
   {
-    Constructor<?> constructor = getJavaConstructor();
-    if (constructor == null)
-    {
-      return;
-    }
     generateJavaDoc();
-    generateDeclaration(constructor);
-    generateBody(constructor);
+    generateDeclaration();
+    generateBody();
   }
   
   private void generateJavaDoc()
@@ -48,31 +36,31 @@ class ConstructorGenerator
     printer.print("/**");
     printer.println();
     printer.print(" * Example call to new constructor {@link ");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("#");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("}");
     printer.println();
     printer.print(" * @since ");
-    if (apiConstructor.getSince().equals(Version.UNDEFINED))
+    if (constructor.getSince().equals(Version.UNDEFINED))
     {
-      printer.print(classGenerator.getApiClass().getSince());
+      printer.print(classGenerator.getClazz().getSince());
     }
     else
     {
-      printer.print(apiConstructor.getSince());
+      printer.print(constructor.getSince());
     }
     printer.println();
     printer.print(" * @see ");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("#");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.println();
     printer.print(" */");
     printer.println();
   }
   
-  private void generateDeclaration(Constructor<?> constructor)
+  private void generateDeclaration()
   {
     printer.print("public ");
 
@@ -81,141 +69,24 @@ class ConstructorGenerator
     {
       printer.print(' ');
     }
-    printer.print(classGenerator.getName().getGeneratorSimpleName());
+    printer.print(classGenerator.getClazz().getGeneratorSimpleName());
     printer.print('(');
-    generateParameterList(constructor);
+    generateParameterList();
     printer.print(')');
-    generateThrows(constructor.getExceptionTypes());
+    generateThrows();
     printer.println();
   }
   
-  private void generateParameterList(Constructor<?> constructor)
+  private void generateParameterList()
   {
     printer.forEachPrint(constructor.getParameters(), ", ", this::generateParameter);
   }
   
   Stream<Class<?>> getTypesToImport()
   {
-    Constructor<?> constructor = getJavaConstructor();
-    if (constructor == null)
-    {
-      return Stream.empty();
-    }
     List<Class<?>> types = new ArrayList<>();
     types.addAll(Arrays.asList(constructor.getParameterTypes()));
     return types.stream();
-  }
-  
-  private Constructor<?> getJavaConstructor()
-  {
-    Constructor<?> constructor = resolve();
-    if (constructor == null)
-    {
-      System.err.println("Could not generate constructor for class "+classGenerator.getJavaClass().getName());
-      return null;
-    }
-    if (Modifier.isPublic(constructor.getModifiers()))
-    {
-      return constructor;
-    }
-    return null;
-  }
-
-  private Constructor<?> resolve()
-  {
-    Constructor<?> constructor =  findDeclaredWithParamTypes();
-    if (constructor != null)
-    {
-      return constructor;
-    }
-    constructor = findDeclaredWithTypeVariableParams();
-    if (constructor != null)
-    {
-      return constructor;
-    }
-    constructor = findPublicWithParamTypes();
-    if (constructor != null)
-    {
-      return constructor;
-    }
-    return null;
-  }
-
-  private Constructor<?> findDeclaredWithParamTypes()
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiConstructor
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return classGenerator.getJavaClass().getDeclaredConstructor(parameterTypes);
-    }
-    catch(WhatIsNewInException | NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private Constructor<?> findDeclaredWithTypeVariableParams()
-  {
-    return Arrays
-            .stream(classGenerator.getJavaClass().getDeclaredConstructors())
-            .filter(method -> matches(method))
-            .findAny()
-            .orElse(null);
-  }
-
-  private Constructor<?>  findPublicWithParamTypes()
-  {
-    try
-    {
-      Class<?>[] parameterTypes = apiConstructor
-              .getArgumentTypes()
-              .stream()
-              .map(ClassGenerator::getJavaClass)
-              .toArray(Class[]::new);
-      return classGenerator.getJavaClass().getConstructor(parameterTypes);
-    }
-    catch(WhatIsNewInException | NoSuchMethodException | SecurityException ex)
-    {
-      return null;
-    }
-  }
-
-  private boolean matches(Constructor<?> constructor)
-  {
-    return constructor.getParameterCount() == apiConstructor.getArgumentTypes().size() &&
-           matches(constructor.getParameters(), apiConstructor.getArgumentTypes());
-  }
-
-  private boolean matches(Parameter[] parameters, List<String> argumentTypes)
-  {
-    for (int pos = 0; pos < parameters.length; pos++)
-    {
-      Parameter parameter = parameters[pos];
-      String argumentType = argumentTypes.get(pos);
-      if (argumentType.endsWith("..."))
-      {
-        argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
-      }
-      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
-      Type type = parameter.getParameterizedType();
-      if (type instanceof TypeVariable)
-      {
-        parameterType = ((TypeVariable<?>) type).getName();
-      }
-      else if (type instanceof GenericArrayType)
-      {
-        parameterType = ((GenericArrayType) type).getGenericComponentType().getTypeName()+"[]";
-      }
-      if (!parameterType.equals(argumentType))
-      {
-        return false;
-      }
-    }
-    return true;
   }
   
   private void generateParameter(Parameter parameter)
@@ -225,8 +96,9 @@ class ConstructorGenerator
     printer.print(parameter.getName());
   }
   
-  private void generateThrows(Class<?>[] exceptionTypes)
+  private void generateThrows()
   {
+    Class<?>[] exceptionTypes = constructor.getExceptionTypes();
     if (ArrayUtils.isEmpty(exceptionTypes))
     {
       return;
@@ -238,41 +110,34 @@ class ConstructorGenerator
         .collect(printer.toPrintedList(", "));    
   }
   
-  private void generateBody(Constructor<?> constructor)
+  private void generateBody()
   {
     printer.print("{");
     printer.println();    
     printer.indent(4);
-    generateCall(constructor);
+    generateCall();
     printer.indent(2);
     printer.print("}");
     printer.println(); 
     printer.println(); 
   }
   
-  private void generateCall(Constructor<?> constructor)
+  private void generateCall()
   {
-    new TypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getJavaClass()).generate();
+    new TypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getClazz().getJava()).generate();
     printer.print(" testee = new ");
-    printer.print(classGenerator.getJavaClass().getSimpleName());
+    printer.print(classGenerator.getClazz().getSimpleName());
     printer.print("(");
-    generateParameterNameList(constructor);
+    generateParameterNameList();
     printer.print(");");
     printer.println();
   }
 
-  private void generateParameterNameList(Constructor<?> constructor)
+  private void generateParameterNameList()
   {
     Arrays
         .stream(constructor.getParameters())
         .map(Parameter::getName)
         .collect(printer.toPrintedList(", "));
   }
-
-
-
-
-
-
-
 }

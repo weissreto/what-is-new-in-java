@@ -8,9 +8,11 @@ import java.util.List;
 
 import ch.rweiss.whatisnew.java.filter.ApiDocFilter;
 import ch.rweiss.whatisnew.java.generator.Generator;
+import ch.rweiss.whatisnew.java.generator.model.JavaApi;
 import ch.rweiss.whatisnew.java.model.ApiDoc;
 import ch.rweiss.whatisnew.java.model.Version;
 import ch.rweiss.whatisnew.java.parser.ApiDocParser;
+import ch.rweiss.whatisnew.java.resolver.JavaResolver;
 
 public class WhatIsNewInJava
 {
@@ -57,7 +59,8 @@ public class WhatIsNewInJava
     Directory.delete(outputPath);
     ApiDoc apiDoc = ApiDocParser.parse(root);
     apiDoc = ApiDocFilter.filter(apiDoc, filterArgs);
-    new Generator(apiDoc, filterArgs, outputPath).generate();
+    JavaApi javaApi = new JavaResolver(apiDoc).toJavaApi();
+    new Generator(javaApi, filterArgs, outputPath).generate();
   }
 
   private static void printHelp()
