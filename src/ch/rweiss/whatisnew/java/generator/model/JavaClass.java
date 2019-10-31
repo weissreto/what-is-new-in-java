@@ -33,22 +33,24 @@ public class JavaClass
   
   public String getSimpleName()
   {
-    return StringUtils.substringAfterLast(getFullQualifiedName(), ".");
+    return java.getSimpleName();
   }
   
   public String getPackageName()
   {
-    return StringUtils.substringBeforeLast(getFullQualifiedName(), ".");
+    return java.getPackageName();
   }
   
   public String getFullQualifiedName()
   {
-    return java.getName();
+    return java.getCanonicalName();
   }
   
   public String getGeneratorSimpleName()
   {
-    return "WhatIsNewIn"+getSimpleName();
+    // special handling for inner classes Map.Entry will be Map$Entry
+    String qualifiedSimpleName = StringUtils.removeStart(java.getName(), java.getPackageName()+".");
+    return "WhatIsNewIn"+qualifiedSimpleName;
   }
   
   public String getGeneratorPackageName()
