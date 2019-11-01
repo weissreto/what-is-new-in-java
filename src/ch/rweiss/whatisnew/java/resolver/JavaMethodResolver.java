@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.generator.RawTypeNameGenerator;
+import ch.rweiss.whatisnew.java.generator.TypeUtil;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 
@@ -39,7 +39,24 @@ class JavaMethodResolver
     {
       return null;
     }
+    if (isObjectDeclaredMethod(java))
+    {
+      return null;
+    }
     return new JavaMethod(api, java);
+  }
+
+  private boolean isObjectDeclaredMethod(Method java)
+  {
+    try
+    {
+      Object.class.getDeclaredMethod(java.getName(), java.getParameterTypes());
+      return true;
+    }
+    catch(NoSuchMethodException ex)
+    {
+      return false;
+    }
   }
 
   private Method toJava()
@@ -99,7 +116,7 @@ class JavaMethodResolver
       {
         argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
       }
-      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
+      String parameterType = TypeUtil.toRawName(parameter.getType());
       Type type = parameter.getParameterizedType();
       if (type instanceof TypeVariable)
       {

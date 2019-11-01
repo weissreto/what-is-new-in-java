@@ -22,18 +22,17 @@ class Imports
     {
       return;
     }
-    String rawTypeName = RawTypeNameGenerator.toRawName(type.getTypeName());
-    if (RawTypeNameGenerator.isJavaLangPackage(rawTypeName))
+    if (TypeUtil.isJavaLangPackageAndTopLevelClass(type))
     {
       return;
     }
-    String simpleName = toSimpleName(rawTypeName);
+    String simpleName = type.getSimpleName();
     if (simpleTypeNames.contains(simpleName))
     {
       return;
     }
     simpleTypeNames.add(simpleName);
-    typeNames.add(rawTypeName);
+    typeNames.add(type.getCanonicalName());
   }
 
   void forEach(Consumer<String> consumer)

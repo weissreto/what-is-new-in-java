@@ -32,13 +32,11 @@ class TypeVariablesDeclarationGenerator
   private void generate(TypeVariable<?> typeVariable)
   {
     printer.print(typeVariable.getName());
-    for (Type type : typeVariable.getBounds())
+    Type[] bounds = TypeUtil.getBoundsWithoutObject(typeVariable.getBounds());
+    if (bounds.length > 0)
     {
-      if (!type.equals(Object.class))
-      {
-        printer.print(" extends ");
-        new TypeNameGenerator(imports, printer, type).generate();
-      }
+      printer.print(" extends ");
+      printer.forEachPrint(bounds, " & ", bound -> new TypeNameGenerator(imports, printer, bound).generate());
     }
   }
 }

@@ -87,4 +87,10 @@ public class JavaClass
   {
     return api.getSince();
   }
+  
+  @Override
+  public String toString()
+  {
+    return "JavaClass [name="+java.getCanonicalName()+"]"; 
+  }
 }

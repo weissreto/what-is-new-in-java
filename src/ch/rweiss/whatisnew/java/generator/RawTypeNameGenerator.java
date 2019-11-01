@@ -1,10 +1,12 @@
 package ch.rweiss.whatisnew.java.generator;
 
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.lang.reflect.WildcardType;
 
-import org.apache.commons.lang3.StringUtils;
-
-public class RawTypeNameGenerator
+public class RawTypeNameGenerator extends AbstractTypeVisitor
 {
   private final Imports imports;
   private final Printer printer;
@@ -19,33 +21,42 @@ public class RawTypeNameGenerator
   
   void generate()
   {
-    String typeName = toRawName(type);
-    if (isJavaLangPackage(typeName))
+    visit(type);
+  }
+  
+  @Override
+  protected void visit(Class<?> clazz)
+  {
+    if (TypeUtil.isJavaLangPackageAndTopLevelClass(clazz))
     {
-      typeName = StringUtils.substringAfterLast(typeName, ".");
+      printer.print(clazz.getSimpleName());
+      return;
     }
-    else
-    {
-      typeName = imports.toSimpleNameIfImported(typeName);
-    }
+    String typeName = imports.toSimpleNameIfImported(clazz.getCanonicalName());
     printer.print(typeName);
   }
-
-  public static String toRawName(Type rawType)
+  
+  @Override
+  protected void visit(GenericArrayType genericArrayType)
   {
-    String typeName = rawType.getTypeName();
-    return toRawName(typeName);
+    throw new UnsupportedOperationException("Do not know raw type of "+ genericArrayType);
   }
-
-  static String toRawName(String typeName)
+  
+  @Override
+  protected void visit(ParameterizedType parameterizedType)
   {
-    typeName = typeName.replace('$', '.');
-    return typeName;
+    throw new UnsupportedOperationException("Do not know raw type of "+ parameterizedType);
   }
-
-  public static boolean isJavaLangPackage(String typeName)
+  
+  @Override
+  protected void visit(TypeVariable<?> typeVariable)
   {
-    String packageName = StringUtils.substringBeforeLast(typeName, ".");
-    return "java.lang".equals(packageName);
+    throw new UnsupportedOperationException("Do not know raw type of "+ typeVariable);
+  }
+  
+  @Override
+  protected void visit(WildcardType wildcardType)
+  {
+    throw new UnsupportedOperationException("Do not know raw type of "+ wildcardType);
   }
 }

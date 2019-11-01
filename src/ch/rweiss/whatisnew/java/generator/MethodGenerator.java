@@ -1,6 +1,7 @@
 package ch.rweiss.whatisnew.java.generator;
 
 import java.lang.reflect.Parameter;
+import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,12 +27,6 @@ class MethodGenerator
 
   void generate()
   {
-    if (classGenerator.methodAlreadyGenerated(method.getJava()))
-    {
-      return;
-    }
-    classGenerator.addGeneratedMethod(method.getJava());
-
     generateJavaDoc();
     generateDeclaration();
     generateBody();
@@ -97,10 +92,9 @@ class MethodGenerator
       return;
     }
     printer.print(" throws ");
-    Arrays
-        .stream(exceptionTypes)
-        .map(Class::getName)
-        .collect(printer.toPrintedList(", "));    
+    printer.forEachPrint(
+            exceptionTypes, ", ", 
+            type -> new RawTypeNameGenerator(classGenerator.getImports(), printer, type).generate());
   }
 
   private void generateBody()
@@ -121,9 +115,16 @@ class MethodGenerator
   {
     if (!method.isStatic())
     {
-      new TypeNameGenerator(classGenerator.getImports(), printer, classGenerator.getClazz().getJava()).generate();
+      printer.print(classGenerator.getClazz().getSimpleName());
+      TypeVariable<?>[] typeParameters = classGenerator.getClazz().getJava().getTypeParameters();
+      if (typeParameters.length > 0)
+      {
+        printer.print('<');
+        printer.forEachPrint(typeParameters, ", ", type -> printer.print(type.getName()));
+        printer.print('>');
+      }
       printer.print(" ");
-      printer.print("testee = create();");
+      printer.print("testee = $$$();");
       classGenerator.needsCreateMethod();
       printer.println();
       printer.println();

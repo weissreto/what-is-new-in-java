@@ -3,6 +3,8 @@ package ch.rweiss.whatisnew.java.generator.model;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.TypeVariable;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import ch.rweiss.whatisnew.java.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.model.Version;
@@ -16,6 +18,11 @@ public class JavaConstructor
   {
     this.api = api;
     this.java = java;
+  }
+
+  public Constructor<?> getJava()
+  {
+    return java;
   }
   
   public Version getSince()
@@ -41,5 +48,16 @@ public class JavaConstructor
   public Class<?>[] getExceptionTypes()
   {
     return java.getExceptionTypes();
+  }
+  
+  @Override
+  public String toString()
+  {
+    return "JavaConstructor [("+
+        Arrays
+            .stream(getParameterTypes())
+            .map(Class::getCanonicalName)
+            .collect(Collectors.joining(", "))+
+    ")]";
   }
 }

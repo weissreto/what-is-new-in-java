@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.generator.RawTypeNameGenerator;
+import ch.rweiss.whatisnew.java.generator.TypeUtil;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.model.ApiConstructor;
 
@@ -99,7 +99,7 @@ class JavaConstructorResolver
       {
         argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
       }
-      String parameterType = RawTypeNameGenerator.toRawName(parameter.getType());
+      String parameterType = TypeUtil.toRawName(parameter.getType());
       Type type = parameter.getParameterizedType();
       if (type instanceof TypeVariable)
       {

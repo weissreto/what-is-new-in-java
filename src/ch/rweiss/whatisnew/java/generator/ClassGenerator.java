@@ -1,8 +1,6 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,15 +14,15 @@ class ClassGenerator
   private final Printer printer;
   private final JavaClass clazz;
   private boolean needsCreateMethod = false;
-  private final Imports imports = new Imports();
+  private final Imports imports;
   private final List<Version> versions;
-  private final List<Method> alreadyGeneratedMethods = new ArrayList<>();
 
   ClassGenerator(JavaClass api, List<Version> versions, Printer printer)
   {
     this.clazz = api;
     this.versions = versions;
     this.printer = printer;
+    this.imports = ImportsFactory.createFor(clazz);
   }
 
   void generate()
@@ -45,15 +43,6 @@ class ClassGenerator
   {
     printer.println();
     printer.println();
-    imports.add(clazz.getJava());
-    clazz.getConstructors()
-        .stream()
-        .flatMap(this::getTypesToImport)
-        .forEach(imports::add);
-    clazz.getMethods()
-        .stream()
-        .flatMap(this::getTypesToImport)
-        .forEach(imports::add);
     imports.forEach(this::generateImport);
     printer.println();
   }
@@ -91,7 +80,7 @@ class ClassGenerator
       clazz.getConstructors().forEach(this::generate);
     }
     clazz.getMethods().forEach(this::generate);
-    generateCreateMethod();
+    generate$$$Method();
     printer.indent(0);
     printer.print("}");
     printer.println();
@@ -151,13 +140,13 @@ class ClassGenerator
     new ConstructorGenerator(this, constructor).generate();
   }
 
-  private void generateCreateMethod()
+  private void generate$$$Method()
   {
     if (!needsCreateMethod)
     {
       return;
     }
-    printer.print("private <O> O create()");    
+    printer.print("private <O> O $$$()");    
     printer.println();
     printer.print("{");
     printer.println();
@@ -172,16 +161,6 @@ class ClassGenerator
   Printer getPrinter()
   {
     return printer;
-  }
-
-  boolean methodAlreadyGenerated(Method method)
-  {
-    return alreadyGeneratedMethods.contains(method);
-  }
-
-  void addGeneratedMethod(Method method)
-  {
-    alreadyGeneratedMethods.add(method);
   }
 
   JavaClass getClazz()

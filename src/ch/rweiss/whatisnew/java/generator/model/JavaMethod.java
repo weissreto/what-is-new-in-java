@@ -5,6 +5,8 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
@@ -68,5 +70,17 @@ public class JavaMethod
   public boolean isStatic()
   {
     return Modifier.isStatic(java.getModifiers());
+  }
+  
+  @Override
+  public String toString()
+  {
+    return "JavaMethod ["+
+        getName()+"("+
+        Arrays
+            .stream(getParameterTypes())
+            .map(Class::getCanonicalName)
+            .collect(Collectors.joining(", "))+
+    ")]";
   }
 }
