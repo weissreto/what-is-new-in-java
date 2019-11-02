@@ -47,9 +47,15 @@ public class JavaMethod
     return java.getGenericReturnType();
   }
 
-  public Parameter[] getParameters()
+  public JavaParameter[] getParameters()
   {
-    return java.getParameters();
+	JavaParameter[] parameters = new JavaParameter[java.getParameterCount()];
+	for (int pos = 0; pos < java.getParameterCount(); pos++)
+	{
+      JavaParameter param = new JavaParameter(api.getArguments().get(pos), java.getParameters()[pos]);	
+	  parameters[pos] = param;
+	}
+    return parameters;
   }
 
   public Class<?>[] getParameterTypes()

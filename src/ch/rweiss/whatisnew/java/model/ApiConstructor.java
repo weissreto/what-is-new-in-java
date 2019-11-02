@@ -1,16 +1,19 @@
 package ch.rweiss.whatisnew.java.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ApiConstructor
 {
-  private final List<String> argumentTypes;
+  private final List<ApiArgument> arguments;
+  private final List<ApiModifier> modifiers;
   private final Version since;
 
-  public ApiConstructor(List<String> argumentTypes, Version since)
+  public ApiConstructor(List<ApiArgument> arguments, List<ApiModifier> modifiers, Version since) 
   {
-    this.argumentTypes = argumentTypes;
-    this.since = since;
+	  this.arguments = arguments;
+	  this.modifiers = modifiers;
+	  this.since = since;
   }
 
   public Version getSince()
@@ -18,8 +21,22 @@ public class ApiConstructor
     return since;
   }
 
+  public List<ApiArgument> getArguments()
+  {
+	return arguments;
+  }
+
   public List<String> getArgumentTypes()
   {
-    return argumentTypes;
+    return arguments
+        .stream()
+        .map(ApiArgument::getRawType)
+        .collect(Collectors.toList());
+  }
+  
+  @Override
+  public String toString() 
+  {
+	return "ApiConstructor [arguments="+arguments+", modifiers="+modifiers+", since="+since+"]";
   }
 }

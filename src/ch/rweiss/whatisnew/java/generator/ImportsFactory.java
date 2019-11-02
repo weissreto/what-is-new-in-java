@@ -7,6 +7,7 @@ import java.util.Arrays;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
+import ch.rweiss.whatisnew.java.generator.model.JavaParameter;
 
 class ImportsFactory
 {
@@ -51,7 +52,7 @@ class ImportsFactory
     new ImportTypeVisitor(imports).visit(typeVariable);
   }
   
-  private void createFor(Parameter parameter)
+  private void createFor(JavaParameter parameter)
   {
     new ImportTypeVisitor(imports).visit(parameter.getParameterizedType());
   }

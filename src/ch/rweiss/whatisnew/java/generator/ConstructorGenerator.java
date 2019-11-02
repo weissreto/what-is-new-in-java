@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.ArrayUtils;
 
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
+import ch.rweiss.whatisnew.java.generator.model.JavaParameter;
 import ch.rweiss.whatisnew.java.model.Version;
 
 class ConstructorGenerator
@@ -90,7 +91,7 @@ class ConstructorGenerator
     return types.stream();
   }
   
-  private void generateParameter(Parameter parameter)
+  private void generateParameter(JavaParameter parameter)
   {
     new TypeNameGenerator(classGenerator.getImports(), printer, parameter.getParameterizedType()).generate();
     printer.print(' ');
@@ -149,7 +150,7 @@ class ConstructorGenerator
   {
     Arrays
         .stream(constructor.getParameters())
-        .map(Parameter::getName)
+        .map(JavaParameter::getName)
         .collect(printer.toPrintedList(", "));
   }
 }

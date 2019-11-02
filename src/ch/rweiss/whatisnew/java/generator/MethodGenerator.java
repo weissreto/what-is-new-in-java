@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.ArrayUtils;
 
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
+import ch.rweiss.whatisnew.java.generator.model.JavaParameter;
 import ch.rweiss.whatisnew.java.model.Version;
 
 class MethodGenerator
@@ -167,7 +168,7 @@ class MethodGenerator
   {
     Arrays
         .stream(method.getParameters())
-        .map(Parameter::getName)
+        .map(JavaParameter::getName)
         .collect(printer.toPrintedList(", "));
   }
   
@@ -184,7 +185,7 @@ class MethodGenerator
     return types.stream();
   }
   
-  private void generateParameter(Parameter parameter)
+  private void generateParameter(JavaParameter parameter)
   {
     new TypeNameGenerator(classGenerator.getImports(), printer, parameter.getParameterizedType()).generate();
     printer.print(' ');
