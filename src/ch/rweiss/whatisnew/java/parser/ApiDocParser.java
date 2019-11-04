@@ -22,9 +22,9 @@ public class ApiDocParser extends SimpleFileVisitor<Path>
     this.root = root;
   }
 
+  @Override
   public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException
   {
-    Path relativize = root.relativize(dir);
     if (dir.getFileName().toString().indexOf('-') >= 0)
     {
       return FileVisitResult.SKIP_SUBTREE;
@@ -35,6 +35,7 @@ public class ApiDocParser extends SimpleFileVisitor<Path>
     }
   }
 
+  @Override
   public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException
   {
     Path relativePath = root.relativize(file);

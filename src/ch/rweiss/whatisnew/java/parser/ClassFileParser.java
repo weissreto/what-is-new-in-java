@@ -5,10 +5,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -26,9 +26,12 @@ import ch.rweiss.whatisnew.java.model.Version;
 public class ClassFileParser
 {
   private static final Pattern SINCE_PATTERN = Pattern
-          .compile("<dt><span class=\"simpleTagLabel\">Since:<\\/span><\\/dt>[\n\r]+<dd>([0-9\\.]+)<\\/dd>", Pattern.MULTILINE);
-  private static final Pattern MEMBER_SIGNATURE_PATTERN = Pattern.compile("<div class=\"memberSignature\">(.*?)<\\/div>", Pattern.DOTALL+Pattern.MULTILINE);
-  private static final Pattern TYPE_LINK_PATTERN = Pattern.compile("<a [^>]*?title=\"(interface|class) in (.*?)\">");
+          .compile("<dt><span class=\"simpleTagLabel\">Since:<\\/span><\\/dt>[\n\r]+<dd>([0-9\\.]+)<\\/dd>",
+                  Pattern.MULTILINE);
+  private static final Pattern MEMBER_SIGNATURE_PATTERN = Pattern
+          .compile("<div class=\"memberSignature\">(.*?)<\\/div>", Pattern.DOTALL + Pattern.MULTILINE);
+  private static final Pattern TYPE_LINK_PATTERN = Pattern
+          .compile("<a [^>]*?title=\"(interface|class) in (.*?)\">");
   private static final Pattern HTML_TAGS_PATTERN = Pattern.compile("<[^>]*>");
   private static final Pattern ANNOTATION_PATTERNS = Pattern.compile("@\\p{Alnum}+(\\(.*?\\))?");
 
@@ -44,29 +47,28 @@ public class ClassFileParser
   public ApiClass parse() throws IOException
   {
     String content = Files.readString(file);
-	List<Signature> signatures = parseSignatures(content);
+    List<Signature> signatures = parseSignatures(content);
     Version classSince = parseSinceAndAssignToSignature(content, signatures);
 
     List<ApiField> fields = toFields(signatures);
-    List<ApiMethod> methods = toMethods(signatures);    
+    List<ApiMethod> methods = toMethods(signatures);
     List<ApiConstructor> constructors = toConstructors(signatures);
-    
+
     String className = getClassName();
-    return new ApiClass(className, constructors, methods,
-            fields, classSince);
+    return new ApiClass(className, constructors, methods, fields, classSince);
   }
 
-  private String getClassName() 
+  private String getClassName()
   {
-	String relativePathStr = relativePath.toString();
+    String relativePathStr = relativePath.toString();
     relativePathStr = StringUtils.removeEnd(relativePathStr, ".html");
     String className = StringUtils.replace(relativePathStr, FileSystems.getDefault().getSeparator(), ".");
-	return className;
+    return className;
   }
- 
-  private Version parseSinceAndAssignToSignature(String content, List<Signature> signatures) 
+
+  private Version parseSinceAndAssignToSignature(String content, List<Signature> signatures)
   {
-	Version classSince = Version.UNDEFINED;
+    Version classSince = Version.UNDEFINED;
     Matcher matcher = SINCE_PATTERN.matcher(content);
     while (matcher.find())
     {
@@ -83,111 +85,111 @@ public class ClassFileParser
         {
           if (previousTag == null)
           {
-        	  classSince = Version.valueOf(since);
+            classSince = Version.valueOf(since);
           }
           else
           {
-        	  previousTag.setSince(Version.valueOf(since));
+            previousTag.setSince(Version.valueOf(since));
           }
           break;
         }
       }
     }
-	return classSince;
+    return classSince;
   }
 
-  private List<Signature> parseSignatures(String content) 
+  private List<Signature> parseSignatures(String content)
   {
-	List<Signature> signatures = new ArrayList<>();
+    List<Signature> signatures = new ArrayList<>();
     Matcher matcher = MEMBER_SIGNATURE_PATTERN.matcher(content);
     while (matcher.find())
     {
-    	String signature = toSignature(matcher.group(1));
-    	signatures.add(new Signature(signature, matcher.start()));
+      String signature = toSignature(matcher.group(1));
+      signatures.add(new Signature(signature, matcher.start()));
     }
     Comparator<Signature> c = Comparator.comparing(tag -> tag.startPos);
     Collections.sort(signatures, c);
-	return signatures;
+    return signatures;
   }
 
   private String toSignature(String signature)
   {
-	signature = signature.replace("\n", "");
+    signature = signature.replace("\n", "");
     signature = signature.replace("\r", "");
-	signature = TYPE_LINK_PATTERN.matcher(signature).replaceAll("$2.");
-	signature = HTML_TAGS_PATTERN.matcher(signature).replaceAll("");
-	signature = ANNOTATION_PATTERNS.matcher(signature).replaceAll("");
-	signature = signature.replace("&lt;", "<");
-	signature = signature.replace("&gt;", ">");
-	signature = signature.replace("&nbsp;", " ");
-	signature = signature.replace("&#8203;", "");
-	while (StringUtils.countMatches(signature, ")") > 1)
-	{
-	  signature = StringUtils.substringAfter(signature, ")");
-	}
-	return signature;
+    signature = TYPE_LINK_PATTERN.matcher(signature).replaceAll("$2.");
+    signature = HTML_TAGS_PATTERN.matcher(signature).replaceAll("");
+    signature = ANNOTATION_PATTERNS.matcher(signature).replaceAll("");
+    signature = signature.replace("&lt;", "<");
+    signature = signature.replace("&gt;", ">");
+    signature = signature.replace("&nbsp;", " ");
+    signature = signature.replace("&#8203;", "");
+    while (StringUtils.countMatches(signature, ")") > 1)
+    {
+      signature = StringUtils.substringAfter(signature, ")");
+    }
+    return signature;
   }
 
   private List<ApiMethod> toMethods(List<Signature> signatures)
   {
     return signatures
-            .stream()
-            .filter(this::isMethod)
-            .map(this::parseMethod)
-            .collect(Collectors.toList());
+        .stream()
+        .filter(this::isMethod)
+        .map(this::parseMethod)
+        .collect(Collectors.toList());
   }
 
   private List<ApiConstructor> toConstructors(List<Signature> signatures)
   {
     return signatures
-            .stream()
-            .filter(this::isConstructor)
-            .map(this::parseConstructor)
-            .collect(Collectors.toList());
+        .stream()
+        .filter(this::isConstructor)
+        .map(this::parseConstructor)
+        .collect(Collectors.toList());
   }
 
   private List<ApiField> toFields(List<Signature> signatures)
   {
     return signatures
-            .stream()
-            .filter(this::isField)
-            .map(this::parseField)
-            .collect(Collectors.toList());
+        .stream()
+        .filter(this::isField)
+        .map(this::parseField)
+        .collect(Collectors.toList());
   }
 
   private boolean isMethod(Signature signature)
   {
-	return !isField(signature) && !isConstructor(signature);
+    return !isField(signature) && !isConstructor(signature);
   }
 
   private boolean isConstructor(Signature signature)
   {
-    return !isField(signature) && StringUtils.contains(signature.signature, getSimpleClassName()+"(");
+    return !isField(signature) && StringUtils.contains(signature.signature, getSimpleClassName() + "(");
   }
-  
-  private String getSimpleClassName() 
+
+  private String getSimpleClassName()
   {
-	return StringUtils.substringAfterLast(getClassName(), ".");
+    return StringUtils.substringAfterLast(getClassName(), ".");
   }
 
   private boolean isField(Signature signature)
   {
-	  return !StringUtils.contains(signature.signature, '(');
+    return !StringUtils.contains(signature.signature, '(');
   }
 
   private ApiMethod parseMethod(Signature sig)
   {
     String signature = sig.signature;
     String start = StringUtils.substringBefore(signature, "(");
-    String[] parts = start.split(" ");    	
-    String name = parts[parts.length-1];
-    String returnType = parts[parts.length-2];
+    String[] parts = start.split(" ");
+    String name = parts[parts.length - 1];
+    String returnType = parts[parts.length - 2];
     List<ApiModifier> modifiers = parseModifiers(parts);
     String args = StringUtils.substringBetween(signature, "(", ")");
     List<ApiArgument> arguments = parseArguments(args);
     return new ApiMethod(name, returnType, arguments, modifiers, sig.since);
   }
-  
+
   private ApiConstructor parseConstructor(Signature sig)
   {
     String signature = sig.signature;
@@ -197,33 +199,33 @@ public class ClassFileParser
     List<ApiArgument> argumentTypes = parseArguments(args);
     return new ApiConstructor(argumentTypes, modifiers, sig.since);
   }
-  
+
   private ApiField parseField(Signature sig)
   {
     String signature = sig.signature;
     String[] parts = signature.split(" ");
     if (parts.length < 2)
     {
-    	System.out.println("");
+      System.out.println("");
     }
 
-    String name = parts[parts.length-1];
-    String type = parts[parts.length-2];
+    String name = parts[parts.length - 1];
+    String type = parts[parts.length - 2];
     List<ApiModifier> modifiers = parseModifiers(parts);
     return new ApiField(name, type, modifiers, sig.since);
   }
-  
-  private List<ApiModifier> parseModifiers(String start) 
+
+  private List<ApiModifier> parseModifiers(String start)
   {
-	return parseModifiers(start.split(" "));
+    return parseModifiers(start.split(" "));
   }
 
-  private List<ApiModifier> parseModifiers(String[] modifiers) 
+  private List<ApiModifier> parseModifiers(String[] modifiers)
   {
-	return Arrays
-        .stream(modifiers)
-        .flatMap(modifier -> ApiModifier.parse(modifier).stream())
-        .collect(Collectors.toList());
+    return Arrays
+            .stream(modifiers)
+            .flatMap(modifier -> ApiModifier.parse(modifier).stream())
+            .collect(Collectors.toList());
   }
 
   private List<ApiArgument> parseArguments(String args)
@@ -237,12 +239,12 @@ public class ClassFileParser
         .map(this::parseArgument)
         .collect(Collectors.toList());
   }
-  
+
   private ApiArgument parseArgument(String arg)
   {
-	  String name = StringUtils.substringAfterLast(arg, " ");
-	  String type = StringUtils.substringBeforeLast(arg, " ");
-	  return new ApiArgument(name, type);
+    String name = StringUtils.substringAfterLast(arg, " ");
+    String type = StringUtils.substringBeforeLast(arg, " ");
+    return new ApiArgument(name, type);
   }
 
   private static final class Signature
@@ -261,11 +263,11 @@ public class ClassFileParser
     {
       this.since = since;
     }
-    
+
     @Override
     public String toString()
     {
-      return "Signature [signature="+signature+",pos="+startPos+" since= "+since+"]";
+      return "Signature [signature=" + signature + ",pos=" + startPos + " since= " + since + "]";
     }
   }
 

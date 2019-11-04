@@ -2,35 +2,35 @@ package ch.rweiss.whatisnew.java.model;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class ApiArgument 
+public class ApiArgument
 {
   private final String type;
   private final String name;
-  
+
   public ApiArgument(String name, String type)
   {
-	this.name = name;
-	this.type = type;
+    this.name = name;
+    this.type = type;
   }
-  
+
   public String getType()
   {
-	return type;	  
+    return type;
   }
-  
+
   public String getRawType()
   {
-	  return StringUtils.substringBefore(getType(), "<");
+    return StringUtils.substringBefore(getType(), "<");
   }
-  
+
   public String getName()
   {
-	return name;
+    return name;
   }
-  
+
   @Override
-  public String toString() 
+  public String toString()
   {
-	return "ApiArgument [name="+name+", type="+type+"]";
+    return "ApiArgument [name=" + name + ", type=" + type + "]";
   }
 }

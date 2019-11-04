@@ -9,11 +9,11 @@ public class ApiConstructor
   private final List<ApiModifier> modifiers;
   private final Version since;
 
-  public ApiConstructor(List<ApiArgument> arguments, List<ApiModifier> modifiers, Version since) 
+  public ApiConstructor(List<ApiArgument> arguments, List<ApiModifier> modifiers, Version since)
   {
-	  this.arguments = arguments;
-	  this.modifiers = modifiers;
-	  this.since = since;
+    this.arguments = arguments;
+    this.modifiers = modifiers;
+    this.since = since;
   }
 
   public Version getSince()
@@ -23,7 +23,7 @@ public class ApiConstructor
 
   public List<ApiArgument> getArguments()
   {
-	return arguments;
+    return arguments;
   }
 
   public List<String> getArgumentTypes()
@@ -33,10 +33,10 @@ public class ApiConstructor
         .map(ApiArgument::getRawType)
         .collect(Collectors.toList());
   }
-  
+
   @Override
-  public String toString() 
+  public String toString()
   {
-	return "ApiConstructor [arguments="+arguments+", modifiers="+modifiers+", since="+since+"]";
+    return "ApiConstructor [arguments=" + arguments + ", modifiers=" + modifiers + ", since=" + since + "]";
   }
 }

@@ -1,6 +1,5 @@
 package ch.rweiss.whatisnew.java.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,13 +12,13 @@ public class ApiMethod
   private final Version since;
 
   public ApiMethod(String name, String returnType, List<ApiArgument> arguments, List<ApiModifier> modifiers,
-		Version since) 
+          Version since)
   {
-	this.name = name;
-	this.returnType = returnType;
-	this.arguments = arguments;
-	this.modifiers = modifiers;
-	this.since = since;
+    this.name = name;
+    this.returnType = returnType;
+    this.arguments = arguments;
+    this.modifiers = modifiers;
+    this.since = since;
   }
 
   public Version getSince()
@@ -32,22 +31,23 @@ public class ApiMethod
     return name;
   }
 
-  public List<ApiArgument> getArguments() 
+  public List<ApiArgument> getArguments()
   {
-	return arguments;
+    return arguments;
   }
 
   public List<String> getArgumentTypes()
   {
     return arguments
-	    .stream()
-	    .map(ApiArgument::getRawType)
-	    .collect(Collectors.toList());
+            .stream()
+            .map(ApiArgument::getRawType)
+            .collect(Collectors.toList());
   }
-    
+
   @Override
-  public String toString() 
+  public String toString()
   {
-	return "ApiMethod [name="+name+", returnType="+returnType+", arguments="+arguments+", modifiers="+modifiers+", since="+since+"]";
+    return "ApiMethod [name=" + name + ", returnType=" + returnType + ", arguments=" + arguments
+            + ", modifiers=" + modifiers + ", since=" + since + "]";
   }
 }

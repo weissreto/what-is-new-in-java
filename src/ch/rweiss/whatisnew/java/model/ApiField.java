@@ -16,10 +16,10 @@ public class ApiField
     this.modifiers = modifiers;
     this.since = since;
   }
-  
+
   @Override
-  public String toString() 
+  public String toString()
   {
-	return "ApiField [name="+name+", type="+type+" modifiers="+modifiers+", since="+since+"]";
+    return "ApiField [name=" + name + ", type=" + type + " modifiers=" + modifiers + ", since=" + since + "]";
   }
 }

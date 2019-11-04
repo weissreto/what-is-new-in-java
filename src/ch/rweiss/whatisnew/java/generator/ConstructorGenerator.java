@@ -1,6 +1,5 @@
 package ch.rweiss.whatisnew.java.generator;
 
-import java.lang.reflect.Parameter;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;

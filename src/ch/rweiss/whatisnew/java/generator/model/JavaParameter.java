@@ -5,23 +5,24 @@ import java.lang.reflect.Type;
 
 import ch.rweiss.whatisnew.java.model.ApiArgument;
 
-public class JavaParameter 
+public class JavaParameter
 {
   private ApiArgument api;
   private Parameter java;
 
-  public JavaParameter(ApiArgument api, Parameter java) 
+  public JavaParameter(ApiArgument api, Parameter java)
   {
-	this.api = api;
-	this.java = java;
+    this.api = api;
+    this.java = java;
   }
+
   public Type getParameterizedType()
   {
-	return java.getParameterizedType();
+    return java.getParameterizedType();
   }
 
   public String getName()
   {
-	return api.getName(); 
+    return api.getName();
   }
 }
