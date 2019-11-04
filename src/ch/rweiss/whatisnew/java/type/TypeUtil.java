@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.generator;
+package ch.rweiss.whatisnew.java.type;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class TypeUtil
     return clazz.getCanonicalName();
   }
 
-  static Type[] getBoundsWithoutObject(Type[] bounds)
+  public static Type[] getBoundsWithoutObject(Type[] bounds)
   {
     return Arrays
         .stream(bounds)

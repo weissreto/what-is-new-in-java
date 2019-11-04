@@ -1,5 +1,7 @@
 package ch.rweiss.whatisnew.java.generator;
 
+import ch.rweiss.whatisnew.java.type.AbstractTypeVisitor;
+
 public class ImportTypeVisitor extends AbstractTypeVisitor
 {
   private Imports imports;

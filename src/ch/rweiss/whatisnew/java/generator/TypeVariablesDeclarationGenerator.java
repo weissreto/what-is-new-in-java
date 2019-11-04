@@ -5,6 +5,8 @@ import java.lang.reflect.TypeVariable;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import ch.rweiss.whatisnew.java.type.TypeUtil;
+
 class TypeVariablesDeclarationGenerator
 {
   private final Printer printer;

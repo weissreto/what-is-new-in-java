@@ -9,9 +9,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -31,7 +33,7 @@ public class ClassFileParser
   private static final Pattern MEMBER_SIGNATURE_PATTERN = Pattern
           .compile("<div class=\"memberSignature\">(.*?)<\\/div>", Pattern.DOTALL + Pattern.MULTILINE);
   private static final Pattern TYPE_LINK_PATTERN = Pattern
-          .compile("<a [^>]*?title=\"(interface|class) in (.*?)\">");
+          .compile("<a [^>]*?title=\"(interface|class|enum) in (.*?)\">");
   private static final Pattern HTML_TAGS_PATTERN = Pattern.compile("<[^>]*>");
   private static final Pattern ANNOTATION_PATTERNS = Pattern.compile("@\\p{Alnum}+(\\(.*?\\))?");
 
@@ -46,6 +48,7 @@ public class ClassFileParser
 
   public ApiClass parse() throws IOException
   {
+    Logger.getLogger("ClassFileParser").fine("Parsing api doc file "+file);
     String content = Files.readString(file);
     List<Signature> signatures = parseSignatures(content);
     Version classSince = parseSinceAndAssignToSignature(content, signatures);
@@ -74,22 +77,23 @@ public class ClassFileParser
     {
       int sinceStart = matcher.start();
       String since = matcher.group(1);
-      Signature previousTag = null;
-      for (Signature tag : signatures)
+      Signature previousSignature = null;
+      for (Signature signature : signatures)
       {
-        if (tag.startPos < sinceStart)
+        if (signature.startPos < sinceStart)
         {
-          previousTag = tag;
+          previousSignature = signature;
         }
         else
         {
-          if (previousTag == null)
+          if (previousSignature == null)
           {
             classSince = Version.valueOf(since);
           }
           else
           {
-            previousTag.setSince(Version.valueOf(since));
+            Logger.getLogger("ClassFileParser").fine("Match signature "+previousSignature.signature+" at pos "+previousSignature.startPos+" with since "+ since+" on pos "+sinceStart);
+            previousSignature.setSince(Version.valueOf(since));
           }
           break;
         }
@@ -164,7 +168,7 @@ public class ClassFileParser
 
   private boolean isConstructor(Signature signature)
   {
-    return !isField(signature) && StringUtils.contains(signature.signature, getSimpleClassName() + "(");
+    return !isField(signature) && StringUtils.contains(signature.signature, " "+getSimpleClassName() + "(");
   }
 
   private String getSimpleClassName()
@@ -234,10 +238,45 @@ public class ClassFileParser
     {
       return Collections.emptyList();
     }
-    return Arrays
-        .stream(args.split(","))
+    return splitArguments(args)
         .map(this::parseArgument)
         .collect(Collectors.toList());
+  }
+
+  private Stream<String> splitArguments(String args)
+  {
+    int generics = 0;
+    int start = 0;
+    List<String> arguments = new ArrayList<>();
+    for (int pos = 0; pos < args.length(); pos++)
+    {
+      char ch = args.charAt(pos);
+      switch(ch)
+      {
+        case '<':
+          generics++;
+          break;
+        case '>':
+          generics--;
+          break;
+        case ',':
+          if (generics == 0)
+          {
+            arguments.add(StringUtils.substring(args, start, pos));
+            start = pos+1;
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    String rest = StringUtils.substring(args, start);
+    if (StringUtils.isNotBlank(rest))
+    {
+      arguments.add(rest);
+    }
+      
+    return arguments.stream();
   }
 
   private ApiArgument parseArgument(String arg)

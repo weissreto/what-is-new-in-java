@@ -38,6 +38,7 @@ class JavaClassResolver
     {
       return null;
     }
+
     List<JavaConstructor> constructors = toJavaConstructors(java, api.getConstructors());
     constructors = removeDuplicateConstructors(constructors);
     List<JavaMethod> methods = toJavaMethods(java, api.getMethods());

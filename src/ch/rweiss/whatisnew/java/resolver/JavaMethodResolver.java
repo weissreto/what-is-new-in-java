@@ -1,18 +1,14 @@
 package ch.rweiss.whatisnew.java.resolver;
 
-import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
-import ch.rweiss.whatisnew.java.generator.TypeUtil;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 
@@ -79,7 +75,7 @@ class JavaMethodResolver
     try
     {
       Class<?>[] parameterTypes = api
-              .getArgumentTypes()
+              .getRawArgumentTypes()
               .stream()
               .map(JavaClassResolver::resolve)
               .toArray(Class[]::new);
@@ -102,7 +98,8 @@ class JavaMethodResolver
 
   private boolean matches(Method method)
   {
-    return method.getParameterCount() == api.getArgumentTypes().size() &&
+    return method.getName().equals(api.getName())&&
+           method.getParameterCount() == api.getArgumentTypes().size() &&
            matches(method.getParameters(), api.getArgumentTypes());
   }
 
@@ -116,16 +113,7 @@ class JavaMethodResolver
       {
         argumentType = StringUtils.removeEnd(argumentType, "...") + "[]";
       }
-      String parameterType = TypeUtil.toRawName(parameter.getType());
-      Type type = parameter.getParameterizedType();
-      if (type instanceof TypeVariable)
-      {
-        parameterType = ((TypeVariable<?>) type).getName();
-      }
-      else if (type instanceof GenericArrayType)
-      {
-        parameterType = ((GenericArrayType) type).getGenericComponentType().getTypeName()+"[]";
-      }
+      String parameterType = new TypeNameConverter(parameter.getParameterizedType()).convertToString();
       if (!parameterType.equals(argumentType))
       {
         return false;

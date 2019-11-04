@@ -15,6 +15,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collector;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.type.Joiner;
 
 class Printer implements AutoCloseable
 {
@@ -86,30 +87,12 @@ class Printer implements AutoCloseable
   
   <T> void forEachPrint(T[] objects, String delimiter, Consumer<T> printer)
   {
-    boolean first = true;
-    for (T object : objects)
-    {
-      if (!first)
-      {
-        print(delimiter);
-      }
-      first = false;
-      printer.accept(object);
-    }
+    Joiner.forEach(objects, () -> print(delimiter), printer);
   }
   
   public <T> void forEachPrint(List<T> objects, String delimiter, Consumer<T> printer)
   {
-    boolean first = true;
-    for (T object : objects)
-    {
-      if (!first)
-      {
-        print(delimiter);
-      }
-      first = false;
-      printer.accept(object);
-    }
+    Joiner.forEach(objects, () -> print(delimiter), printer);
   }
 
   @Override

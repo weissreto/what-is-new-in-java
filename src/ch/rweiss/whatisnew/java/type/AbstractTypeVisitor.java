@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.generator;
+package ch.rweiss.whatisnew.java.type;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;

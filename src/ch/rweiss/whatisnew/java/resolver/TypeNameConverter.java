@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.generator;
+package ch.rweiss.whatisnew.java.resolver;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
@@ -7,24 +7,23 @@ import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 
 import ch.rweiss.whatisnew.java.type.AbstractTypeVisitor;
+import ch.rweiss.whatisnew.java.type.Joiner;
 import ch.rweiss.whatisnew.java.type.TypeUtil;
 
-class TypeNameGenerator extends AbstractTypeVisitor
+class TypeNameConverter extends AbstractTypeVisitor
 {
-  private final Imports imports;
-  private final Printer printer;
   private final Type type;
+  private final StringBuilder builder = new StringBuilder();
 
-  TypeNameGenerator(Imports imports, Printer printer, Type type)
+  TypeNameConverter(Type type)
   {
-    this.imports = imports;
-    this.printer = printer;
     this.type = type;
   }
 
-  void generate()
+  String convertToString()
   {
     visit(type);
+    return builder.toString();
   }
   
   @Override
@@ -33,17 +32,17 @@ class TypeNameGenerator extends AbstractTypeVisitor
     if (clazz.isArray())
     {
       visit(clazz.getComponentType());
-      printer.print("[]");
+      builder.append("[]");
       return;
     }
-    new RawTypeNameGenerator(imports, printer, clazz).generate();
+    builder.append(TypeUtil.toRawName(clazz));
   }
   
   @Override
   protected void visit(GenericArrayType genericArrayType)
   {
     super.visit(genericArrayType);
-    printer.print("[]");
+    builder.append("[]");
   }
   
   @Override
@@ -52,35 +51,35 @@ class TypeNameGenerator extends AbstractTypeVisitor
     visit(parameterizedType.getRawType());
     if (parameterizedType.getActualTypeArguments().length > 0)
     {
-      printer.print("<");
-      printer.forEachPrint(parameterizedType.getActualTypeArguments(), ", ", this::visit);
-      printer.print(">");
+      builder.append("<");
+      Joiner.forEach(parameterizedType.getActualTypeArguments(), () -> builder.append(","), this::visit);
+      builder.append(">");
     }
   }
   
   @Override
   protected void visit(TypeVariable<?> typeVariable)
   {    
-    printer.print(typeVariable.getName());
+    builder.append(typeVariable.getName());
   }
   
   @Override
   protected void visit(WildcardType wildcardType)
   {
-    printer.print('?');
+    builder.append('?');
     // ? super Object must be declared 
     // ? extends Object must not be declared explicit
     Type[] lowerBounds = wildcardType.getLowerBounds(); 
     if (lowerBounds.length > 0)
     {
-      printer.print(" super ");
-      printer.forEachPrint(wildcardType.getLowerBounds(), " & ", this::visit);
+      builder.append(" super ");
+      Joiner.forEach(wildcardType.getLowerBounds(), () -> builder.append(" & "), this::visit);
     }
     Type[] upperBounds = TypeUtil.getBoundsWithoutObject(wildcardType.getUpperBounds());
     if (upperBounds.length > 0)
     {
-      printer.print(" extends ");
-      printer.forEachPrint(wildcardType.getUpperBounds(), " & ", this::visit);
+      builder.append(" extends ");
+      Joiner.forEach(wildcardType.getUpperBounds(), () -> builder.append(" & "), this::visit);
     }
   }
 }

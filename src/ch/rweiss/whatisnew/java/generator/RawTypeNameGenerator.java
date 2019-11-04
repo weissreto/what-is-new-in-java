@@ -6,6 +6,9 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 
+import ch.rweiss.whatisnew.java.type.AbstractTypeVisitor;
+import ch.rweiss.whatisnew.java.type.TypeUtil;
+
 public class RawTypeNameGenerator extends AbstractTypeVisitor
 {
   private final Imports imports;

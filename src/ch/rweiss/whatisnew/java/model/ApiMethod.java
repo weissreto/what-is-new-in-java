@@ -36,11 +36,19 @@ public class ApiMethod
     return arguments;
   }
 
-  public List<String> getArgumentTypes()
+  public List<String> getRawArgumentTypes()
   {
     return arguments
             .stream()
             .map(ApiArgument::getRawType)
+            .collect(Collectors.toList());
+  }
+
+  public List<String> getArgumentTypes()
+  {
+    return arguments
+            .stream()
+            .map(ApiArgument::getType)
             .collect(Collectors.toList());
   }
 

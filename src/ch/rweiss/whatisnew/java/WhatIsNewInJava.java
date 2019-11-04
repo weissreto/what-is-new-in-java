@@ -19,6 +19,8 @@ public class WhatIsNewInJava
   private List<Version> filterArgs = new ArrayList<>();
   private String outputPathArg;
   private String apiDocRootPathArg;
+//  private FileHandler handler;
+//  private Logger logger;
 
   public WhatIsNewInJava(String[] args)
   {
@@ -32,6 +34,12 @@ public class WhatIsNewInJava
     {
       filterArgs.add(Version.valueOf(args[pos]));
     }
+//    logger = Logger.getLogger("ClassFileParser");
+//    logger.setLevel(Level.FINE);
+//    handler = new FileHandler("log.log");
+//    handler.setLevel(Level.FINE);
+//    handler.setFormatter(new SimpleFormatter());
+//    logger.addHandler(handler);
   }
 
   public static void main(String[] args) throws IOException
@@ -44,7 +52,7 @@ public class WhatIsNewInJava
     catch(WhatIsNewInException ex)
     {
       ex.printStackTrace();
-    }
+    }    
   }
 
   private void generate() throws IOException

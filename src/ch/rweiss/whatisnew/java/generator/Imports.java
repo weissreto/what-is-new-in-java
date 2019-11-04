@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.rweiss.whatisnew.java.type.TypeUtil;
+
 class Imports
 {
   private final List<String> typeNames = new ArrayList<>();
