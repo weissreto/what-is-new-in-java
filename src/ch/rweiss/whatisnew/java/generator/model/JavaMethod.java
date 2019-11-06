@@ -5,22 +5,35 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import ch.rweiss.whatisnew.java.model.ApiArgument;
+import ch.rweiss.whatisnew.java.model.ApiField;
 import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
 public class JavaMethod
 {
-  private final ApiMethod api;
+  private final Version since;
   private final Method java;
+  private final List<ApiArgument> apiArguments;
   
   public JavaMethod(ApiMethod api, Method java)
   {
-    this.api = api;
+    this.since = api.getSince();
+    this.apiArguments = api.getArguments();
     this.java = java;
   }
   
+  public JavaMethod(ApiField api, Method java)
+  {
+    this.since = api.getSince();
+    this.apiArguments = Collections.emptyList();
+    this.java = java;
+  }
+
   public Method getJava()
   {
     return java;
@@ -28,7 +41,7 @@ public class JavaMethod
     
   public Version getSince()
   {
-    return api.getSince();
+    return since;
   }
 
   public String getName()
@@ -51,7 +64,7 @@ public class JavaMethod
 	JavaParameter[] parameters = new JavaParameter[java.getParameterCount()];
 	for (int pos = 0; pos < java.getParameterCount(); pos++)
 	{
-      JavaParameter param = new JavaParameter(api.getArguments().get(pos), java.getParameters()[pos]);	
+      JavaParameter param = new JavaParameter(apiArguments.get(pos), java.getParameters()[pos]);	
 	  parameters[pos] = param;
 	}
     return parameters;

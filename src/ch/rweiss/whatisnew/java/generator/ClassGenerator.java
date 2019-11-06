@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
+import ch.rweiss.whatisnew.java.generator.model.JavaField;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
@@ -75,6 +76,7 @@ class ClassGenerator
     printer.print("{");
     printer.println();
     printer.indent(2);
+    clazz.getFields().forEach(this::generate);
     if (!Modifier.isAbstract(clazz.getJava().getModifiers()))
     {
       clazz.getConstructors().forEach(this::generate);
@@ -130,6 +132,11 @@ class ClassGenerator
     printer.println();
   }
 
+  void generate(JavaField field)
+  {
+    new FieldGenerator(this, field).generate();
+  }
+  
   void generate(JavaMethod method)
   {
     new MethodGenerator(this, method).generate();

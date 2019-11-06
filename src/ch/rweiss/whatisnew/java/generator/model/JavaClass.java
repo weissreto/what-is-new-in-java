@@ -14,14 +14,16 @@ public class JavaClass
 {
   private final ApiClass api;
   private final Class<?> java;
+  private final List<JavaField> fields;
   private final List<JavaConstructor> constructors;
   private final List<JavaMethod> methods;
   
-  public JavaClass(ApiClass api, Class<?> java, List<JavaConstructor> constructors,
+  public JavaClass(ApiClass api, Class<?> java, List<JavaField> fields, List<JavaConstructor> constructors,
           List<JavaMethod> methods)
   {
     this.api = api;
     this.java = java;
+    this.fields = fields;
     this.constructors = constructors;
     this.methods = methods;
   }
@@ -82,6 +84,11 @@ public class JavaClass
   {
     return constructors;
   }
+  
+  public List<JavaField> getFields()
+  {
+    return fields;
+  }
 
   public Version getSince()
   {
@@ -93,4 +100,5 @@ public class JavaClass
   {
     return "JavaClass [name="+java.getCanonicalName()+"]"; 
   }
+
 }

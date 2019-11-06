@@ -22,4 +22,19 @@ public class ApiField
   {
     return "ApiField [name=" + name + ", type=" + type + " modifiers=" + modifiers + ", since=" + since + "]";
   }
+
+  public String getName()
+  {
+    return name;
+  }
+
+  public Version getSince()
+  {
+    return since;
+  }
+
+  public boolean hasModifier(ApiModifier modifier)
+  {
+    return modifiers.contains(modifier);
+  }
 }
