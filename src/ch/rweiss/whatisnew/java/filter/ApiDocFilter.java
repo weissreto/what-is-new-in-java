@@ -5,9 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.model.ApiDoc;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
 import ch.rweiss.whatisnew.java.model.Version;
 
 public class ApiDocFilter
@@ -39,43 +37,6 @@ public class ApiDocFilter
   
   private ApiClass filter(ApiClass apiClass)
   {
-    if (filter(apiClass.getSince()))
-    {
-      return apiClass;
-    }
-    List<ApiMethod> filteredMethods = apiClass
-            .getMethods()
-            .stream()
-            .filter(this::filter)
-            .collect(Collectors.toList());
-    List<ApiConstructor> filteredConstructors = apiClass
-            .getConstructors()
-            .stream()
-            .filter(this::filter)
-            .collect(Collectors.toList());
-    if (filteredMethods.isEmpty() && filteredConstructors.isEmpty())
-    {
-      return null;
-    }
-    return new ApiClass(apiClass.getName(), filteredConstructors, filteredMethods, apiClass.getFields(), apiClass.getSince());
-  }
-  
-  private boolean filter(ApiMethod method)
-  {
-    return filter(method.getSince());
-  }
-
-  private boolean filter(ApiConstructor constructor)
-  {
-    return filter(constructor.getSince());
-  }
-
-  private boolean filter(Version version)
-  {
-    if (versions.isEmpty())
-    {
-      return true;
-    }
-    return versions.contains(version);
+    return new ApiClassFilter(apiClass, versions).filter();
   }
 }
