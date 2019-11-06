@@ -1,5 +1,7 @@
 package ch.rweiss.whatisnew.java.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Version
 {
   public static final Version UNDEFINED = new Version("UNDEFINED");
@@ -12,11 +14,11 @@ public class Version
 
   public static Version valueOf(String version)
   {
-    if (version == null || version.isBlank())
+    if (StringUtils.isBlank(version))
     {
       return UNDEFINED;
     }
-    return new Version(version);
+    return new Version(version.trim());
   }
 
   @Override
