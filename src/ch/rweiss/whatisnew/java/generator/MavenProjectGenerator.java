@@ -65,7 +65,21 @@ final class MavenProjectGenerator
     printer.println();
     printer.print("    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>"); 
     printer.println();
-    printer.print("    <maven.compiler.release>");
+    printer.print("    <maven.compiler.target>");
+    generateVersion();
+    printer.print("</maven.compiler.target>");
+    printer.println();
+    printer.print("    <maven.compiler.source>");
+    generateVersion();
+    printer.print("</maven.compiler.source>");
+    printer.println();
+    printer.print("  </properties>"); 
+    printer.println();
+    printer.println();
+  }
+
+  private void generateVersion()
+  {
     if (versions.isEmpty())
     {
       printer.print(Runtime.version().feature());
@@ -74,11 +88,6 @@ final class MavenProjectGenerator
     {
       printer.print(versions.get(versions.size()-1));
     }
-    printer.print("</maven.compiler.release>");
-    printer.println();
-    printer.print("  </properties>"); 
-    printer.println();
-    printer.println();
   }
 
   private void generateBuild()
@@ -94,6 +103,18 @@ final class MavenProjectGenerator
     printer.print("        <artifactId>maven-compiler-plugin</artifactId>");
     printer.println();
     printer.print("        <version>3.8.0</version>");
+    printer.println();
+    printer.print("        <configuration>");
+    printer.println();
+    printer.print("          <compilerArgs>");
+    printer.println();
+    printer.print("            <arg>--add-exports</arg>");
+    printer.println();
+    printer.print("            <arg>jdk.jfr/jdk.jfr.internal=ALL-UNNAMED</arg>");
+    printer.println();
+    printer.print("          </compilerArgs>");
+    printer.println();
+    printer.print("        </configuration>");
     printer.println();
     printer.print("      </plugin>");
     printer.println();
