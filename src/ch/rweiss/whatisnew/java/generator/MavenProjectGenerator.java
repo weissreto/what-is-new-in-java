@@ -20,8 +20,10 @@ final class MavenProjectGenerator
     generateHeader();
     generateCoordinates();
     generateProperties();
+    generateBuild();
     generateFooter();
   }
+
 
   private void generateHeader()
   {
@@ -75,6 +77,30 @@ final class MavenProjectGenerator
     printer.print("</maven.compiler.release>");
     printer.println();
     printer.print("  </properties>"); 
+    printer.println();
+    printer.println();
+  }
+
+  private void generateBuild()
+  {
+    printer.print("  <build>");
+    printer.println();
+    printer.print("    <plugins>");
+    printer.println();
+    printer.print("      <plugin>");
+    printer.println();
+    printer.print("        <groupId>org.apache.maven.plugins</groupId>");
+    printer.println();
+    printer.print("        <artifactId>maven-compiler-plugin</artifactId>");
+    printer.println();
+    printer.print("        <version>3.8.0</version>");
+    printer.println();
+    printer.print("      </plugin>");
+    printer.println();
+    printer.print("    </plugins>");
+    printer.println();
+    printer.print("  </build>");
+    printer.println();
     printer.println();
   }
 
