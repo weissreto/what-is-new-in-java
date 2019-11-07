@@ -53,14 +53,27 @@ public class FieldGenerator
   
   private void generateDeclaration()
   {
-    printer.print("public static final ");
+    printer.print("public ");
+    if (field.isStatic())
+    {
+      printer.print("static ");
+    }
+    printer.print(" final ");
 
     new TypeNameGenerator(classGenerator.getImports(), printer, field.getGenericReturnType()).generate();
 
     printer.print(' ');
     printer.print(field.getName());
     printer.print(" = ");
-    printer.print(classGenerator.getClazz().getSimpleName());
+    if (field.isStatic())
+    {
+      printer.print(classGenerator.getClazz().getSimpleName());
+    }
+    else
+    {
+      printer.print("$$$()");
+      classGenerator.needsCreateMethod();
+    }
     printer.print(".");
     printer.print(field.getName());
     printer.print(";");

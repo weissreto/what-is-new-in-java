@@ -1,0 +1,162 @@
+ApiClass [name=java.lang.Character.UnicodeBlock, since=1.2]
+  Fields:
+    ApiField [name=ELYMAIC, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=NANDINAGARI, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=TAMIL_SUPPLEMENT, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=EGYPTIAN_HIEROGLYPH_FORMAT_CONTROLS, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=SMALL_KANA_EXTENSION, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=NYIAKENG_PUACHUE_HMONG, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=WANCHO, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=OTTOMAN_SIYAQ_NUMBERS, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=java.lang.Character.UnicodeScript, since=1.7]
+  Fields:
+    ApiField [name=ELYMAIC, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=NANDINAGARI, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=NYIAKENG_PUACHUE_HMONG, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=13]
+    ApiField [name=WANCHO, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=java.lang.String, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=stripIndent, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=translateEscapes, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=formatted, returnType=java.lang.String, arguments=[ApiArgument [name=args, type=java.lang.Object...]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.Buffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.Buffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.ByteBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.ByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.ByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=byte[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.ByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=byte[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.ByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=byte[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.ByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=byte[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.CharBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.CharBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.CharBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=char[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.CharBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=char[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.CharBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=char[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.CharBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=char[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.DoubleBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.DoubleBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.DoubleBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=double[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.DoubleBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=double[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.DoubleBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=double[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.DoubleBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=double[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.file.FileSystems, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=newFileSystem, returnType=java.nio.file.FileSystem, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=env, type=java.util.Map<java.lang.String,?>]], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newFileSystem, returnType=java.nio.file.FileSystem, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=13]
+ApiClass [name=java.nio.FloatBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.FloatBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.FloatBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=float[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.FloatBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=float[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.FloatBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=float[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.FloatBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=float[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.IntBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.IntBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.IntBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=int[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.IntBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=int[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.IntBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=int[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.IntBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=int[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.LongBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.LongBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.LongBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=long[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.LongBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=long[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.LongBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=long[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.LongBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=long[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.nio.MappedByteBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=force, returnType=java.nio.MappedByteBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, FINAL], since=13]
+ApiClass [name=java.nio.ShortBuffer, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=slice, returnType=java.nio.ShortBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.ShortBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=short[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=get, returnType=java.nio.ShortBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=dst, type=short[]]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.ShortBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=short[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC], since=13]
+    ApiMethod [name=put, returnType=java.nio.ShortBuffer, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=src, type=short[]]], modifiers=[PUBLIC], since=13]
+ApiClass [name=java.time.chrono.JapaneseEra, since=1.8]
+  Fields:
+    ApiField [name=REIWA, type=java.time.chrono.JapaneseEra modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
+  Fields:
+    ApiField [name=RELEASE_13, type=javax.lang.model.SourceVersion modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=javax.tools.StandardJavaFileManager, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getJavaFileObjectsFromPaths, returnType=javax.tools.JavaFileObject>, arguments=[ApiArgument [name=paths, type=java.util.Collection<? extends java.nio.file.Path>]], modifiers=[], since=13]
+ApiClass [name=javax.xml.parsers.DocumentBuilderFactory, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=newDefaultNSInstance, returnType=javax.xml.parsers.DocumentBuilderFactory, arguments=[], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newNSInstance, returnType=javax.xml.parsers.DocumentBuilderFactory, arguments=[], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newNSInstance, returnType=javax.xml.parsers.DocumentBuilderFactory, arguments=[ApiArgument [name=factoryClassName, type=java.lang.String], ApiArgument [name=classLoader, type=java.lang.ClassLoader]], modifiers=[PUBLIC, STATIC], since=13]
+ApiClass [name=javax.xml.parsers.SAXParserFactory, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=newDefaultNSInstance, returnType=javax.xml.parsers.SAXParserFactory, arguments=[], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newNSInstance, returnType=javax.xml.parsers.SAXParserFactory, arguments=[], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newNSInstance, returnType=javax.xml.parsers.SAXParserFactory, arguments=[ApiArgument [name=factoryClassName, type=java.lang.String], ApiArgument [name=classLoader, type=java.lang.ClassLoader]], modifiers=[PUBLIC, STATIC], since=13]
+ApiClass [name=javax.xml.crypto.dsig.CanonicalizationMethod, since=1.6]
+  Fields:
+    ApiField [name=INCLUSIVE_11, type=java.lang.String modifiers=[STATIC, FINAL], since=13]
+    ApiField [name=INCLUSIVE_11_WITH_COMMENTS, type=java.lang.String modifiers=[STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=com.sun.source.tree.Tree.Kind, since=UNDEFINED]
+  Fields:
+    ApiField [name=YIELD, type=com.sun.source.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=com.sun.source.tree.YieldTree, since=13]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getValue, returnType=com.sun.source.tree.ExpressionTree, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=com.sun.source.util.JavacTask, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=setParameterNameProvider, returnType=void, arguments=[ApiArgument [name=provider, type=com.sun.source.util.ParameterNameProvider]], modifiers=[PUBLIC], since=13]
+ApiClass [name=com.sun.source.util.ParameterNameProvider, since=13]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getParameterName, returnType=java.lang.CharSequence, arguments=[ApiArgument [name=parameter, type=javax.lang.model.element.VariableElement]], modifiers=[], since=UNDEFINED]

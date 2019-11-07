@@ -1,0 +1,447 @@
+ApiClass [name=java.lang.Character.UnicodeBlock, since=1.2]
+  Fields:
+    ApiField [name=GEORGIAN_EXTENDED, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=HANIFI_ROHINGYA, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=OLD_SOGDIAN, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=SOGDIAN, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=DOGRA, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=GUNJALA_GONDI, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=MAKASAR, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=MEDEFAIDRIN, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=MAYAN_NUMERALS, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=INDIC_SIYAQ_NUMBERS, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=CHESS_SYMBOLS, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=12]
+  Constructors:
+  Methods:
+ApiClass [name=java.lang.Character.UnicodeScript, since=1.7]
+  Fields:
+    ApiField [name=HANIFI_ROHINGYA, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=OLD_SOGDIAN, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=SOGDIAN, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=DOGRA, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=GUNJALA_GONDI, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=MAKASAR, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=MEDEFAIDRIN, type=java.lang.Character.UnicodeScript modifiers=[PUBLIC, STATIC, FINAL], since=12]
+  Constructors:
+  Methods:
+ApiClass [name=java.lang.Class, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=componentType, returnType=java.lang.Class<?>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=arrayType, returnType=java.lang.Class<?>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.constant.ClassDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=packageName, type=java.lang.String], ApiArgument [name=className, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=ofDescriptor, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=descriptor, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=arrayType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=arrayType, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=rank, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=nested, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=nestedName, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=nested, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=firstNestedName, type=java.lang.String], ApiArgument [name=moreNestedNames, type=java.lang.String...]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isArray, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isPrimitive, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isClassOrInterface, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=componentType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=packageName, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=displayName, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=o, type=java.lang.Object]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.constant.Constable, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.lang.constant.ConstantDesc>, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.constant.ConstantDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.constant.ConstantDescs, since=12]
+  Fields:
+    ApiField [name=DEFAULT_NAME, type=java.lang.String modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Object, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_String, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Class, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Number, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Integer, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Long, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Float, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Double, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Short, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Byte, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Character, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Boolean, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Void, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Throwable, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Exception, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Enum, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_VarHandle, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodHandles, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodHandles_Lookup, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodHandle, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodType, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_CallSite, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Collection, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_List, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Set, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_Map, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_ConstantDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_ClassDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_EnumDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodTypeDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodHandleDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_DirectMethodHandleDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_VarHandleDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_MethodHandleDesc_Kind, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_DynamicConstantDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_DynamicCallSiteDesc, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_ConstantBootstraps, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_PRIMITIVE_CLASS, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_ENUM_CONSTANT, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_NULL_CONSTANT, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_VARHANDLE_FIELD, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_VARHANDLE_STATIC_FIELD, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_VARHANDLE_ARRAY, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BSM_INVOKE, type=java.lang.constant.DirectMethodHandleDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_int, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_long, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_float, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_double, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_short, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_byte, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_char, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_boolean, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CD_void, type=java.lang.constant.ClassDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NULL, type=java.lang.constant.ConstantDesc modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=ofCallsiteBootstrap, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=returnType, type=java.lang.constant.ClassDesc], ApiArgument [name=paramTypes, type=java.lang.constant.ClassDesc...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofConstantBootstrap, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=returnType, type=java.lang.constant.ClassDesc], ApiArgument [name=paramTypes, type=java.lang.constant.ClassDesc...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.lang.constant.DirectMethodHandleDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=kind, returnType=java.lang.constant.DirectMethodHandleDesc.Kind, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=refKind, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isOwnerInterface, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=owner, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=methodName, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=lookupDescriptor, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.constant.DirectMethodHandleDesc.Kind, since=12]
+  Fields:
+    ApiField [name=STATIC, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL, STATIC], since=UNDEFINED]
+    ApiField [name=INTERFACE_STATIC, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VIRTUAL, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=INTERFACE_VIRTUAL, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SPECIAL, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=INTERFACE_SPECIAL, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONSTRUCTOR, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GETTER, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SETTER, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STATIC_GETTER, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STATIC_SETTER, type=java.lang.constant.DirectMethodHandleDesc.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=refKind, type=int modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiField [name=isInterface, type=boolean modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.lang.constant.DirectMethodHandleDesc.Kind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.lang.constant.DirectMethodHandleDesc.Kind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.lang.constant.DirectMethodHandleDesc.Kind, arguments=[ApiArgument [name=refKind, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.lang.constant.DirectMethodHandleDesc.Kind, arguments=[ApiArgument [name=refKind, type=int], ApiArgument [name=isInterface, type=boolean]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.lang.constant.DynamicCallSiteDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.lang.constant.DynamicCallSiteDesc, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=invocationName, type=java.lang.String], ApiArgument [name=invocationType, type=java.lang.constant.MethodTypeDesc], ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.DynamicCallSiteDesc, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=invocationName, type=java.lang.String], ApiArgument [name=invocationType, type=java.lang.constant.MethodTypeDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.DynamicCallSiteDesc, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=invocationType, type=java.lang.constant.MethodTypeDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=withArgs, returnType=java.lang.constant.DynamicCallSiteDesc, arguments=[ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc...]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=withNameAndType, returnType=java.lang.constant.DynamicCallSiteDesc, arguments=[ApiArgument [name=invocationName, type=java.lang.String], ApiArgument [name=invocationType, type=java.lang.constant.MethodTypeDesc]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=invocationName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=invocationType, returnType=java.lang.constant.MethodTypeDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=bootstrapMethod, returnType=java.lang.constant.MethodHandleDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=bootstrapArgs, returnType=java.lang.constant.ConstantDesc[], arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=resolveCallSiteDesc, returnType=java.lang.invoke.CallSite, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=o, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.lang.constant.DynamicConstantDesc, since=12]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=constantName, type=java.lang.String], ApiArgument [name=constantType, type=java.lang.constant.ClassDesc], ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc...]], modifiers=[PROTECTED], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=ofCanonical, returnType=java.lang.constant.ConstantDesc, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=constantName, type=java.lang.String], ApiArgument [name=constantType, type=java.lang.constant.ClassDesc], ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc[]]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofNamed, returnType=java.lang.constant.DynamicConstantDesc<T>, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=constantName, type=java.lang.String], ApiArgument [name=constantType, type=java.lang.constant.ClassDesc], ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.DynamicConstantDesc<T>, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc], ApiArgument [name=bootstrapArgs, type=java.lang.constant.ConstantDesc...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.DynamicConstantDesc<T>, arguments=[ApiArgument [name=bootstrapMethod, type=java.lang.constant.DirectMethodHandleDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=constantName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=constantType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=bootstrapMethod, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=bootstrapArgs, returnType=java.lang.constant.ConstantDesc[], arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=bootstrapArgsList, returnType=java.util.List<java.lang.constant.ConstantDesc>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=o, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.lang.constant.MethodHandleDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=kind, type=java.lang.constant.DirectMethodHandleDesc.Kind], ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=lookupDescriptor, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=ofMethod, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=kind, type=java.lang.constant.DirectMethodHandleDesc.Kind], ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=lookupMethodType, type=java.lang.constant.MethodTypeDesc]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=ofField, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=kind, type=java.lang.constant.DirectMethodHandleDesc.Kind], ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=fieldName, type=java.lang.String], ApiArgument [name=fieldType, type=java.lang.constant.ClassDesc]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=ofConstructor, returnType=java.lang.constant.DirectMethodHandleDesc, arguments=[ApiArgument [name=owner, type=java.lang.constant.ClassDesc], ApiArgument [name=paramTypes, type=java.lang.constant.ClassDesc...]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=asType, returnType=java.lang.constant.MethodHandleDesc, arguments=[ApiArgument [name=type, type=java.lang.constant.MethodTypeDesc]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=invocationType, returnType=java.lang.constant.MethodTypeDesc, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=o, type=java.lang.Object]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.constant.MethodTypeDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=ofDescriptor, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=descriptor, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=returnDesc, type=java.lang.constant.ClassDesc], ApiArgument [name=paramDescs, type=java.lang.constant.ClassDesc...]], modifiers=[STATIC], since=UNDEFINED]
+    ApiMethod [name=returnType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterCount, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterType, returnType=java.lang.constant.ClassDesc, arguments=[ApiArgument [name=index, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterList, returnType=java.util.List<java.lang.constant.ClassDesc>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterArray, returnType=java.lang.constant.ClassDesc[], arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=changeReturnType, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=returnType, type=java.lang.constant.ClassDesc]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=changeParameterType, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=paramType, type=java.lang.constant.ClassDesc]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=dropParameterTypes, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=start, type=int], ApiArgument [name=end, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=insertParameterTypes, returnType=java.lang.constant.MethodTypeDesc, arguments=[ApiArgument [name=pos, type=int], ApiArgument [name=paramTypes, type=java.lang.constant.ClassDesc...]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=displayDescriptor, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=o, type=java.lang.Object]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.Double, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Double>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.Enum.EnumDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.lang.Enum.EnumDesc<E>, arguments=[ApiArgument [name=enumClass, type=java.lang.constant.ClassDesc], ApiArgument [name=constantName, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.lang.Enum, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Enum.EnumDesc<E>>, arguments=[], modifiers=[PUBLIC, FINAL], since=12]
+ApiClass [name=java.lang.Float, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Float>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.Integer, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Integer>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.invoke.MethodHandle, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.constant.MethodHandleDesc>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.invoke.MethodType, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.invoke.TypeDescriptor, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.invoke.TypeDescriptor.OfField, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=isArray, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isPrimitive, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=componentType, returnType=F, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=arrayType, returnType=F, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.invoke.TypeDescriptor.OfMethod, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=parameterCount, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterType, returnType=F, arguments=[ApiArgument [name=i, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=returnType, returnType=F, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterArray, returnType=F[], arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=parameterList, returnType=java.util.List<F>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=changeReturnType, returnType=M, arguments=[ApiArgument [name=newReturn, type=F]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=changeParameterType, returnType=M, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=paramType, type=F]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=dropParameterTypes, returnType=M, arguments=[ApiArgument [name=start, type=int], ApiArgument [name=end, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=insertParameterTypes, returnType=M, arguments=[ApiArgument [name=pos, type=int], ApiArgument [name=paramTypes, type=F...]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.invoke.VarHandle, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.invoke.VarHandle.VarHandleDesc>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.invoke.VarHandle.VarHandleDesc, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=ofField, returnType=java.lang.invoke.VarHandle.VarHandleDesc, arguments=[ApiArgument [name=declaringClass, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=fieldType, type=java.lang.constant.ClassDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofStaticField, returnType=java.lang.invoke.VarHandle.VarHandleDesc, arguments=[ApiArgument [name=declaringClass, type=java.lang.constant.ClassDesc], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=fieldType, type=java.lang.constant.ClassDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofArray, returnType=java.lang.invoke.VarHandle.VarHandleDesc, arguments=[ApiArgument [name=arrayClass, type=java.lang.constant.ClassDesc]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=varType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.lang.Long, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Long>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.lang.String, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=indent, returnType=java.lang.String, arguments=[ApiArgument [name=n, type=int]], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=transform, returnType=R, arguments=[ApiArgument [name=f, type=java.util.function.Function<? super java.lang.String,? extends R>]], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=12]
+ApiClass [name=java.net.ServerSocket, since=1.0]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=impl, type=java.net.SocketImpl]], modifiers=[PROTECTED], since=12]
+  Methods:
+ApiClass [name=java.nio.file.Files, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=mismatch, returnType=long, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=path2, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=12]
+ApiClass [name=java.text.CompactNumberFormat, since=12]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=decimalPattern, type=java.lang.String], ApiArgument [name=symbols, type=java.text.DecimalFormatSymbols], ApiArgument [name=compactPatterns, type=java.lang.String[]]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=format, returnType=java.lang.StringBuffer, arguments=[ApiArgument [name=number, type=java.lang.Object], ApiArgument [name=toAppendTo, type=java.lang.StringBuffer], ApiArgument [name=fieldPosition, type=java.text.FieldPosition]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=format, returnType=java.lang.StringBuffer, arguments=[ApiArgument [name=number, type=double], ApiArgument [name=result, type=java.lang.StringBuffer], ApiArgument [name=fieldPosition, type=java.text.FieldPosition]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=format, returnType=java.lang.StringBuffer, arguments=[ApiArgument [name=number, type=long], ApiArgument [name=result, type=java.lang.StringBuffer], ApiArgument [name=fieldPosition, type=java.text.FieldPosition]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=formatToCharacterIterator, returnType=java.text.AttributedCharacterIterator, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=parse, returnType=java.lang.Number, arguments=[ApiArgument [name=text, type=java.lang.String], ApiArgument [name=pos, type=java.text.ParsePosition]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setMaximumIntegerDigits, returnType=void, arguments=[ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setMinimumIntegerDigits, returnType=void, arguments=[ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setMinimumFractionDigits, returnType=void, arguments=[ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setMaximumFractionDigits, returnType=void, arguments=[ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=getRoundingMode, returnType=java.math.RoundingMode, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setRoundingMode, returnType=void, arguments=[ApiArgument [name=roundingMode, type=java.math.RoundingMode]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=getGroupingSize, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setGroupingSize, returnType=void, arguments=[ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isGroupingUsed, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setGroupingUsed, returnType=void, arguments=[ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isParseIntegerOnly, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setParseIntegerOnly, returnType=void, arguments=[ApiArgument [name=value, type=boolean]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isParseBigDecimal, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=setParseBigDecimal, returnType=void, arguments=[ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=clone, returnType=java.text.CompactNumberFormat, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.text.NumberFormat.Field, since=1.4]
+  Fields:
+    ApiField [name=PREFIX, type=java.text.NumberFormat.Field modifiers=[PUBLIC, STATIC, FINAL], since=12]
+    ApiField [name=SUFFIX, type=java.text.NumberFormat.Field modifiers=[PUBLIC, STATIC, FINAL], since=12]
+  Constructors:
+  Methods:
+ApiClass [name=java.text.NumberFormat, since=1.1]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getCompactNumberInstance, returnType=java.text.NumberFormat, arguments=[], modifiers=[PUBLIC, STATIC], since=12]
+    ApiMethod [name=getCompactNumberInstance, returnType=java.text.NumberFormat, arguments=[ApiArgument [name=locale, type=java.util.Locale], ApiArgument [name=formatStyle, type=java.text.NumberFormat.Style]], modifiers=[PUBLIC, STATIC], since=12]
+ApiClass [name=java.text.NumberFormat.Style, since=12]
+  Fields:
+    ApiField [name=SHORT, type=java.text.NumberFormat.Style modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LONG, type=java.text.NumberFormat.Style modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.text.NumberFormat.Style[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.text.NumberFormat.Style, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.util.concurrent.CompletionStage, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=exceptionallyAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends T>]], modifiers=[], since=12]
+    ApiMethod [name=exceptionallyAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends T>], ApiArgument [name=executor, type=java.util.concurrent.Executor]], modifiers=[], since=12]
+    ApiMethod [name=exceptionallyCompose, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>]], modifiers=[], since=12]
+    ApiMethod [name=exceptionallyComposeAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>]], modifiers=[], since=12]
+    ApiMethod [name=exceptionallyComposeAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>], ApiArgument [name=executor, type=java.util.concurrent.Executor]], modifiers=[], since=12]
+ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
+  Fields:
+    ApiField [name=RELEASE_12, type=javax.lang.model.SourceVersion modifiers=[PUBLIC, STATIC, FINAL], since=12]
+  Constructors:
+  Methods:
+ApiClass [name=javax.swing.filechooser.FileSystemView, since=UNDEFINED]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getChooserShortcutPanelFiles, returnType=java.io.File[], arguments=[], modifiers=[PUBLIC, FINAL], since=12]
+ApiClass [name=javax.naming.ldap.spi.LdapDnsProvider, since=12]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=lookupEndpoints, returnType=java.util.Optional<javax.naming.ldap.spi.LdapDnsProviderResult>, arguments=[ApiArgument [name=url, type=java.lang.String], ApiArgument [name=env, type=java.util.Map<?,?>]], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=javax.naming.ldap.spi.LdapDnsProviderResult, since=12]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=domainName, type=java.lang.String], ApiArgument [name=endpoints, type=java.util.List<java.lang.String>]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=getDomainName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=getEndpoints, returnType=java.util.List<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=com.sun.source.doctree.DocTreeVisitor, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitSystemProperty, returnType=R, arguments=[ApiArgument [name=node, type=com.sun.source.doctree.SystemPropertyTree], ApiArgument [name=p, type=P]], modifiers=[], since=12]
+ApiClass [name=com.sun.source.doctree.SystemPropertyTree, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getPropertyName, returnType=javax.lang.model.element.Name, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.CaseTree.CaseKind, since=12]
+  Fields:
+    ApiField [name=STATEMENT, type=com.sun.source.tree.CaseTree.CaseKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RULE, type=com.sun.source.tree.CaseTree.CaseKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=com.sun.source.tree.CaseTree.CaseKind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=com.sun.source.tree.CaseTree.CaseKind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.CaseTree, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getExpressions, returnType=com.sun.source.tree.ExpressionTree>, arguments=[], modifiers=[], since=12]
+    ApiMethod [name=getBody, returnType=com.sun.source.tree.Tree, arguments=[], modifiers=[], since=12]
+ApiClass [name=com.sun.source.tree.SwitchExpressionTree, since=12]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getExpression, returnType=com.sun.source.tree.ExpressionTree, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getCases, returnType=com.sun.source.tree.CaseTree>, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.Tree.Kind, since=UNDEFINED]
+  Fields:
+    ApiField [name=SWITCH_EXPRESSION, type=com.sun.source.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=12]
+  Constructors:
+  Methods:
+ApiClass [name=com.sun.source.tree.TreeVisitor, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitSwitchExpression, returnType=R, arguments=[ApiArgument [name=node, type=com.sun.source.tree.SwitchExpressionTree], ApiArgument [name=p, type=P]], modifiers=[], since=12]
+ApiClass [name=com.sun.source.util.DocTreeFactory, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=newSystemPropertyTree, returnType=com.sun.source.doctree.SystemPropertyTree, arguments=[ApiArgument [name=propertyName, type=javax.lang.model.element.Name]], modifiers=[], since=12]
+ApiClass [name=com.sun.source.util.DocTreeScanner, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitSystemProperty, returnType=R, arguments=[ApiArgument [name=node, type=com.sun.source.doctree.SystemPropertyTree], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=12]
+ApiClass [name=com.sun.source.util.SimpleDocTreeVisitor, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitSystemProperty, returnType=R, arguments=[ApiArgument [name=node, type=com.sun.source.doctree.SystemPropertyTree], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=12]

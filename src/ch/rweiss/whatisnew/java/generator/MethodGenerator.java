@@ -136,7 +136,9 @@ class MethodGenerator
     if (!method.getReturnType().equals(Void.TYPE))
     {
       new TypeNameGenerator(classGenerator.getImports(), printer, method.getGenericReturnType()).generate();
-      printer.print(" result = ");
+      printer.print(" ");
+      generateResultVariable();
+      printer.print(" = ");
     }
     if (method.isStatic())
     {
@@ -158,11 +160,33 @@ class MethodGenerator
   {
     if (!method.getReturnType().equals(Void.TYPE))
     {
-      printer.print("return result;");
+      printer.print("return ");
+      generateResultVariable();
+      printer.print(';');
       printer.println();
     }
   }
   
+  private void generateResultVariable()
+  {
+    String result = "result";
+    int nb = 1;
+    while (hasParamaterWithName(result))
+    {
+      result = "result"+nb;
+      nb++;
+    }
+    printer.print(result);
+  }
+
+  private boolean hasParamaterWithName(String result)
+  {
+    return Arrays
+        .stream(method.getParameters())
+        .map(param -> param.getName())
+        .anyMatch(name -> name.equals(result));
+  }
+
   private void generateParameterNameList()
   {
     Arrays

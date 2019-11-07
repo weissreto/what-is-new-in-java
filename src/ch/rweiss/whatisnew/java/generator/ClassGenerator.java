@@ -153,7 +153,9 @@ class ClassGenerator
     {
       return;
     }
-    printer.print("private <O> O $$$()");    
+    printer.print("private ");
+    printer.print(this.clazz.getSimpleName());
+    printer.print(" $$$()");    
     printer.println();
     printer.print("{");
     printer.println();
