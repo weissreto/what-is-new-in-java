@@ -3,7 +3,7 @@ package ch.rweiss.whatisnew.java.generator.model;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 
-import ch.rweiss.whatisnew.java.model.ApiArgument;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiArgument;
 
 public class JavaParameter
 {

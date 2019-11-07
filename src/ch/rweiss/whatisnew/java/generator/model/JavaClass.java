@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class JavaClass
 {

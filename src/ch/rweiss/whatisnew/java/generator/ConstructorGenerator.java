@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaParameter;
-import ch.rweiss.whatisnew.java.model.Version;
 
 class ConstructorGenerator
 {

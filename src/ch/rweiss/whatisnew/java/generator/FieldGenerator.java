@@ -1,7 +1,7 @@
 package ch.rweiss.whatisnew.java.generator;
 
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaField;
-import ch.rweiss.whatisnew.java.model.Version;
 
 public class FieldGenerator
 {

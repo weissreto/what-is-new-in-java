@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.model;
+package ch.rweiss.whatisnew.java.apidoc.model;
 
 import java.util.List;
 

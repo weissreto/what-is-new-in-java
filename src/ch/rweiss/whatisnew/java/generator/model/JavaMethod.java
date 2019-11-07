@@ -9,10 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ch.rweiss.whatisnew.java.model.ApiArgument;
-import ch.rweiss.whatisnew.java.model.ApiField;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiArgument;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class JavaMethod
 {

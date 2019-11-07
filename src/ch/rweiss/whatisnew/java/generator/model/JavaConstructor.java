@@ -5,8 +5,8 @@ import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class JavaConstructor
 {

@@ -3,8 +3,8 @@ package ch.rweiss.whatisnew.java.resolver;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
-import ch.rweiss.whatisnew.java.model.ApiField;
 
 class JavaAnnotationMethodResolver
 {

@@ -1,12 +1,12 @@
-package ch.rweiss.whatisnew.java.filter;
+package ch.rweiss.whatisnew.java.apidoc.filter;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiDoc;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class ApiDocFilter
 {

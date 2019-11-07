@@ -9,8 +9,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
 
 class JavaMethodResolver
 {

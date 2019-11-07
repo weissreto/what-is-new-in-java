@@ -3,8 +3,8 @@ package ch.rweiss.whatisnew.java.generator.model;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 
-import ch.rweiss.whatisnew.java.model.ApiField;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class JavaField
 {

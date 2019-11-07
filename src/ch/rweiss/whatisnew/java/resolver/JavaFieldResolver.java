@@ -3,8 +3,8 @@ package ch.rweiss.whatisnew.java.resolver;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
 import ch.rweiss.whatisnew.java.generator.model.JavaField;
-import ch.rweiss.whatisnew.java.model.ApiField;
 
 public class JavaFieldResolver
 {

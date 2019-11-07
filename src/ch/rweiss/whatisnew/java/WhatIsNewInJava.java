@@ -6,12 +6,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.rweiss.whatisnew.java.filter.ApiDocFilter;
+import ch.rweiss.whatisnew.java.apidoc.filter.ApiDocFilter;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.parser.ApiDocParser;
 import ch.rweiss.whatisnew.java.generator.Generator;
 import ch.rweiss.whatisnew.java.generator.model.JavaApi;
-import ch.rweiss.whatisnew.java.model.ApiDoc;
-import ch.rweiss.whatisnew.java.model.Version;
-import ch.rweiss.whatisnew.java.parser.ApiDocParser;
 import ch.rweiss.whatisnew.java.resolver.JavaResolver;
 
 public class WhatIsNewInJava

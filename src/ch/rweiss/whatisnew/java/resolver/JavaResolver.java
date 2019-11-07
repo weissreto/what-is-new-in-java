@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
 import ch.rweiss.whatisnew.java.generator.model.JavaApi;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiDoc;
 
 public class JavaResolver
 {

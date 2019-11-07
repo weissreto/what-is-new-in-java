@@ -2,7 +2,7 @@ package ch.rweiss.whatisnew.java.generator;
 
 import java.util.List;
 
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 final class MavenProjectGenerator
 {

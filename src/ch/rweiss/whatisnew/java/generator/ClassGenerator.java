@@ -4,11 +4,11 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.stream.Stream;
 
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaField;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
-import ch.rweiss.whatisnew.java.model.Version;
 
 class ClassGenerator
 {

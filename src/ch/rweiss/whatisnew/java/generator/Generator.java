@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaApi;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
-import ch.rweiss.whatisnew.java.model.Version;
 
 public class Generator
 {

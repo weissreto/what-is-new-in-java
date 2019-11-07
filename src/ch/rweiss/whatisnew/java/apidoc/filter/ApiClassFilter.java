@@ -1,13 +1,13 @@
-package ch.rweiss.whatisnew.java.filter;
+package ch.rweiss.whatisnew.java.apidoc.filter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
-import ch.rweiss.whatisnew.java.model.ApiField;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 class ApiClassFilter
 {

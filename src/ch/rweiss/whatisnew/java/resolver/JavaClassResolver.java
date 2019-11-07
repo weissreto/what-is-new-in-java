@@ -15,16 +15,16 @@ import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiModifier;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaField;
 import ch.rweiss.whatisnew.java.generator.model.JavaMethod;
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
-import ch.rweiss.whatisnew.java.model.ApiField;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
-import ch.rweiss.whatisnew.java.model.ApiModifier;
-import ch.rweiss.whatisnew.java.model.Version;
 
 class JavaClassResolver
 {

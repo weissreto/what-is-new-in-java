@@ -12,8 +12,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.rweiss.whatisnew.java.WhatIsNewInException;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.type.TypeUtil;
 
 class JavaConstructorResolver

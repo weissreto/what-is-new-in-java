@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.parser;
+package ch.rweiss.whatisnew.java.apidoc.parser;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -17,13 +17,13 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.rweiss.whatisnew.java.model.ApiArgument;
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiConstructor;
-import ch.rweiss.whatisnew.java.model.ApiField;
-import ch.rweiss.whatisnew.java.model.ApiMethod;
-import ch.rweiss.whatisnew.java.model.ApiModifier;
-import ch.rweiss.whatisnew.java.model.Version;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiArgument;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiModifier;
+import ch.rweiss.whatisnew.java.apidoc.model.Version;
 
 public class ClassFileParser
 {

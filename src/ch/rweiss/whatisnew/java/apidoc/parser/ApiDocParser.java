@@ -1,4 +1,4 @@
-package ch.rweiss.whatisnew.java.parser;
+package ch.rweiss.whatisnew.java.apidoc.parser;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -9,8 +9,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.rweiss.whatisnew.java.model.ApiClass;
-import ch.rweiss.whatisnew.java.model.ApiDoc;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
+import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
 
 public class ApiDocParser extends SimpleFileVisitor<Path>
 {
