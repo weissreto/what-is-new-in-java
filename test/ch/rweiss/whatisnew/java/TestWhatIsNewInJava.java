@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Test;
 
 public class TestWhatIsNewInJava
@@ -88,11 +90,30 @@ public class TestWhatIsNewInJava
     String version = toVersion(filters);
     Path outputPath = Paths.get("target", "what-is-new-in-java", version);
 
-    return new ProcessBuilder("C:\\Tools\\maven\\apache-maven-3.6.2\\bin\\mvn.cmd", "compile")
+    return new ProcessBuilder(getMavenCommand(), "compile")
             .directory(outputPath.toFile())
             .inheritIO()
             .start()
             .waitFor(); 
+  }
+
+  private String getMavenCommand()
+  {
+    String mavenCommand = System.getenv("MAVEN_HOME");
+    if (StringUtils.isBlank(mavenCommand))
+    {
+      mavenCommand = "C:\\Tools\\maven\\apache-maven-3.6.2";
+      System.out.println("No Maven Home found setting default '"+mavenCommand+"'.");
+    }
+    if (SystemUtils.IS_OS_WINDOWS)
+    {
+      mavenCommand += "\\bin\\mvn.cmd";
+    }
+    else
+    {
+      mavenCommand += "/bin/mvn";
+    }
+    return mavenCommand;
   }
 
   private String toVersion(String... filters)
