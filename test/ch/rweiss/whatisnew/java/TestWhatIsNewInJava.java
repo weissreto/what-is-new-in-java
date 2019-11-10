@@ -113,11 +113,16 @@ public class TestWhatIsNewInJava
 
   private String getMavenHome()
   {
+    System.out.println("Environment:");
+    System.getenv().entrySet().forEach(entry -> System.out.println(entry.getKey() +" = "+entry.getValue()));
     String mavenHome = System.getenv("MAVEN_HOME");
     if (StringUtils.isNotBlank(mavenHome))
     {
       return mavenHome;
     }
+    System.out.println();
+    System.out.println("Properties:");
+    System.getProperties().entrySet().forEach(entry -> System.out.println(entry.getKey() +" = "+entry.getValue()));
     mavenHome = System.getProperty("maven.home");
     if (StringUtils.isNotBlank(mavenHome))
     {
