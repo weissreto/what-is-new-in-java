@@ -41,7 +41,7 @@ final class MavenProjectGenerator
   {
     printer.print("  <groupId>ch.rweiss</groupId>");
     printer.println();
-    printer.print("  <artifactId>WhatIsNewInJavaVersion-");
+    printer.print("  <artifactId>what-is-new-in-java-version-");
     if (versions.isEmpty())
     {
       printer.print("any");
