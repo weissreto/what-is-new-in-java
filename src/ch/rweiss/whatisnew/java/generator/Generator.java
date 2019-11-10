@@ -56,7 +56,7 @@ public class Generator
     try
     {
       Files.createDirectories(outputPath);
-      Path pomFile = outputPath.resolve("ReadMe.md");
+      Path pomFile = outputPath.resolve("README.md");
       try (Printer printer = new Printer(pomFile))
       {
         new ReadMeGenerator(versions, printer).generate();
