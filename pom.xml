@@ -50,7 +50,7 @@
 			<configuration>
 			  <failOnError>true</failOnError>
               <tasks>
-                <unzip src="doc/jdk-13.0.1_doc-all.zip" dest="${project.build.directory}/api-doc/13/"/>
+                <unzip src="api-doc/jdk-13.0.1_doc-all.zip" dest="${project.build.directory}/api-doc/13/"/>
               </tasks>
             </configuration>
           </execution>
