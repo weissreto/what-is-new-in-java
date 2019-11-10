@@ -99,12 +99,7 @@ public class TestWhatIsNewInJava
 
   private String getMavenCommand()
   {
-    String mavenCommand = System.getenv("MAVEN_HOME");
-    if (StringUtils.isBlank(mavenCommand))
-    {
-      mavenCommand = "C:\\Tools\\maven\\apache-maven-3.6.2";
-      System.out.println("No Maven Home found setting default '"+mavenCommand+"'.");
-    }
+    String mavenCommand = getMavenHome();
     if (SystemUtils.IS_OS_WINDOWS)
     {
       mavenCommand += "\\bin\\mvn.cmd";
@@ -114,6 +109,21 @@ public class TestWhatIsNewInJava
       mavenCommand += "/bin/mvn";
     }
     return mavenCommand;
+  }
+
+  private String getMavenHome()
+  {
+    String mavenHome = System.getenv("MAVEN_HOME");
+    if (StringUtils.isNotBlank(mavenHome))
+    {
+      return mavenHome;
+    }
+    mavenHome = System.getProperty("maven.home");
+    if (StringUtils.isNotBlank(mavenHome))
+    {
+      return mavenHome;
+    }
+    return "C:\\Tools\\maven\\apache-maven-3.6.2";
   }
 
   private String toVersion(String... filters)
