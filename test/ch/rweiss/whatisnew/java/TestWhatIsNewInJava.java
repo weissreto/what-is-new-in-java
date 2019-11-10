@@ -17,7 +17,7 @@ public class TestWhatIsNewInJava
   public void generator9() throws Exception
   {
     generator("9");
-    assertThat(countFiles("9")).isEqualTo(462L);
+    assertThat(countFiles("9")).isEqualTo(463L);
     assertThat(mvnCompile("9")).isEqualTo(0);
   }
 
@@ -25,7 +25,7 @@ public class TestWhatIsNewInJava
   public void generator10() throws Exception
   {
     generator("10");
-    assertThat(countFiles("10")).isEqualTo(37L);
+    assertThat(countFiles("10")).isEqualTo(38L);
     assertThat(mvnCompile("10")).isEqualTo(0);
   }
 
@@ -33,7 +33,7 @@ public class TestWhatIsNewInJava
   public void generator11() throws Exception
   {
     generator("11");
-    assertThat(countFiles("11")).isEqualTo(79L);
+    assertThat(countFiles("11")).isEqualTo(80L);
     assertThat(mvnCompile("11")).isEqualTo(0);
   }
 
@@ -41,7 +41,7 @@ public class TestWhatIsNewInJava
   public void generator12() throws Exception
   {
     generator("12");
-    assertThat(countFiles("12")).isEqualTo(49L);
+    assertThat(countFiles("12")).isEqualTo(50L);
     assertThat(mvnCompile("12")).isEqualTo(0);
   }
 
@@ -49,7 +49,7 @@ public class TestWhatIsNewInJava
   public void generator13() throws Exception
   {
     generator("13");
-    assertThat(countFiles("13")).isEqualTo(24L);
+    assertThat(countFiles("13")).isEqualTo(25L);
     assertThat(mvnCompile("13")).isEqualTo(0);
   }
 
@@ -57,7 +57,7 @@ public class TestWhatIsNewInJava
   public void generator9_10_11() throws Exception
   {
     generator("9", "10", "11");
-    assertThat(countFiles("9", "10", "11")).isEqualTo(545L);
+    assertThat(countFiles("9", "10", "11")).isEqualTo(546L);
     assertThat(mvnCompile("9", "10", "11")).isEqualTo(0);
   }
 

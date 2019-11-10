@@ -30,7 +30,8 @@ public class Generator
   public void generate()
   {
     generateMavenProject();
-    api.getClasses().forEach(this::generate);
+    generateReadMe();
+    generateClasses();
   }
   
   private void generateMavenProject()
@@ -48,6 +49,28 @@ public class Generator
     {
       System.err.println("Could not generate pom.xml ("+ex.getMessage()+")");
     }
+  }
+
+  private void generateReadMe()
+  {
+    try
+    {
+      Files.createDirectories(outputPath);
+      Path pomFile = outputPath.resolve("ReadMe.md");
+      try (Printer printer = new Printer(pomFile))
+      {
+        new ReadMeGenerator(versions, printer).generate();
+      }
+    }
+    catch(WhatIsNewInException | IOException ex)
+    {
+      System.err.println("Could not generater ReadMe.md ("+ex.getMessage()+")");
+    }
+  }
+
+  private void generateClasses()
+  {
+    api.getClasses().forEach(this::generate);
   }
 
   private void generate(JavaClass clazz) 
