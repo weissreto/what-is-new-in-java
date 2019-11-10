@@ -2,6 +2,7 @@ package ch.rweiss.whatisnew.java;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -102,33 +103,34 @@ public class TestWhatIsNewInJava
     String mavenCommand = getMavenHome();
     if (SystemUtils.IS_OS_WINDOWS)
     {
-      mavenCommand += "\\bin\\mvn.cmd";
+      mavenCommand += File.separator + "mvn.cmd";
     }
     else
     {
-      mavenCommand += "/bin/mvn";
+      mavenCommand += File.separator + "mvn";
     }
     return mavenCommand;
   }
 
   private String getMavenHome()
   {
-    System.out.println("Environment:");
-    System.getenv().entrySet().forEach(entry -> System.out.println(entry.getKey() +" = "+entry.getValue()));
     String mavenHome = System.getenv("MAVEN_HOME");
     if (StringUtils.isNotBlank(mavenHome))
     {
-      return mavenHome;
+      return mavenHome + File.separator + "bin";
     }
-    System.out.println();
-    System.out.println("Properties:");
-    System.getProperties().entrySet().forEach(entry -> System.out.println(entry.getKey() +" = "+entry.getValue()));
     mavenHome = System.getProperty("maven.home");
     if (StringUtils.isNotBlank(mavenHome))
     {
-      return mavenHome;
+      return mavenHome + File.separator + "bin";
     }
-    return "C:\\Tools\\maven\\apache-maven-3.6.2";
+    String path = System.getenv("PATH");
+    String mavenPath = Arrays
+        .stream(path.split(File.pathSeparator))
+        .filter(pathEntry -> pathEntry.contains("maven"))
+        .findAny()
+        .orElse("C:\\Tools\\maven\\apache-maven-3.6.2\\bin");
+    return mavenPath;
   }
 
   private String toVersion(String... filters)
