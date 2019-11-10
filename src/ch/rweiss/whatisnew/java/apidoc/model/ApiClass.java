@@ -2,7 +2,7 @@ package ch.rweiss.whatisnew.java.apidoc.model;
 
 import java.util.List;
 
-public class ApiClass
+public class ApiClass implements Comparable<ApiClass>
 {
   private final String name;
   private final List<ApiField> fields;
@@ -49,5 +49,11 @@ public class ApiClass
   public String toString()
   {
     return "ApiClass [name="+name+", since="+since+"]";
+  }
+
+  @Override
+  public int compareTo(ApiClass other)
+  {
+    return name.compareTo(other.name);
   }
 }

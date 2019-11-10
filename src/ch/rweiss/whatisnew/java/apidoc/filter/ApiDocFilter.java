@@ -2,6 +2,8 @@ package ch.rweiss.whatisnew.java.apidoc.filter;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
@@ -26,12 +28,12 @@ public class ApiDocFilter
 
   private ApiDoc filter()
   {
-    List<ApiClass> filteredClasses = apiDoc
+    SortedSet<ApiClass> filteredClasses = apiDoc
         .getClasses()
         .stream()
         .map(this::filter)
         .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+        .collect(Collectors.toCollection(TreeSet::new));
     return new ApiDoc(filteredClasses);
   }
   

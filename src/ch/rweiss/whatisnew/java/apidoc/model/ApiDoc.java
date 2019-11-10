@@ -1,17 +1,17 @@
 package ch.rweiss.whatisnew.java.apidoc.model;
 
-import java.util.List;
+import java.util.SortedSet;
 
 public class ApiDoc
 {
-  private final List<ApiClass> classes;
+  private final SortedSet<ApiClass> classes;
 
-  public ApiDoc(List<ApiClass> classes)
+  public ApiDoc(SortedSet<ApiClass> classes)
   {
     this.classes = classes;
   }
 
-  public List<ApiClass> getClasses()
+  public SortedSet<ApiClass> getClasses()
   {
     return classes;
   }

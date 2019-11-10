@@ -6,8 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import ch.rweiss.whatisnew.java.apidoc.model.ApiClass;
 import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
@@ -15,7 +15,7 @@ import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
 public class ApiDocParser extends SimpleFileVisitor<Path>
 {
   private final Path root;
-  private final List<ApiClass> classes = new ArrayList<>();
+  private final SortedSet<ApiClass> classes = new TreeSet<>();
 
   private ApiDocParser(Path root)
   {

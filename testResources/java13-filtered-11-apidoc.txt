@@ -84,25 +84,6 @@ ApiClass [name=java.lang.Class, since=1.0]
     ApiMethod [name=getNestHost, returnType=java.lang.Class<?>, arguments=[], modifiers=[PUBLIC], since=11]
     ApiMethod [name=isNestmateOf, returnType=boolean, arguments=[ApiArgument [name=c, type=java.lang.Class<?>]], modifiers=[PUBLIC], since=11]
     ApiMethod [name=getNestMembers, returnType=java.lang.Class<?>[], arguments=[], modifiers=[PUBLIC], since=11]
-ApiClass [name=java.lang.invoke.ConstantBootstraps, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-  Methods:
-    ApiMethod [name=nullConstant, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=primitiveClass, returnType=java.lang.Class<?>, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=enumConstant, returnType=E, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<E>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=getStaticFinal, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>], ApiArgument [name=declaringClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=getStaticFinal, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=invoke, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>], ApiArgument [name=handle, type=java.lang.invoke.MethodHandle], ApiArgument [name=args, type=java.lang.Object...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fieldVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=declaringClass, type=java.lang.Class<?>], ApiArgument [name=fieldType, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=staticFieldVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=declaringClass, type=java.lang.Class<?>], ApiArgument [name=fieldType, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=arrayVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=arrayClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.lang.ref.Reference, since=1.2]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=clone, returnType=java.lang.Object, arguments=[], modifiers=[PROTECTED], since=11]
 ApiClass [name=java.lang.String, since=1.0]
   Fields:
   Constructors:
@@ -123,24 +104,268 @@ ApiClass [name=java.lang.StringBuilder, since=1.5]
   Constructors:
   Methods:
     ApiMethod [name=compareTo, returnType=int, arguments=[ApiArgument [name=another, type=java.lang.StringBuilder]], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.lang.invoke.ConstantBootstraps, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=nullConstant, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=primitiveClass, returnType=java.lang.Class<?>, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=enumConstant, returnType=E, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<E>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=getStaticFinal, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>], ApiArgument [name=declaringClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=getStaticFinal, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=invoke, returnType=java.lang.Object, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>], ApiArgument [name=handle, type=java.lang.invoke.MethodHandle], ApiArgument [name=args, type=java.lang.Object...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fieldVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=declaringClass, type=java.lang.Class<?>], ApiArgument [name=fieldType, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=staticFieldVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=declaringClass, type=java.lang.Class<?>], ApiArgument [name=fieldType, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=arrayVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<java.lang.invoke.VarHandle>], ApiArgument [name=arrayClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.lang.ref.Reference, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=clone, returnType=java.lang.Object, arguments=[], modifiers=[PROTECTED], since=11]
+ApiClass [name=java.net.http.HttpClient, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=newHttpClient, returnType=java.net.http.HttpClient, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=newBuilder, returnType=java.net.http.HttpClient.Builder, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=cookieHandler, returnType=java.util.Optional<java.net.CookieHandler>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=connectTimeout, returnType=java.util.Optional<java.time.Duration>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=followRedirects, returnType=java.net.http.HttpClient.Redirect, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=proxy, returnType=java.util.Optional<java.net.ProxySelector>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=sslContext, returnType=javax.net.ssl.SSLContext, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=sslParameters, returnType=javax.net.ssl.SSLParameters, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=authenticator, returnType=java.util.Optional<java.net.Authenticator>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=executor, returnType=java.util.Optional<java.util.concurrent.Executor>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=send, returnType=java.net.http.HttpResponse<T>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=sendAsync, returnType=<T>java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=sendAsync, returnType=<T>java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>], ApiArgument [name=pushPromiseHandler, type=java.net.http.HttpResponse.PushPromiseHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=newWebSocketBuilder, returnType=java.net.http.WebSocket.Builder, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpClient.Builder, since=11]
+  Fields:
+    ApiField [name=NO_PROXY, type=java.net.ProxySelector modifiers=[STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=cookieHandler, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=cookieHandler, type=java.net.CookieHandler]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=connectTimeout, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sslContext, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=sslContext, type=javax.net.ssl.SSLContext]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sslParameters, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=sslParameters, type=javax.net.ssl.SSLParameters]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=executor, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=executor, type=java.util.concurrent.Executor]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=followRedirects, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=policy, type=java.net.http.HttpClient.Redirect]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=version, type=java.net.http.HttpClient.Version]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=priority, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=priority, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=proxy, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=proxySelector, type=java.net.ProxySelector]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=authenticator, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=authenticator, type=java.net.Authenticator]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=build, returnType=java.net.http.HttpClient, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpClient.Redirect, since=11]
+  Fields:
+    ApiField [name=NEVER, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ALWAYS, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NORMAL, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.net.http.HttpClient.Redirect[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.net.http.HttpClient.Redirect, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpClient.Version, since=11]
+  Fields:
+    ApiField [name=HTTP_1_1, type=java.net.http.HttpClient.Version modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=HTTP_2, type=java.net.http.HttpClient.Version modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.net.http.HttpClient.Version[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.net.http.HttpClient.Version, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpConnectTimeoutException, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=java.net.http.HttpHeaders, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=firstValue, returnType=java.util.Optional<java.lang.String>, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=firstValueAsLong, returnType=java.util.OptionalLong, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=allValues, returnType=java.util.List<java.lang.String>, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=map, returnType=java.util.Map<java.lang.String,java.util.List<java.lang.String>>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.net.http.HttpHeaders, arguments=[ApiArgument [name=headerMap, type=java.util.Map<java.lang.String,java.util.List<java.lang.String>>], ApiArgument [name=filter, type=java.util.function.BiPredicate<java.lang.String,java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpRequest, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=newBuilder, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=newBuilder, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=bodyPublisher, returnType=java.util.Optional<java.net.http.HttpRequest.BodyPublisher>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=method, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=timeout, returnType=java.util.Optional<java.time.Duration>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=expectContinue, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=uri, returnType=java.net.URI, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.util.Optional<java.net.http.HttpClient.Version>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpRequest.BodyPublisher, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=contentLength, returnType=long, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpRequest.BodyPublishers, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=fromPublisher, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=publisher, type=java.util.concurrent.Flow.Publisher<? extends java.nio.ByteBuffer>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromPublisher, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=publisher, type=java.util.concurrent.Flow.Publisher<? extends java.nio.ByteBuffer>], ApiArgument [name=contentLength, type=long]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofString, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=body, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofString, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=streamSupplier, type=java.util.function.Supplier<? extends java.io.InputStream>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=buf, type=byte[]]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=buf, type=byte[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFile, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArrays, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=iter, type=java.lang.Iterable<byte[]>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=noBody, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpRequest.Builder, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=uri, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=expectContinue, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=enable, type=boolean]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=version, type=java.net.http.HttpClient.Version]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=header, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=headers, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=headers, type=java.lang.String...]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=timeout, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=setHeader, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=GET, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=POST, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=PUT, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=DELETE, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=method, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=method, type=java.lang.String], ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=build, returnType=java.net.http.HttpRequest, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=copy, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=statusCode, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=request, returnType=java.net.http.HttpRequest, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=previousResponse, returnType=java.util.Optional<java.net.http.HttpResponse<T>>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=body, returnType=T, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sslSession, returnType=java.util.Optional<javax.net.ssl.SSLSession>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=uri, returnType=java.net.URI, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.BodyHandler, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=apply, returnType=java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=responseInfo, type=java.net.http.HttpResponse.ResponseInfo]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.BodyHandlers, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=fromSubscriber, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.util.List<java.nio.ByteBuffer>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromSubscriber, returnType=java.util.List<java.nio.ByteBuffer>>,T>java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromLineSubscriber, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromLineSubscriber, returnType=java.lang.String>,T>java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>], ApiArgument [name=lineSeparator, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=discarding, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=replacing, returnType=java.net.http.HttpResponse.BodyHandler<U>, arguments=[ApiArgument [name=value, type=U]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.String>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFileDownload, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=directory, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpResponse.BodyHandler<java.io.InputStream>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofLines, returnType=java.net.http.HttpResponse.BodyHandler<java.util.stream.Stream<java.lang.String>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArrayConsumer, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=consumer, type=java.util.function.Consumer<java.util.Optional<byte[]>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpResponse.BodyHandler<byte[]>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.String>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofPublisher, returnType=java.net.http.HttpResponse.BodyHandler<java.util.concurrent.Flow.Publisher<java.util.List<java.nio.ByteBuffer>>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=buffering, returnType=java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=downstreamHandler, type=java.net.http.HttpResponse.BodyHandler<T>], ApiArgument [name=bufferSize, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.BodySubscriber, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getBody, returnType=java.util.concurrent.CompletionStage<T>, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.BodySubscribers, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=fromSubscriber, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.util.List<java.nio.ByteBuffer>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromSubscriber, returnType=java.util.List<java.nio.ByteBuffer>>,T>java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromLineSubscriber, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=fromLineSubscriber, returnType=java.lang.String>,T>java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=lineSeparator, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.String>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpResponse.BodySubscriber<byte[]>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodySubscriber<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodySubscriber<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofByteArrayConsumer, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=consumer, type=java.util.function.Consumer<java.util.Optional<byte[]>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpResponse.BodySubscriber<java.io.InputStream>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofLines, returnType=java.net.http.HttpResponse.BodySubscriber<java.util.stream.Stream<java.lang.String>>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=ofPublisher, returnType=java.net.http.HttpResponse.BodySubscriber<java.util.concurrent.Flow.Publisher<java.util.List<java.nio.ByteBuffer>>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=replacing, returnType=java.net.http.HttpResponse.BodySubscriber<U>, arguments=[ApiArgument [name=value, type=U]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=discarding, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=buffering, returnType=java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=downstream, type=java.net.http.HttpResponse.BodySubscriber<T>], ApiArgument [name=bufferSize, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=mapping, returnType=java.net.http.HttpResponse.BodySubscriber<U>, arguments=[ApiArgument [name=upstream, type=java.net.http.HttpResponse.BodySubscriber<T>], ApiArgument [name=mapper, type=java.util.function.Function<? super T,? extends U>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.PushPromiseHandler, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=applyPushPromise, returnType=void, arguments=[ApiArgument [name=initiatingRequest, type=java.net.http.HttpRequest], ApiArgument [name=pushPromiseRequest, type=java.net.http.HttpRequest], ApiArgument [name=acceptor, type=java.util.function.Function<java.net.http.HttpResponse.BodyHandler<T>,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.net.http.HttpResponse.PushPromiseHandler<T>, arguments=[ApiArgument [name=pushPromiseHandler, type=java.util.function.Function<java.net.http.HttpRequest,java.net.http.HttpResponse.BodyHandler<T>>], ApiArgument [name=pushPromisesMap, type=java.util.concurrent.ConcurrentMap<java.net.http.HttpRequest,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpTimeoutException, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=java.net.http.WebSocket, since=11]
+  Fields:
+    ApiField [name=NORMAL_CLOSURE, type=int modifiers=[STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=sendText, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=data, type=java.lang.CharSequence], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sendBinary, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=data, type=java.nio.ByteBuffer], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sendPing, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sendPong, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sendClose, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=statusCode, type=int], ApiArgument [name=reason, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=request, returnType=void, arguments=[ApiArgument [name=n, type=long]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getSubprotocol, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isOutputClosed, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=isInputClosed, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=abort, returnType=void, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.WebSocket.Builder, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=header, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=connectTimeout, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=timeout, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=subprotocols, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=mostPreferred, type=java.lang.String], ApiArgument [name=lesserPreferred, type=java.lang.String...]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=buildAsync, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=uri, type=java.net.URI], ApiArgument [name=listener, type=java.net.http.WebSocket.Listener]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.WebSocket.Listener, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=onOpen, returnType=void, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onText, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=data, type=java.lang.CharSequence], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onBinary, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=data, type=java.nio.ByteBuffer], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onPing, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onPong, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onClose, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=statusCode, type=int], ApiArgument [name=reason, type=java.lang.String]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onError, returnType=void, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=error, type=java.lang.Throwable]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.net.http.WebSocketHandshakeException, since=11]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=response, type=java.net.http.HttpResponse<?>]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=getResponse, returnType=java.net.http.HttpResponse<?>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=initCause, returnType=java.net.http.WebSocketHandshakeException, arguments=[ApiArgument [name=cause, type=java.lang.Throwable]], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=java.nio.ByteBuffer, since=1.4]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=that, type=java.nio.ByteBuffer]], modifiers=[PUBLIC], since=11]
-ApiClass [name=java.nio.channels.SelectionKey, since=1.4]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=interestOpsOr, returnType=int, arguments=[ApiArgument [name=ops, type=int]], modifiers=[PUBLIC], since=11]
-    ApiMethod [name=interestOpsAnd, returnType=int, arguments=[ApiArgument [name=ops, type=int]], modifiers=[PUBLIC], since=11]
-ApiClass [name=java.nio.channels.Selector, since=1.4]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=select, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>], ApiArgument [name=timeout, type=long]], modifiers=[PUBLIC], since=11]
-    ApiMethod [name=select, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>]], modifiers=[PUBLIC], since=11]
-    ApiMethod [name=selectNow, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>]], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.nio.CharBuffer, since=1.4]
   Fields:
   Constructors:
@@ -151,20 +376,6 @@ ApiClass [name=java.nio.DoubleBuffer, since=1.4]
   Constructors:
   Methods:
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=that, type=java.nio.DoubleBuffer]], modifiers=[PUBLIC], since=11]
-ApiClass [name=java.nio.file.Files, since=1.7]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=readString, returnType=java.lang.String, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=11]
-    ApiMethod [name=readString, returnType=java.lang.String, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=cs, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=11]
-    ApiMethod [name=writeString, returnType=java.nio.file.Path, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=csq, type=java.lang.CharSequence], ApiArgument [name=options, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=11]
-    ApiMethod [name=writeString, returnType=java.nio.file.Path, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=csq, type=java.lang.CharSequence], ApiArgument [name=cs, type=java.nio.charset.Charset], ApiArgument [name=options, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=11]
-ApiClass [name=java.nio.file.Path, since=1.7]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=first, type=java.lang.String], ApiArgument [name=more, type=java.lang.String...]], modifiers=[STATIC], since=11]
-    ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[STATIC], since=11]
 ApiClass [name=java.nio.FloatBuffer, since=1.4]
   Fields:
   Constructors:
@@ -185,6 +396,33 @@ ApiClass [name=java.nio.ShortBuffer, since=1.4]
   Constructors:
   Methods:
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=that, type=java.nio.ShortBuffer]], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.nio.channels.SelectionKey, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=interestOpsOr, returnType=int, arguments=[ApiArgument [name=ops, type=int]], modifiers=[PUBLIC], since=11]
+    ApiMethod [name=interestOpsAnd, returnType=int, arguments=[ApiArgument [name=ops, type=int]], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.nio.channels.Selector, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=select, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>], ApiArgument [name=timeout, type=long]], modifiers=[PUBLIC], since=11]
+    ApiMethod [name=select, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>]], modifiers=[PUBLIC], since=11]
+    ApiMethod [name=selectNow, returnType=int, arguments=[ApiArgument [name=action, type=java.util.function.Consumer<java.nio.channels.SelectionKey>]], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.nio.file.Files, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=readString, returnType=java.lang.String, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=11]
+    ApiMethod [name=readString, returnType=java.lang.String, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=cs, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=11]
+    ApiMethod [name=writeString, returnType=java.nio.file.Path, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=csq, type=java.lang.CharSequence], ApiArgument [name=options, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=11]
+    ApiMethod [name=writeString, returnType=java.nio.file.Path, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=csq, type=java.lang.CharSequence], ApiArgument [name=cs, type=java.nio.charset.Charset], ApiArgument [name=options, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=11]
+ApiClass [name=java.nio.file.Path, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=first, type=java.lang.String], ApiArgument [name=more, type=java.lang.String...]], modifiers=[STATIC], since=11]
+    ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[STATIC], since=11]
 ApiClass [name=java.security.interfaces.XECKey, since=11]
   Fields:
   Constructors:
@@ -257,11 +495,6 @@ ApiClass [name=java.util.Collection, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=toArray, returnType=T[], arguments=[ApiArgument [name=generator, type=java.util.function.IntFunction<T[]>]], modifiers=[], since=11]
-ApiClass [name=java.util.concurrent.TimeUnit, since=1.5]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=convert, returnType=long, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.util.Optional, since=1.8]
   Fields:
   Constructors:
@@ -282,6 +515,11 @@ ApiClass [name=java.util.OptionalLong, since=1.8]
   Constructors:
   Methods:
     ApiMethod [name=isEmpty, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.util.concurrent.TimeUnit, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=convert, returnType=long, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.util.regex.Pattern, since=1.4]
   Fields:
   Constructors:
@@ -327,244 +565,6 @@ ApiClass [name=javax.swing.ListSelectionModel, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=getSelectedIndices, returnType=int[], arguments=[], modifiers=[], since=11]
-ApiClass [name=java.net.http.HttpClient.Builder, since=11]
-  Fields:
-    ApiField [name=NO_PROXY, type=java.net.ProxySelector modifiers=[STATIC, FINAL], since=UNDEFINED]
-  Constructors:
-  Methods:
-    ApiMethod [name=cookieHandler, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=cookieHandler, type=java.net.CookieHandler]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=connectTimeout, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sslContext, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=sslContext, type=javax.net.ssl.SSLContext]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sslParameters, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=sslParameters, type=javax.net.ssl.SSLParameters]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=executor, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=executor, type=java.util.concurrent.Executor]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=followRedirects, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=policy, type=java.net.http.HttpClient.Redirect]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=version, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=version, type=java.net.http.HttpClient.Version]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=priority, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=priority, type=int]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=proxy, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=proxySelector, type=java.net.ProxySelector]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=authenticator, returnType=java.net.http.HttpClient.Builder, arguments=[ApiArgument [name=authenticator, type=java.net.Authenticator]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=build, returnType=java.net.http.HttpClient, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpClient, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
-  Methods:
-    ApiMethod [name=newHttpClient, returnType=java.net.http.HttpClient, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=newBuilder, returnType=java.net.http.HttpClient.Builder, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=cookieHandler, returnType=java.util.Optional<java.net.CookieHandler>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=connectTimeout, returnType=java.util.Optional<java.time.Duration>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=followRedirects, returnType=java.net.http.HttpClient.Redirect, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=proxy, returnType=java.util.Optional<java.net.ProxySelector>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=sslContext, returnType=javax.net.ssl.SSLContext, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=sslParameters, returnType=javax.net.ssl.SSLParameters, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=authenticator, returnType=java.util.Optional<java.net.Authenticator>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=executor, returnType=java.util.Optional<java.util.concurrent.Executor>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=send, returnType=java.net.http.HttpResponse<T>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=sendAsync, returnType=<T>java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=sendAsync, returnType=<T>java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>, arguments=[ApiArgument [name=request, type=java.net.http.HttpRequest], ApiArgument [name=responseBodyHandler, type=java.net.http.HttpResponse.BodyHandler<T>], ApiArgument [name=pushPromiseHandler, type=java.net.http.HttpResponse.PushPromiseHandler<T>]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=newWebSocketBuilder, returnType=java.net.http.WebSocket.Builder, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpClient.Redirect, since=11]
-  Fields:
-    ApiField [name=NEVER, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
-    ApiField [name=ALWAYS, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
-    ApiField [name=NORMAL, type=java.net.http.HttpClient.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
-  Constructors:
-  Methods:
-    ApiMethod [name=values, returnType=java.net.http.HttpClient.Redirect[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=valueOf, returnType=java.net.http.HttpClient.Redirect, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpClient.Version, since=11]
-  Fields:
-    ApiField [name=HTTP_1_1, type=java.net.http.HttpClient.Version modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
-    ApiField [name=HTTP_2, type=java.net.http.HttpClient.Version modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
-  Constructors:
-  Methods:
-    ApiMethod [name=values, returnType=java.net.http.HttpClient.Version[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=valueOf, returnType=java.net.http.HttpClient.Version, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpConnectTimeoutException, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
-  Methods:
-ApiClass [name=java.net.http.HttpHeaders, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=firstValue, returnType=java.util.Optional<java.lang.String>, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=firstValueAsLong, returnType=java.util.OptionalLong, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=allValues, returnType=java.util.List<java.lang.String>, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=map, returnType=java.util.Map<java.lang.String,java.util.List<java.lang.String>>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
-    ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
-    ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=of, returnType=java.net.http.HttpHeaders, arguments=[ApiArgument [name=headerMap, type=java.util.Map<java.lang.String,java.util.List<java.lang.String>>], ApiArgument [name=filter, type=java.util.function.BiPredicate<java.lang.String,java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpRequest.BodyPublisher, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=contentLength, returnType=long, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpRequest.BodyPublishers, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=fromPublisher, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=publisher, type=java.util.concurrent.Flow.Publisher<? extends java.nio.ByteBuffer>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromPublisher, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=publisher, type=java.util.concurrent.Flow.Publisher<? extends java.nio.ByteBuffer>], ApiArgument [name=contentLength, type=long]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofString, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=body, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofString, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=streamSupplier, type=java.util.function.Supplier<? extends java.io.InputStream>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=buf, type=byte[]]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=buf, type=byte[]], ApiArgument [name=offset, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFile, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArrays, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[ApiArgument [name=iter, type=java.lang.Iterable<byte[]>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=noBody, returnType=java.net.http.HttpRequest.BodyPublisher, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpRequest.Builder, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=uri, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=expectContinue, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=enable, type=boolean]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=version, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=version, type=java.net.http.HttpClient.Version]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=header, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=headers, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=headers, type=java.lang.String...]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=timeout, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=setHeader, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=GET, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=POST, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=PUT, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=DELETE, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=method, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=method, type=java.lang.String], ApiArgument [name=bodyPublisher, type=java.net.http.HttpRequest.BodyPublisher]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=build, returnType=java.net.http.HttpRequest, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=copy, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpRequest, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
-  Methods:
-    ApiMethod [name=newBuilder, returnType=java.net.http.HttpRequest.Builder, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=newBuilder, returnType=java.net.http.HttpRequest.Builder, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=bodyPublisher, returnType=java.util.Optional<java.net.http.HttpRequest.BodyPublisher>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=method, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=timeout, returnType=java.util.Optional<java.time.Duration>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=expectContinue, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=uri, returnType=java.net.URI, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=version, returnType=java.util.Optional<java.net.http.HttpClient.Version>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
-    ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse.BodyHandler, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=apply, returnType=java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=responseInfo, type=java.net.http.HttpResponse.ResponseInfo]], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse.BodyHandlers, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=fromSubscriber, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.util.List<java.nio.ByteBuffer>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromSubscriber, returnType=java.util.List<java.nio.ByteBuffer>>,T>java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromLineSubscriber, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromLineSubscriber, returnType=java.lang.String>,T>java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>], ApiArgument [name=lineSeparator, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=discarding, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=replacing, returnType=java.net.http.HttpResponse.BodyHandler<U>, arguments=[ApiArgument [name=value, type=U]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.String>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFileDownload, returnType=java.net.http.HttpResponse.BodyHandler<java.nio.file.Path>, arguments=[ApiArgument [name=directory, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpResponse.BodyHandler<java.io.InputStream>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofLines, returnType=java.net.http.HttpResponse.BodyHandler<java.util.stream.Stream<java.lang.String>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArrayConsumer, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.Void>, arguments=[ApiArgument [name=consumer, type=java.util.function.Consumer<java.util.Optional<byte[]>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpResponse.BodyHandler<byte[]>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodyHandler<java.lang.String>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofPublisher, returnType=java.net.http.HttpResponse.BodyHandler<java.util.concurrent.Flow.Publisher<java.util.List<java.nio.ByteBuffer>>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=buffering, returnType=java.net.http.HttpResponse.BodyHandler<T>, arguments=[ApiArgument [name=downstreamHandler, type=java.net.http.HttpResponse.BodyHandler<T>], ApiArgument [name=bufferSize, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse.BodySubscriber, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=getBody, returnType=java.util.concurrent.CompletionStage<T>, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse.BodySubscribers, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=fromSubscriber, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.util.List<java.nio.ByteBuffer>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromSubscriber, returnType=java.util.List<java.nio.ByteBuffer>>,T>java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromLineSubscriber, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super java.lang.String>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=fromLineSubscriber, returnType=java.lang.String>,T>java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=subscriber, type=S], ApiArgument [name=finisher, type=java.util.function.Function<? super S,? extends T>], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=lineSeparator, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofString, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.String>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArray, returnType=java.net.http.HttpResponse.BodySubscriber<byte[]>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodySubscriber<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path], ApiArgument [name=openOptions, type=java.nio.file.OpenOption...]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofFile, returnType=java.net.http.HttpResponse.BodySubscriber<java.nio.file.Path>, arguments=[ApiArgument [name=file, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofByteArrayConsumer, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[ApiArgument [name=consumer, type=java.util.function.Consumer<java.util.Optional<byte[]>>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofInputStream, returnType=java.net.http.HttpResponse.BodySubscriber<java.io.InputStream>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofLines, returnType=java.net.http.HttpResponse.BodySubscriber<java.util.stream.Stream<java.lang.String>>, arguments=[ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=ofPublisher, returnType=java.net.http.HttpResponse.BodySubscriber<java.util.concurrent.Flow.Publisher<java.util.List<java.nio.ByteBuffer>>>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=replacing, returnType=java.net.http.HttpResponse.BodySubscriber<U>, arguments=[ApiArgument [name=value, type=U]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=discarding, returnType=java.net.http.HttpResponse.BodySubscriber<java.lang.Void>, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=buffering, returnType=java.net.http.HttpResponse.BodySubscriber<T>, arguments=[ApiArgument [name=downstream, type=java.net.http.HttpResponse.BodySubscriber<T>], ApiArgument [name=bufferSize, type=int]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-    ApiMethod [name=mapping, returnType=java.net.http.HttpResponse.BodySubscriber<U>, arguments=[ApiArgument [name=upstream, type=java.net.http.HttpResponse.BodySubscriber<T>], ApiArgument [name=mapper, type=java.util.function.Function<? super T,? extends U>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=statusCode, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=request, returnType=java.net.http.HttpRequest, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=previousResponse, returnType=java.util.Optional<java.net.http.HttpResponse<T>>, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=body, returnType=T, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sslSession, returnType=java.util.Optional<javax.net.ssl.SSLSession>, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=uri, returnType=java.net.URI, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpResponse.PushPromiseHandler, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=applyPushPromise, returnType=void, arguments=[ApiArgument [name=initiatingRequest, type=java.net.http.HttpRequest], ApiArgument [name=pushPromiseRequest, type=java.net.http.HttpRequest], ApiArgument [name=acceptor, type=java.util.function.Function<java.net.http.HttpResponse.BodyHandler<T>,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=of, returnType=java.net.http.HttpResponse.PushPromiseHandler<T>, arguments=[ApiArgument [name=pushPromiseHandler, type=java.util.function.Function<java.net.http.HttpRequest,java.net.http.HttpResponse.BodyHandler<T>>], ApiArgument [name=pushPromisesMap, type=java.util.concurrent.ConcurrentMap<java.net.http.HttpRequest,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[STATIC], since=UNDEFINED]
-ApiClass [name=java.net.http.HttpTimeoutException, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
-  Methods:
-ApiClass [name=java.net.http.WebSocket.Builder, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=header, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=value, type=java.lang.String]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=connectTimeout, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=timeout, type=java.time.Duration]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=subprotocols, returnType=java.net.http.WebSocket.Builder, arguments=[ApiArgument [name=mostPreferred, type=java.lang.String], ApiArgument [name=lesserPreferred, type=java.lang.String...]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=buildAsync, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=uri, type=java.net.URI], ApiArgument [name=listener, type=java.net.http.WebSocket.Listener]], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.WebSocket, since=11]
-  Fields:
-    ApiField [name=NORMAL_CLOSURE, type=int modifiers=[STATIC, FINAL], since=UNDEFINED]
-  Constructors:
-  Methods:
-    ApiMethod [name=sendText, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=data, type=java.lang.CharSequence], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sendBinary, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=data, type=java.nio.ByteBuffer], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sendPing, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sendPong, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=sendClose, returnType=java.util.concurrent.CompletableFuture<java.net.http.WebSocket>, arguments=[ApiArgument [name=statusCode, type=int], ApiArgument [name=reason, type=java.lang.String]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=request, returnType=void, arguments=[ApiArgument [name=n, type=long]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=getSubprotocol, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=isOutputClosed, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=isInputClosed, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=abort, returnType=void, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.WebSocket.Listener, since=11]
-  Fields:
-  Constructors:
-  Methods:
-    ApiMethod [name=onOpen, returnType=void, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onText, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=data, type=java.lang.CharSequence], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onBinary, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=data, type=java.nio.ByteBuffer], ApiArgument [name=last, type=boolean]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onPing, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onPong, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=message, type=java.nio.ByteBuffer]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onClose, returnType=java.util.concurrent.CompletionStage<?>, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=statusCode, type=int], ApiArgument [name=reason, type=java.lang.String]], modifiers=[], since=UNDEFINED]
-    ApiMethod [name=onError, returnType=void, arguments=[ApiArgument [name=webSocket, type=java.net.http.WebSocket], ApiArgument [name=error, type=java.lang.Throwable]], modifiers=[], since=UNDEFINED]
-ApiClass [name=java.net.http.WebSocketHandshakeException, since=11]
-  Fields:
-  Constructors:
-    ApiConstructor [arguments=[ApiArgument [name=response, type=java.net.http.HttpResponse<?>]], modifiers=[PUBLIC], since=UNDEFINED]
-  Methods:
-    ApiMethod [name=getResponse, returnType=java.net.http.HttpResponse<?>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=initCause, returnType=java.net.http.WebSocketHandshakeException, arguments=[ApiArgument [name=cause, type=java.lang.Throwable]], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=javax.xml.crypto.dsig.DigestMethod, since=1.6]
   Fields:
     ApiField [name=SHA224, type=java.lang.String modifiers=[STATIC, FINAL], since=11]
