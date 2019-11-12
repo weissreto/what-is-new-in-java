@@ -12,12 +12,12 @@ A developer can then use the generated project to learn what is new in the java 
 
 The following GIT repositories provide pre-generated projects for different Java versions:
 
-* [What is new in Java 9](../what-is-new-in-java-9)
-* [What is new in Java 10](../what-is-new-in-java-10)
-* [What is new in Java 11](../what-is-new-in-java-11)
-* [What is new in Java 9, 10 and 11](../what-is-new-in-java-9-10-11)
-* [What is new in Java 12](../what-is-new-in-java-12)
-* [What is new in Java 13](../what-is-new-in-java-13)
+* [What is new in Java 9](https://github.com/weissreto/what-is-new-in-java-9)
+* [What is new in Java 10](https://github.com/weissreto/what-is-new-in-java-10)
+* [What is new in Java 11](https://github.com/weissreto/what-is-new-in-java-11)
+* [What is new in Java 9, 10 and 11](https://github.com/weissreto/what-is-new-in-java-9-10-11)
+* [What is new in Java 12](https://github.com/weissreto/what-is-new-in-java-12)
+* [What is new in Java 13](https://github.com/weissreto/what-is-new-in-java-13)
 
 ## How to build the library
 
