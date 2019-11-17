@@ -1,13 +1,8 @@
 package ch.rweiss.whatisnew.java.resolver;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -20,7 +15,6 @@ import ch.rweiss.whatisnew.java.apidoc.model.ApiConstructor;
 import ch.rweiss.whatisnew.java.apidoc.model.ApiField;
 import ch.rweiss.whatisnew.java.apidoc.model.ApiMethod;
 import ch.rweiss.whatisnew.java.apidoc.model.ApiModifier;
-import ch.rweiss.whatisnew.java.apidoc.model.Version;
 import ch.rweiss.whatisnew.java.generator.model.JavaClass;
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
 import ch.rweiss.whatisnew.java.generator.model.JavaField;
@@ -57,9 +51,7 @@ class JavaClassResolver
   {
     List<JavaField> fields = toJavaFields(java, api.getFields());
     List<JavaConstructor> constructors = toJavaConstructors(java, api.getConstructors());
-    constructors = removeDuplicateConstructors(constructors);
     List<JavaMethod> methods = toJavaMethods(java, api.getMethods());
-    methods = removeDuplicateMethods(methods);
     return new JavaClass(api, java, fields, constructors, methods);
   }
 
@@ -146,50 +138,6 @@ class JavaClassResolver
   private JavaMethod toJavaAnnotationMethod(Class<?> javaClass, ApiField field)
   {
     return new JavaAnnotationMethodResolver(javaClass, field).resolve();
-  }
-
-  private List<JavaMethod> removeDuplicateMethods(List<JavaMethod> methods)
-  {
-    Map<Method, JavaMethod> uniqueSet = new HashMap<>(methods.size());
-    for (JavaMethod method : methods)
-    {
-      JavaMethod first = uniqueSet.get(method.getJava());
-      if (first != null)
-      {
-        if (Version.UNDEFINED.equals(first.getSince()) &&
-            !Version.UNDEFINED.equals(method.getSince()))
-        {
-          uniqueSet.put(method.getJava(), method);
-        }
-      }
-      else
-      {
-        uniqueSet.put(method.getJava(), method);
-      }
-    }
-    return new ArrayList<>(uniqueSet.values());
-  }
-
-  private List<JavaConstructor> removeDuplicateConstructors(List<JavaConstructor> constructors)
-  {
-    Map<Constructor<?>, JavaConstructor> uniqueSet = new HashMap<>(constructors.size());
-    for (JavaConstructor constructor : constructors)
-    {
-      JavaConstructor first = uniqueSet.get(constructor.getJava());
-      if (first != null)
-      {
-        if (Version.UNDEFINED.equals(first.getSince()) &&
-            !Version.UNDEFINED.equals(constructor.getSince()))
-        {
-          uniqueSet.put(constructor.getJava(), constructor);
-        }
-      }
-      else
-      {
-        uniqueSet.put(constructor.getJava(), constructor);
-      }
-    }
-    return new ArrayList<>(uniqueSet.values());
   }
 
   private Class<?> toJava() 

@@ -1,6 +1,7 @@
 package ch.rweiss.whatisnew.java.generator;
 
 import ch.rweiss.whatisnew.java.generator.model.JavaConstructor;
+import ch.rweiss.whatisnew.java.generator.model.JavaParameter;
 
 class JavaDocConstructorReferenceGenerator extends AbstractJavaDocReferenceGenerator
 {
@@ -21,12 +22,21 @@ class JavaDocConstructorReferenceGenerator extends AbstractJavaDocReferenceGener
     printer.print("#");
     printer.print(classGenerator.getClazz().getSimpleName());
     printer.print('(');
-    printer.forEachPrint(constructor.getParameterTypes(), ", ", this::generateRawType);
+    printer.forEachPrint(constructor.getParameters(), ", ", this::generateParameter);
     printer.print(')');
   }
   
-  private void generateRawType(Class<?> type)
+  private void generateParameter(JavaParameter parameter)
   {
+    Class<?> type = parameter.getType();
+    if (parameter.isVarArgs())
+    {
+      type = type.getComponentType();
+    }
     new RawTypeNameGenerator(classGenerator.getImports(), printer, type).generate();
+    if (parameter.isVarArgs())
+    {
+      printer.print("...");
+    }
   }
 }

@@ -1,5 +1,6 @@
 package ch.rweiss.whatisnew.java.generator;
 
+import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +88,16 @@ class ConstructorGenerator
   
   private void generateParameter(JavaParameter parameter)
   {
-    new TypeNameGenerator(classGenerator.getImports(), printer, parameter.getParameterizedType()).generate();
+    Type type = parameter.getParameterizedType();
+    if (parameter.isVarArgs())
+    {
+      type = new ArrayTypeConverter(type).toComponentType();
+    }
+    new TypeNameGenerator(classGenerator.getImports(), printer, type).generate();
+    if (parameter.isVarArgs())
+    {
+      printer.print("...");
+    }
     printer.print(' ');
     printer.print(parameter.getName());
   }

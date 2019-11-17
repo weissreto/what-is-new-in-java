@@ -16,6 +16,11 @@ public class JavaParameter
     this.java = java;
   }
 
+  public Class<?> getType()
+  {
+    return java.getType();
+  }
+
   public Type getParameterizedType()
   {
     return java.getParameterizedType();
@@ -24,5 +29,10 @@ public class JavaParameter
   public String getName()
   {
     return api.getName();
+  }
+
+  public boolean isVarArgs()
+  {
+    return java.isVarArgs();
   }
 }
