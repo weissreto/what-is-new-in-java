@@ -156,7 +156,7 @@ class ClassGenerator
       return;
     }
     printer.print("private ");
-    printer.print(this.clazz.getSimpleName());
+    new TesteeVariableTypeDeclarationGenerator(printer, clazz.getJava()).generate();
     printer.print(" $$$()");    
     printer.println();
     printer.print("{");

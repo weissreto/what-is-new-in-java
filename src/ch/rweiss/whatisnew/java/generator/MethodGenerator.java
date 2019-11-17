@@ -1,7 +1,6 @@
 package ch.rweiss.whatisnew.java.generator;
 
 import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -111,14 +110,7 @@ class MethodGenerator
   {
     if (!method.isStatic())
     {
-      printer.print(classGenerator.getClazz().getSimpleName());
-      TypeVariable<?>[] typeParameters = classGenerator.getClazz().getJava().getTypeParameters();
-      if (typeParameters.length > 0)
-      {
-        printer.print('<');
-        printer.forEachPrint(typeParameters, ", ", type -> printer.print(type.getName()));
-        printer.print('>');
-      }
+      new TesteeVariableTypeDeclarationGenerator(printer, classGenerator.getClazz().getJava()).generate();
       printer.print(" ");
       printer.print("testee = $$$();");
       classGenerator.needsCreateMethod();
