@@ -36,11 +36,9 @@ class ConstructorGenerator
   {
     printer.print("/**");
     printer.println();
-    printer.print(" * Example call to new constructor {@link ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("}");
+    printer.print(" * Example call to new constructor ");
+    new JavaDocConstructorReferenceGenerator(classGenerator, constructor).generateLink();
+    printer.print('.');
     printer.println();
     printer.print(" * @since ");
     if (constructor.getSince().equals(Version.UNDEFINED))
@@ -52,10 +50,7 @@ class ConstructorGenerator
       printer.print(constructor.getSince());
     }
     printer.println();
-    printer.print(" * @see ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(classGenerator.getClazz().getSimpleName());
+    new JavaDocConstructorReferenceGenerator(classGenerator, constructor).generateSee();
     printer.println();
     printer.print(" */");
     printer.println();

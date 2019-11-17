@@ -36,11 +36,9 @@ class MethodGenerator
   {
     printer.print("/**");
     printer.println();
-    printer.print(" * Example call to new method {@link ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(method.getName());
-    printer.print("}");
+    printer.print(" * Example call to new method ");
+    new JavaDocMethodReferenceGenerator(classGenerator, method).generateLink();
+    printer.print(".");
     printer.println();
     printer.print(" * @since ");
     if (method.getSince().equals(Version.UNDEFINED))
@@ -52,10 +50,7 @@ class MethodGenerator
       printer.print(method.getSince());
     }
     printer.println();
-    printer.print(" * @see ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(method.getName());
+    new JavaDocMethodReferenceGenerator(classGenerator, method).generateSee();
     printer.println();
     printer.print(" */");
     printer.println();

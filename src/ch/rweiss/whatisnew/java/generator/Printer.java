@@ -90,10 +90,20 @@ class Printer implements AutoCloseable
     Joiner.forEach(objects, () -> print(delimiter), printer);
   }
   
-  public <T> void forEachPrint(List<T> objects, String delimiter, Consumer<T> printer)
+  <T> void forEachPrint(List<T> objects, String delimiter, Consumer<T> printer)
   {
     Joiner.forEach(objects, () -> print(delimiter), printer);
   }
+  
+  void printPrural(List<?> objects, String singular, String pluralExtension)
+  {
+    print(singular);
+    if (objects.size() > 1)
+    {
+      print(pluralExtension);
+    }
+  }
+
 
   @Override
   public void close()

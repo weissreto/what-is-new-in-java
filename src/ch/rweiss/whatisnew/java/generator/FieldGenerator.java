@@ -26,11 +26,9 @@ public class FieldGenerator
   {
     printer.print("/**");
     printer.println();
-    printer.print(" * Example usage of the new field {@link ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(field.getName());
-    printer.print("}");
+    printer.print(" * Example usage of the new field ");
+    new JavaDocFieldReferenceGenerator(classGenerator, field).generateLink();
+    printer.print(".");
     printer.println();
     printer.print(" * @since ");
     if (field.getSince().equals(Version.UNDEFINED))
@@ -42,10 +40,7 @@ public class FieldGenerator
       printer.print(field.getSince());
     }
     printer.println();
-    printer.print(" * @see ");
-    printer.print(classGenerator.getClazz().getSimpleName());
-    printer.print("#");
-    printer.print(field.getName());
+    new JavaDocFieldReferenceGenerator(classGenerator, field).generateSee();
     printer.println();
     printer.print(" */");
     printer.println();
@@ -58,7 +53,7 @@ public class FieldGenerator
     {
       printer.print("static ");
     }
-    printer.print(" final ");
+    printer.print("final ");
 
     new TypeNameGenerator(classGenerator.getImports(), printer, field.getGenericReturnType()).generate();
 
