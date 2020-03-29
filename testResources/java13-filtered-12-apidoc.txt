@@ -14,6 +14,7 @@ ApiClass [name=com.sun.source.tree.CaseTree, since=1.6]
   Methods:
     ApiMethod [name=getExpressions, returnType=com.sun.source.tree.ExpressionTree>, arguments=[], modifiers=[], since=12]
     ApiMethod [name=getBody, returnType=com.sun.source.tree.Tree, arguments=[], modifiers=[], since=12]
+    ApiMethod [name=getCaseKind, returnType=com.sun.source.tree.CaseTree.CaseKind, arguments=[], modifiers=[], since=12]
 ApiClass [name=com.sun.source.tree.CaseTree.CaseKind, since=12]
   Fields:
     ApiField [name=STATEMENT, type=com.sun.source.tree.CaseTree.CaseKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
@@ -28,7 +29,7 @@ ApiClass [name=com.sun.source.tree.SwitchExpressionTree, since=12]
   Methods:
     ApiMethod [name=getExpression, returnType=com.sun.source.tree.ExpressionTree, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getCases, returnType=com.sun.source.tree.CaseTree>, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=com.sun.source.tree.Tree.Kind, since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.Tree.Kind, since=1.6]
   Fields:
     ApiField [name=SWITCH_EXPRESSION, type=com.sun.source.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=12]
   Constructors:
@@ -86,11 +87,13 @@ ApiClass [name=java.lang.Class, since=1.0]
     ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=12]
     ApiMethod [name=componentType, returnType=java.lang.Class<?>, arguments=[], modifiers=[PUBLIC], since=12]
     ApiMethod [name=arrayType, returnType=java.lang.Class<?>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.constant.ClassDesc>, arguments=[], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.Double, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Double>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.Double, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.Enum, since=1.5]
   Fields:
   Constructors:
@@ -100,22 +103,25 @@ ApiClass [name=java.lang.Enum.EnumDesc, since=12]
   Fields:
   Constructors:
   Methods:
-    ApiMethod [name=of, returnType=java.lang.Enum.EnumDesc<E>, arguments=[ApiArgument [name=enumClass, type=java.lang.constant.ClassDesc], ApiArgument [name=constantName, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=of, returnType=java.lang.Enum.EnumDesc<E>, arguments=[ApiArgument [name=enumClass, type=java.lang.constant.ClassDesc], ApiArgument [name=constantName, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=12]
 ApiClass [name=java.lang.Float, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Float>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.Float, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.Integer, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Integer>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.Integer, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.Long, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.Long>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.Long, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.String, since=1.0]
   Fields:
   Constructors:
@@ -123,6 +129,7 @@ ApiClass [name=java.lang.String, since=1.0]
     ApiMethod [name=indent, returnType=java.lang.String, arguments=[ApiArgument [name=n, type=int]], modifiers=[PUBLIC], since=12]
     ApiMethod [name=transform, returnType=R, arguments=[ApiArgument [name=f, type=java.util.function.Function<? super java.lang.String,? extends R>]], modifiers=[PUBLIC], since=12]
     ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=resolveConstantDesc, returnType=java.lang.String, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.constant.ClassDesc, since=12]
   Fields:
   Constructors:
@@ -315,6 +322,7 @@ ApiClass [name=java.lang.invoke.MethodType, since=1.7]
   Constructors:
   Methods:
     ApiMethod [name=descriptorString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=12]
+    ApiMethod [name=describeConstable, returnType=java.util.Optional<java.lang.constant.MethodTypeDesc>, arguments=[], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.lang.invoke.TypeDescriptor, since=12]
   Fields:
   Constructors:
@@ -356,6 +364,11 @@ ApiClass [name=java.lang.invoke.VarHandle.VarHandleDesc, since=12]
     ApiMethod [name=varType, returnType=java.lang.constant.ClassDesc, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=resolveConstantDesc, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.net.SecureCacheResponse, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getSSLSession, returnType=java.util.Optional<javax.net.ssl.SSLSession>, arguments=[], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.net.ServerSocket, since=1.0]
   Fields:
   Constructors:
@@ -413,6 +426,11 @@ ApiClass [name=java.text.NumberFormat.Style, since=12]
   Methods:
     ApiMethod [name=values, returnType=java.text.NumberFormat.Style[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
     ApiMethod [name=valueOf, returnType=java.text.NumberFormat.Style, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.text.spi.NumberFormatProvider, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getCompactNumberInstance, returnType=java.text.NumberFormat, arguments=[ApiArgument [name=locale, type=java.util.Locale], ApiArgument [name=formatStyle, type=java.text.NumberFormat.Style]], modifiers=[PUBLIC], since=12]
 ApiClass [name=java.util.concurrent.CompletionStage, since=1.8]
   Fields:
   Constructors:
@@ -422,6 +440,11 @@ ApiClass [name=java.util.concurrent.CompletionStage, since=1.8]
     ApiMethod [name=exceptionallyCompose, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>]], modifiers=[], since=12]
     ApiMethod [name=exceptionallyComposeAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>]], modifiers=[], since=12]
     ApiMethod [name=exceptionallyComposeAsync, returnType=java.util.concurrent.CompletionStage<T>, arguments=[ApiArgument [name=fn, type=java.util.function.Function<java.lang.Throwable,? extends java.util.concurrent.CompletionStage<T>>], ApiArgument [name=executor, type=java.util.concurrent.Executor]], modifiers=[], since=12]
+ApiClass [name=java.util.stream.Collectors, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=teeing, returnType=java.util.stream.Collector<T,?,R>, arguments=[ApiArgument [name=downstream1, type=java.util.stream.Collector<? super T,?,R1>], ApiArgument [name=downstream2, type=java.util.stream.Collector<? super T,?,R2>], ApiArgument [name=merger, type=java.util.function.BiFunction<? super R1,? super R2,R>]], modifiers=[PUBLIC, STATIC], since=12]
 ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
   Fields:
     ApiField [name=RELEASE_12, type=javax.lang.model.SourceVersion modifiers=[PUBLIC, STATIC, FINAL], since=12]
@@ -440,6 +463,11 @@ ApiClass [name=javax.naming.ldap.spi.LdapDnsProviderResult, since=12]
   Methods:
     ApiMethod [name=getDomainName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=getEndpoints, returnType=java.util.List<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=javax.net.ssl.HttpsURLConnection, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getSSLSession, returnType=java.util.Optional<javax.net.ssl.SSLSession>, arguments=[], modifiers=[PUBLIC], since=12]
 ApiClass [name=javax.swing.filechooser.FileSystemView, since=UNDEFINED]
   Fields:
   Constructors:

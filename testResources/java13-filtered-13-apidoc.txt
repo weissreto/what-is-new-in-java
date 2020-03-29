@@ -1,8 +1,13 @@
-ApiClass [name=com.sun.source.tree.Tree.Kind, since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.Tree.Kind, since=1.6]
   Fields:
     ApiField [name=YIELD, type=com.sun.source.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=13]
   Constructors:
   Methods:
+ApiClass [name=com.sun.source.tree.TreeVisitor, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitYield, returnType=R, arguments=[ApiArgument [name=node, type=com.sun.source.tree.YieldTree], ApiArgument [name=p, type=P]], modifiers=[], since=13]
 ApiClass [name=com.sun.source.tree.YieldTree, since=13]
   Fields:
   Constructors:
@@ -125,14 +130,25 @@ ApiClass [name=java.nio.file.FileSystems, since=1.7]
   Methods:
     ApiMethod [name=newFileSystem, returnType=java.nio.file.FileSystem, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=env, type=java.util.Map<java.lang.String,?>]], modifiers=[PUBLIC, STATIC], since=13]
     ApiMethod [name=newFileSystem, returnType=java.nio.file.FileSystem, arguments=[ApiArgument [name=path, type=java.nio.file.Path]], modifiers=[PUBLIC, STATIC], since=13]
+    ApiMethod [name=newFileSystem, returnType=java.nio.file.FileSystem, arguments=[ApiArgument [name=path, type=java.nio.file.Path], ApiArgument [name=env, type=java.util.Map<java.lang.String,?>], ApiArgument [name=loader, type=java.lang.ClassLoader]], modifiers=[PUBLIC, STATIC], since=13]
 ApiClass [name=java.time.chrono.JapaneseEra, since=1.8]
   Fields:
     ApiField [name=REIWA, type=java.time.chrono.JapaneseEra modifiers=[PUBLIC, STATIC, FINAL], since=13]
   Constructors:
   Methods:
+ApiClass [name=javax.annotation.processing.ProcessingEnvironment, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=isPreviewEnabled, returnType=boolean, arguments=[], modifiers=[], since=13]
 ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
   Fields:
     ApiField [name=RELEASE_13, type=javax.lang.model.SourceVersion modifiers=[PUBLIC, STATIC, FINAL], since=13]
+  Constructors:
+  Methods:
+ApiClass [name=javax.security.auth.kerberos.KerberosPrincipal, since=1.4]
+  Fields:
+    ApiField [name=KRB_NT_ENTERPRISE, type=int modifiers=[PUBLIC, STATIC, FINAL], since=13]
   Constructors:
   Methods:
 ApiClass [name=javax.tools.StandardJavaFileManager, since=1.6]

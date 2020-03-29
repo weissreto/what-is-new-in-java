@@ -7,6 +7,7 @@ ApiClass [name=java.io.FileReader, since=1.1]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
+    ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
   Methods:
 ApiClass [name=java.io.FileWriter, since=1.1]
   Fields:
@@ -14,6 +15,7 @@ ApiClass [name=java.io.FileWriter, since=1.1]
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=append, type=boolean]], modifiers=[PUBLIC], since=11]
     ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
+    ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=append, type=boolean]], modifiers=[PUBLIC], since=11]
   Methods:
 ApiClass [name=java.io.InputStream, since=1.0]
   Fields:
@@ -36,6 +38,11 @@ ApiClass [name=java.io.Writer, since=1.1]
   Constructors:
   Methods:
     ApiMethod [name=nullWriter, returnType=java.io.Writer, arguments=[], modifiers=[PUBLIC, STATIC], since=11]
+ApiClass [name=java.lang.CharSequence, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=compare, returnType=int, arguments=[ApiArgument [name=cs1, type=java.lang.CharSequence], ApiArgument [name=cs2, type=java.lang.CharSequence]], modifiers=[STATIC], since=11]
 ApiClass [name=java.lang.Character, since=1.0]
   Fields:
   Constructors:
@@ -315,6 +322,13 @@ ApiClass [name=java.net.http.HttpResponse.PushPromiseHandler, since=11]
   Methods:
     ApiMethod [name=applyPushPromise, returnType=void, arguments=[ApiArgument [name=initiatingRequest, type=java.net.http.HttpRequest], ApiArgument [name=pushPromiseRequest, type=java.net.http.HttpRequest], ApiArgument [name=acceptor, type=java.util.function.Function<java.net.http.HttpResponse.BodyHandler<T>,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=of, returnType=java.net.http.HttpResponse.PushPromiseHandler<T>, arguments=[ApiArgument [name=pushPromiseHandler, type=java.util.function.Function<java.net.http.HttpRequest,java.net.http.HttpResponse.BodyHandler<T>>], ApiArgument [name=pushPromisesMap, type=java.util.concurrent.ConcurrentMap<java.net.http.HttpRequest,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.ResponseInfo, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=statusCode, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[], since=UNDEFINED]
 ApiClass [name=java.net.http.HttpTimeoutException, since=11]
   Fields:
   Constructors:
@@ -423,6 +437,11 @@ ApiClass [name=java.nio.file.Path, since=1.7]
   Methods:
     ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=first, type=java.lang.String], ApiArgument [name=more, type=java.lang.String...]], modifiers=[STATIC], since=11]
     ApiMethod [name=of, returnType=java.nio.file.Path, arguments=[ApiArgument [name=uri, type=java.net.URI]], modifiers=[STATIC], since=11]
+ApiClass [name=java.security.interfaces.RSAKey, since=1.3]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[], since=11]
 ApiClass [name=java.security.interfaces.XECKey, since=11]
   Fields:
   Constructors:
@@ -456,6 +475,7 @@ ApiClass [name=java.security.spec.RSAKeyGenParameterSpec, since=1.3]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=keysize, type=int], ApiArgument [name=publicExponent, type=java.math.BigInteger], ApiArgument [name=keyParams, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getKeyParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.RSAMultiPrimePrivateCrtKeySpec, since=1.4]
   Fields:
   Constructors:
@@ -471,11 +491,13 @@ ApiClass [name=java.security.spec.RSAPrivateKeySpec, since=1.2]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=modulus, type=java.math.BigInteger], ApiArgument [name=privateExponent, type=java.math.BigInteger], ApiArgument [name=params, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.RSAPublicKeySpec, since=1.2]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=modulus, type=java.math.BigInteger], ApiArgument [name=publicExponent, type=java.math.BigInteger], ApiArgument [name=params, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.XECPrivateKeySpec, since=11]
   Fields:
   Constructors:
@@ -520,6 +542,11 @@ ApiClass [name=java.util.concurrent.TimeUnit, since=1.5]
   Constructors:
   Methods:
     ApiMethod [name=convert, returnType=long, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[PUBLIC], since=11]
+ApiClass [name=java.util.function.Predicate, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=not, returnType=java.util.function.Predicate<T>, arguments=[ApiArgument [name=target, type=java.util.function.Predicate<? super T>]], modifiers=[STATIC], since=11]
 ApiClass [name=java.util.regex.Pattern, since=1.4]
   Fields:
   Constructors:
@@ -565,6 +592,7 @@ ApiClass [name=javax.swing.ListSelectionModel, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=getSelectedIndices, returnType=int[], arguments=[], modifiers=[], since=11]
+    ApiMethod [name=getSelectedItemsCount, returnType=int, arguments=[], modifiers=[], since=11]
 ApiClass [name=javax.xml.crypto.dsig.DigestMethod, since=1.6]
   Fields:
     ApiField [name=SHA224, type=java.lang.String modifiers=[STATIC, FINAL], since=11]
@@ -598,10 +626,16 @@ ApiClass [name=javax.xml.crypto.dsig.SignatureMethod, since=1.6]
     ApiField [name=HMAC_SHA512, type=java.lang.String modifiers=[STATIC, FINAL], since=11]
   Constructors:
   Methods:
+ApiClass [name=jdk.jshell.EvalException, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getCause, returnType=jdk.jshell.JShellException, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=jdk.net.ExtendedSocketOptions, since=1.8]
   Fields:
     ApiField [name=TCP_KEEPIDLE, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
     ApiField [name=TCP_KEEPINTERVAL, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
+    ApiField [name=TCP_KEEPCOUNT, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
   Constructors:
   Methods:
 ApiClass [name=jdk.nio.Channels, since=11]

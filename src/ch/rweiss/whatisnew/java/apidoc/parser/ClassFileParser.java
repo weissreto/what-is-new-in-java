@@ -77,29 +77,32 @@ public class ClassFileParser
     {
       int sinceStart = matcher.start();
       String since = matcher.group(1);
-      Signature previousSignature = null;
-      for (Signature signature : signatures)
+      Signature signature = findMatchingSignature(sinceStart, signatures);
+      if (signature != null)
       {
-        if (signature.startPos < sinceStart)
-        {
-          previousSignature = signature;
-        }
-        else
-        {
-          if (previousSignature == null)
-          {
-            classSince = Version.valueOf(since);
-          }
-          else
-          {
-            Logger.getLogger("ClassFileParser").fine("Match signature "+previousSignature.signature+" at pos "+previousSignature.startPos+" with since "+ since+" on pos "+sinceStart);
-            previousSignature.setSince(Version.valueOf(since));
-          }
-          break;
-        }
+        Logger.getLogger("ClassFileParser").fine("Match signature "+signature.signature+" at pos "+signature.startPos+" with since "+ since+" on pos "+sinceStart);
+        signature.setSince(Version.valueOf(since));
+      }
+      else
+      {
+        classSince = Version.valueOf(since);
       }
     }
     return classSince;
+  }
+
+  private Signature findMatchingSignature(int sinceStart, List<Signature> signatures)
+  {
+    Signature previousSignature = null;
+    for (Signature signature : signatures)
+    {
+      if (signature.startPos >= sinceStart)
+      {
+        return previousSignature;
+      }
+      previousSignature = signature;
+    }
+    return previousSignature;
   }
 
   private List<Signature> parseSignatures(String content)

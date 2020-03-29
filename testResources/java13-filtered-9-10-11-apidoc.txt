@@ -43,6 +43,7 @@ ApiClass [name=com.sun.source.doctree.DocCommentTree, since=1.8]
   Methods:
     ApiMethod [name=getFullBody, returnType=com.sun.source.doctree.DocTree>, arguments=[], modifiers=[], since=9]
     ApiMethod [name=getPreamble, returnType=com.sun.source.doctree.DocTree>, arguments=[], modifiers=[], since=10]
+    ApiMethod [name=getPostamble, returnType=com.sun.source.doctree.DocTree>, arguments=[], modifiers=[], since=10]
 ApiClass [name=com.sun.source.doctree.DocTreeVisitor, since=1.8]
   Fields:
   Constructors:
@@ -105,6 +106,14 @@ ApiClass [name=com.sun.source.tree.ModuleTree, since=9]
     ApiMethod [name=getModuleType, returnType=com.sun.source.tree.ModuleTree.ModuleKind, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getName, returnType=com.sun.source.tree.ExpressionTree, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getDirectives, returnType=com.sun.source.tree.DirectiveTree>, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.ModuleTree.ModuleKind, since=9]
+  Fields:
+    ApiField [name=OPEN, type=com.sun.source.tree.ModuleTree.ModuleKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STRONG, type=com.sun.source.tree.ModuleTree.ModuleKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=com.sun.source.tree.ModuleTree.ModuleKind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=com.sun.source.tree.ModuleTree.ModuleKind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=com.sun.source.tree.OpensTree, since=9]
   Fields:
   Constructors:
@@ -130,7 +139,7 @@ ApiClass [name=com.sun.source.tree.RequiresTree, since=9]
     ApiMethod [name=isStatic, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=isTransitive, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getModuleName, returnType=com.sun.source.tree.ExpressionTree, arguments=[], modifiers=[], since=UNDEFINED]
-ApiClass [name=com.sun.source.tree.Tree.Kind, since=UNDEFINED]
+ApiClass [name=com.sun.source.tree.Tree.Kind, since=1.6]
   Fields:
     ApiField [name=PACKAGE, type=com.sun.source.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
@@ -200,6 +209,7 @@ ApiClass [name=com.sun.source.util.DocTrees, since=1.8]
     ApiMethod [name=getDocTreePath, returnType=com.sun.source.util.DocTreePath, arguments=[ApiArgument [name=fileObject, type=javax.tools.FileObject], ApiArgument [name=packageElement, type=javax.lang.model.element.PackageElement]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getFirstSentence, returnType=java.util.List<com.sun.source.doctree.DocTree>, arguments=[ApiArgument [name=list, type=java.util.List<? extends com.sun.source.doctree.DocTree>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=setBreakIterator, returnType=void, arguments=[ApiArgument [name=breakiterator, type=java.text.BreakIterator]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=getDocTreeFactory, returnType=com.sun.source.util.DocTreeFactory, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=com.sun.source.util.SimpleDocTreeVisitor, since=1.8]
   Fields:
   Constructors:
@@ -227,6 +237,7 @@ ApiClass [name=java.awt.Component, since=UNDEFINED]
     ApiMethod [name=requestFocus, returnType=void, arguments=[ApiArgument [name=cause, type=java.awt.event.FocusEvent.Cause]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=requestFocus, returnType=boolean, arguments=[ApiArgument [name=temporary, type=boolean], ApiArgument [name=cause, type=java.awt.event.FocusEvent.Cause]], modifiers=[PROTECTED], since=9]
     ApiMethod [name=requestFocusInWindow, returnType=boolean, arguments=[ApiArgument [name=cause, type=java.awt.event.FocusEvent.Cause]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=setMixingCutoutShape, returnType=void, arguments=[ApiArgument [name=shape, type=java.awt.Shape]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.awt.Desktop, since=1.6]
   Fields:
   Constructors:
@@ -246,6 +257,7 @@ ApiClass [name=java.awt.Desktop, since=1.6]
     ApiMethod [name=openHelpViewer, returnType=void, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=setDefaultMenuBar, returnType=void, arguments=[ApiArgument [name=menuBar, type=javax.swing.JMenuBar]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=browseFileDirectory, returnType=void, arguments=[ApiArgument [name=file, type=java.io.File]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=moveToTrash, returnType=boolean, arguments=[ApiArgument [name=file, type=java.io.File]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.awt.Desktop.Action, since=1.6]
   Fields:
     ApiField [name=APP_EVENT_FOREGROUND, type=java.awt.Desktop.Action modifiers=[PUBLIC, STATIC, FINAL], since=9]
@@ -308,6 +320,33 @@ ApiClass [name=java.awt.Taskbar, since=9]
     ApiMethod [name=setProgressValue, returnType=void, arguments=[ApiArgument [name=value, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=setWindowProgressValue, returnType=void, arguments=[ApiArgument [name=w, type=java.awt.Window], ApiArgument [name=value, type=int]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=setWindowProgressState, returnType=void, arguments=[ApiArgument [name=w, type=java.awt.Window], ApiArgument [name=state, type=java.awt.Taskbar.State]], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.awt.Taskbar.Feature, since=9]
+  Fields:
+    ApiField [name=ICON_BADGE_TEXT, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ICON_BADGE_NUMBER, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ICON_BADGE_IMAGE_WINDOW, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ICON_IMAGE, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MENU, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PROGRESS_STATE_WINDOW, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PROGRESS_VALUE, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PROGRESS_VALUE_WINDOW, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=USER_ATTENTION, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=USER_ATTENTION_WINDOW, type=java.awt.Taskbar.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.awt.Taskbar.Feature[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.awt.Taskbar.Feature, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.awt.Taskbar.State, since=9]
+  Fields:
+    ApiField [name=OFF, type=java.awt.Taskbar.State modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NORMAL, type=java.awt.Taskbar.State modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PAUSED, type=java.awt.Taskbar.State modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=INDETERMINATE, type=java.awt.Taskbar.State modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ERROR, type=java.awt.Taskbar.State modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.awt.Taskbar.State[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.awt.Taskbar.State, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=java.awt.Toolkit, since=1.0]
   Fields:
   Constructors:
@@ -454,6 +493,16 @@ ApiClass [name=java.awt.desktop.UserSessionEvent, since=9]
     ApiConstructor [arguments=[ApiArgument [name=reason, type=java.awt.desktop.UserSessionEvent.Reason]], modifiers=[PUBLIC], since=UNDEFINED]
   Methods:
     ApiMethod [name=getReason, returnType=java.awt.desktop.UserSessionEvent.Reason, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.awt.desktop.UserSessionEvent.Reason, since=9]
+  Fields:
+    ApiField [name=UNSPECIFIED, type=java.awt.desktop.UserSessionEvent.Reason modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONSOLE, type=java.awt.desktop.UserSessionEvent.Reason modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=REMOTE, type=java.awt.desktop.UserSessionEvent.Reason modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LOCK, type=java.awt.desktop.UserSessionEvent.Reason modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.awt.desktop.UserSessionEvent.Reason[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.awt.desktop.UserSessionEvent.Reason, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=java.awt.desktop.UserSessionListener, since=9]
   Fields:
   Constructors:
@@ -465,6 +514,7 @@ ApiClass [name=java.awt.event.FocusEvent, since=1.1]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=source, type=java.awt.Component], ApiArgument [name=id, type=int], ApiArgument [name=temporary, type=boolean], ApiArgument [name=opposite, type=java.awt.Component], ApiArgument [name=cause, type=java.awt.event.FocusEvent.Cause]], modifiers=[PUBLIC], since=9]
   Methods:
+    ApiMethod [name=getCause, returnType=java.awt.event.FocusEvent.Cause, arguments=[], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.awt.event.FocusEvent.Cause, since=9]
   Fields:
     ApiField [name=UNKNOWN, type=java.awt.event.FocusEvent.Cause modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
@@ -488,6 +538,11 @@ ApiClass [name=java.awt.font.NumericShaper.Range, since=1.7]
     ApiField [name=MYANMAR_TAI_LAING, type=java.awt.font.NumericShaper.Range modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
   Methods:
+ApiClass [name=java.awt.geom.Path2D, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=trimToSize, returnType=void, arguments=[], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.awt.image.AbstractMultiResolutionImage, since=9]
   Fields:
   Constructors:
@@ -498,19 +553,19 @@ ApiClass [name=java.awt.image.AbstractMultiResolutionImage, since=9]
     ApiMethod [name=getSource, returnType=java.awt.image.ImageProducer, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getGraphics, returnType=java.awt.Graphics, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=getProperty, returnType=java.lang.Object, arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=observer, type=java.awt.image.ImageObserver]], modifiers=[PUBLIC], since=9]
-    ApiMethod [name=getBaseImage, returnType=java.awt.Image, arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
+    ApiMethod [name=getBaseImage, returnType=java.awt.Image, arguments=[], modifiers=[PROTECTED], since=9]
 ApiClass [name=java.awt.image.BaseMultiResolutionImage, since=9]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=resolutionVariants, type=java.awt.Image...]], modifiers=[PUBLIC], since=9]
-    ApiConstructor [arguments=[ApiArgument [name=baseImageIndex, type=int], ApiArgument [name=resolutionVariants, type=java.awt.Image...]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiConstructor [arguments=[ApiArgument [name=baseImageIndex, type=int], ApiArgument [name=resolutionVariants, type=java.awt.Image...]], modifiers=[PUBLIC], since=9]
   Methods:
 ApiClass [name=java.awt.image.MultiResolutionImage, since=9]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=getResolutionVariant, returnType=java.awt.Image, arguments=[ApiArgument [name=destImageWidth, type=double], ApiArgument [name=destImageHeight, type=double]], modifiers=[], since=9]
-    ApiMethod [name=getResolutionVariants, returnType=java.util.List<java.awt.Image>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getResolutionVariants, returnType=java.util.List<java.awt.Image>, arguments=[], modifiers=[], since=9]
 ApiClass [name=java.beans.BeanProperty, since=9]
   Fields:
     ApiField [name=bound, type=boolean modifiers=[], since=UNDEFINED]
@@ -540,6 +595,7 @@ ApiClass [name=java.io.FileReader, since=1.1]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
+    ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
   Methods:
 ApiClass [name=java.io.FileWriter, since=1.1]
   Fields:
@@ -547,6 +603,7 @@ ApiClass [name=java.io.FileWriter, since=1.1]
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=append, type=boolean]], modifiers=[PUBLIC], since=11]
     ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=11]
+    ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset], ApiArgument [name=append, type=boolean]], modifiers=[PUBLIC], since=11]
   Methods:
 ApiClass [name=java.io.InputStream, since=1.0]
   Fields:
@@ -556,6 +613,7 @@ ApiClass [name=java.io.InputStream, since=1.0]
     ApiMethod [name=readAllBytes, returnType=byte[], arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=readNBytes, returnType=byte[], arguments=[ApiArgument [name=len, type=int]], modifiers=[PUBLIC], since=11]
     ApiMethod [name=readNBytes, returnType=int, arguments=[ApiArgument [name=b, type=byte[]], ApiArgument [name=off, type=int], ApiArgument [name=len, type=int]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=transferTo, returnType=long, arguments=[ApiArgument [name=out, type=java.io.OutputStream]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.io.ObjectInputFilter, since=9]
   Fields:
   Constructors:
@@ -591,6 +649,7 @@ ApiClass [name=java.io.ObjectInputStream, since=1.1]
   Constructors:
   Methods:
     ApiMethod [name=getObjectInputFilter, returnType=java.io.ObjectInputFilter, arguments=[], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=setObjectInputFilter, returnType=void, arguments=[ApiArgument [name=filter, type=java.io.ObjectInputFilter]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.io.ObjectStreamConstants, since=1.1]
   Fields:
     ApiField [name=SERIAL_FILTER_PERMISSION, type=java.io.SerializablePermission modifiers=[STATIC, FINAL], since=9]
@@ -620,6 +679,7 @@ ApiClass [name=java.io.Reader, since=1.1]
   Constructors:
   Methods:
     ApiMethod [name=nullReader, returnType=java.io.Reader, arguments=[], modifiers=[PUBLIC, STATIC], since=11]
+    ApiMethod [name=transferTo, returnType=long, arguments=[ApiArgument [name=out, type=java.io.Writer]], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.io.Writer, since=1.1]
   Fields:
   Constructors:
@@ -630,6 +690,11 @@ ApiClass [name=java.lang.Byte, since=1.1]
   Constructors:
   Methods:
     ApiMethod [name=compareUnsigned, returnType=int, arguments=[ApiArgument [name=x, type=byte], ApiArgument [name=y, type=byte]], modifiers=[PUBLIC, STATIC], since=9]
+ApiClass [name=java.lang.CharSequence, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=compare, returnType=int, arguments=[ApiArgument [name=cs1, type=java.lang.CharSequence], ApiArgument [name=cs2, type=java.lang.CharSequence]], modifiers=[STATIC], since=11]
 ApiClass [name=java.lang.Character, since=1.0]
   Fields:
     ApiField [name=DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE, type=byte modifiers=[PUBLIC, STATIC, FINAL], since=9]
@@ -639,6 +704,7 @@ ApiClass [name=java.lang.Character, since=1.0]
   Constructors:
   Methods:
     ApiMethod [name=toString, returnType=java.lang.String, arguments=[ApiArgument [name=codePoint, type=int]], modifiers=[PUBLIC, STATIC], since=11]
+    ApiMethod [name=codePointOf, returnType=int, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.lang.Character.UnicodeBlock, since=1.2]
   Fields:
     ApiField [name=COMBINING_DIACRITICAL_MARKS_EXTENDED, type=java.lang.Character.UnicodeBlock modifiers=[PUBLIC, STATIC, FINAL], since=9]
@@ -773,6 +839,7 @@ ApiClass [name=java.lang.ClassLoader, since=1.0]
 ApiClass [name=java.lang.Deprecated, since=1.5]
   Fields:
     ApiField [name=since, type=java.lang.String modifiers=[], since=9]
+    ApiField [name=forRemoval, type=boolean modifiers=[], since=9]
   Constructors:
   Methods:
 ApiClass [name=java.lang.IllegalCallerException, since=9]
@@ -782,6 +849,11 @@ ApiClass [name=java.lang.IllegalCallerException, since=9]
     ApiConstructor [arguments=[ApiArgument [name=s, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String], ApiArgument [name=cause, type=java.lang.Throwable]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiConstructor [arguments=[ApiArgument [name=cause, type=java.lang.Throwable]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=java.lang.IndexOutOfBoundsException, since=1.0]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=index, type=int]], modifiers=[PUBLIC], since=9]
   Methods:
 ApiClass [name=java.lang.Integer, since=1.0]
   Fields:
@@ -875,6 +947,12 @@ ApiClass [name=java.lang.Process, since=1.0]
     ApiMethod [name=toHandle, returnType=java.lang.ProcessHandle, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=info, returnType=java.lang.ProcessHandle.Info, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=children, returnType=java.util.stream.Stream<java.lang.ProcessHandle>, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=descendants, returnType=java.util.stream.Stream<java.lang.ProcessHandle>, arguments=[], modifiers=[PUBLIC], since=9]
+ApiClass [name=java.lang.ProcessBuilder, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=startPipeline, returnType=java.util.List<java.lang.Process>, arguments=[ApiArgument [name=builders, type=java.util.List<java.lang.ProcessBuilder>]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.lang.ProcessBuilder.Redirect, since=1.7]
   Fields:
     ApiField [name=DISCARD, type=java.lang.ProcessBuilder.Redirect modifiers=[PUBLIC, STATIC, FINAL], since=9]
@@ -910,6 +988,11 @@ ApiClass [name=java.lang.ProcessHandle.Info, since=9]
     ApiMethod [name=startInstant, returnType=java.util.Optional<java.time.Instant>, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=totalCpuDuration, returnType=java.util.Optional<java.time.Duration>, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=user, returnType=java.util.Optional<java.lang.String>, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.lang.Runtime, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=version, returnType=java.lang.Runtime.Version, arguments=[], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.lang.Runtime.Version, since=9]
   Fields:
   Constructors:
@@ -1008,12 +1091,14 @@ ApiClass [name=java.lang.StringBuffer, since=1.0]
   Methods:
     ApiMethod [name=compareTo, returnType=int, arguments=[ApiArgument [name=another, type=java.lang.StringBuffer]], modifiers=[PUBLIC], since=11]
     ApiMethod [name=chars, returnType=java.util.stream.IntStream, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=codePoints, returnType=java.util.stream.IntStream, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.lang.StringBuilder, since=1.5]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=compareTo, returnType=int, arguments=[ApiArgument [name=another, type=java.lang.StringBuilder]], modifiers=[PUBLIC], since=11]
     ApiMethod [name=chars, returnType=java.util.stream.IntStream, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=codePoints, returnType=java.util.stream.IntStream, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.lang.System, since=1.0]
   Fields:
   Constructors:
@@ -1068,11 +1153,17 @@ ApiClass [name=java.lang.annotation.ElementType, since=1.5]
     ApiField [name=MODULE, type=java.lang.annotation.ElementType modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
   Methods:
+ApiClass [name=java.lang.instrument.ClassFileTransformer, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=transform, returnType=byte[], arguments=[ApiArgument [name=module, type=java.lang.Module], ApiArgument [name=loader, type=java.lang.ClassLoader], ApiArgument [name=className, type=java.lang.String], ApiArgument [name=classBeingRedefined, type=java.lang.Class<?>], ApiArgument [name=protectionDomain, type=java.security.ProtectionDomain], ApiArgument [name=classfileBuffer, type=byte[]]], modifiers=[], since=9]
 ApiClass [name=java.lang.instrument.Instrumentation, since=1.5]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=redefineModule, returnType=void, arguments=[ApiArgument [name=module, type=java.lang.Module], ApiArgument [name=extraReads, type=java.util.Set<java.lang.Module>], ApiArgument [name=extraExports, type=java.util.Map<java.lang.String,java.util.Set<java.lang.Module>>], ApiArgument [name=extraOpens, type=java.util.Map<java.lang.String,java.util.Set<java.lang.Module>>], ApiArgument [name=extraUses, type=java.util.Set<java.lang.Class<?>>], ApiArgument [name=extraProvides, type=java.util.Map<java.lang.Class<?>,java.util.List<java.lang.Class<?>>>]], modifiers=[], since=9]
+    ApiMethod [name=isModifiableModule, returnType=boolean, arguments=[ApiArgument [name=module, type=java.lang.Module]], modifiers=[], since=9]
 ApiClass [name=java.lang.instrument.UnmodifiableModuleException, since=9]
   Fields:
   Constructors:
@@ -1104,7 +1195,7 @@ ApiClass [name=java.lang.invoke.MethodHandles, since=1.7]
   Fields:
   Constructors:
   Methods:
-    ApiMethod [name=privateLookupIn, returnType=java.lang.invoke.MethodHandles.Lookup, arguments=[ApiArgument [name=targetClass, type=java.lang.Class<?>], ApiArgument [name=lookup, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=privateLookupIn, returnType=java.lang.invoke.MethodHandles.Lookup, arguments=[ApiArgument [name=targetClass, type=java.lang.Class<?>], ApiArgument [name=caller, type=java.lang.invoke.MethodHandles.Lookup]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=arrayConstructor, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=arrayClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=arrayLength, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=arrayClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=arrayElementVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=arrayClass, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=9]
@@ -1122,7 +1213,8 @@ ApiClass [name=java.lang.invoke.MethodHandles, since=1.7]
     ApiMethod [name=countedLoop, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=iterations, type=java.lang.invoke.MethodHandle], ApiArgument [name=init, type=java.lang.invoke.MethodHandle], ApiArgument [name=body, type=java.lang.invoke.MethodHandle]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=countedLoop, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=start, type=java.lang.invoke.MethodHandle], ApiArgument [name=end, type=java.lang.invoke.MethodHandle], ApiArgument [name=init, type=java.lang.invoke.MethodHandle], ApiArgument [name=body, type=java.lang.invoke.MethodHandle]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=iteratedLoop, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=iterator, type=java.lang.invoke.MethodHandle], ApiArgument [name=init, type=java.lang.invoke.MethodHandle], ApiArgument [name=body, type=java.lang.invoke.MethodHandle]], modifiers=[PUBLIC, STATIC], since=9]
-ApiClass [name=java.lang.invoke.MethodHandles.Lookup, since=UNDEFINED]
+    ApiMethod [name=tryFinally, returnType=java.lang.invoke.MethodHandle, arguments=[ApiArgument [name=target, type=java.lang.invoke.MethodHandle], ApiArgument [name=cleanup, type=java.lang.invoke.MethodHandle]], modifiers=[PUBLIC, STATIC], since=9]
+ApiClass [name=java.lang.invoke.MethodHandles.Lookup, since=1.7]
   Fields:
     ApiField [name=MODULE, type=int modifiers=[PUBLIC, STATIC, FINAL], since=9]
     ApiField [name=UNCONDITIONAL, type=int modifiers=[PUBLIC, STATIC, FINAL], since=9]
@@ -1135,6 +1227,7 @@ ApiClass [name=java.lang.invoke.MethodHandles.Lookup, since=UNDEFINED]
     ApiMethod [name=findVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=recv, type=java.lang.Class<?>], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=findStaticVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=decl, type=java.lang.Class<?>], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=type, type=java.lang.Class<?>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=unreflectVarHandle, returnType=java.lang.invoke.VarHandle, arguments=[ApiArgument [name=f, type=java.lang.reflect.Field]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=hasPrivateAccess, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.lang.invoke.MethodType, since=1.7]
   Fields:
   Constructors:
@@ -1198,6 +1291,45 @@ ApiClass [name=java.lang.invoke.VarHandle, since=9]
     ApiMethod [name=releaseFence, returnType=void, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
     ApiMethod [name=loadLoadFence, returnType=void, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
     ApiMethod [name=storeStoreFence, returnType=void, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.lang.invoke.VarHandle.AccessMode, since=9]
+  Fields:
+    ApiField [name=GET, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SET, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_VOLATILE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SET_VOLATILE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SET_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_OPAQUE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SET_OPAQUE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPARE_AND_SET, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPARE_AND_EXCHANGE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPARE_AND_EXCHANGE_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPARE_AND_EXCHANGE_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WEAK_COMPARE_AND_SET_PLAIN, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WEAK_COMPARE_AND_SET, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WEAK_COMPARE_AND_SET_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WEAK_COMPARE_AND_SET_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_SET, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_SET_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_SET_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_ADD, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_ADD_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_ADD_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_OR, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_OR_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_OR_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_AND, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_AND_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_AND_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_XOR, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_XOR_RELEASE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GET_AND_BITWISE_XOR_ACQUIRE, type=java.lang.invoke.VarHandle.AccessMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=java.lang.invoke.VarHandle.AccessMode[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=java.lang.invoke.VarHandle.AccessMode, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=methodName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=valueFromMethodName, returnType=java.lang.invoke.VarHandle.AccessMode, arguments=[ApiArgument [name=methodName, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=java.lang.management.RuntimeMXBean, since=1.5]
   Fields:
   Constructors:
@@ -1214,6 +1346,7 @@ ApiClass [name=java.lang.management.ThreadMXBean, since=1.5]
   Constructors:
   Methods:
     ApiMethod [name=getThreadInfo, returnType=java.lang.management.ThreadInfo[], arguments=[ApiArgument [name=ids, type=long[]], ApiArgument [name=lockedMonitors, type=boolean], ApiArgument [name=lockedSynchronizers, type=boolean], ApiArgument [name=maxDepth, type=int]], modifiers=[], since=10]
+    ApiMethod [name=dumpAllThreads, returnType=java.lang.management.ThreadInfo[], arguments=[ApiArgument [name=lockedMonitors, type=boolean], ApiArgument [name=lockedSynchronizers, type=boolean], ApiArgument [name=maxDepth, type=int]], modifiers=[], since=10]
 ApiClass [name=java.lang.module.Configuration, since=9]
   Fields:
   Constructors:
@@ -1451,13 +1584,34 @@ ApiClass [name=java.lang.ref.Reference, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=clone, returnType=java.lang.Object, arguments=[], modifiers=[PROTECTED], since=11]
+    ApiMethod [name=reachabilityFence, returnType=void, arguments=[ApiArgument [name=ref, type=java.lang.Object]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.lang.reflect.AccessibleObject, since=1.2]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=trySetAccessible, returnType=boolean, arguments=[], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=canAccess, returnType=boolean, arguments=[ApiArgument [name=obj, type=java.lang.Object]], modifiers=[PUBLIC, FINAL], since=9]
+ApiClass [name=java.lang.reflect.AnnotatedArrayType, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getAnnotatedOwnerType, returnType=java.lang.reflect.AnnotatedType, arguments=[], modifiers=[], since=9]
+ApiClass [name=java.lang.reflect.AnnotatedParameterizedType, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getAnnotatedOwnerType, returnType=java.lang.reflect.AnnotatedType, arguments=[], modifiers=[], since=9]
 ApiClass [name=java.lang.reflect.AnnotatedType, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getAnnotatedOwnerType, returnType=java.lang.reflect.AnnotatedType, arguments=[], modifiers=[], since=9]
+ApiClass [name=java.lang.reflect.AnnotatedTypeVariable, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getAnnotatedOwnerType, returnType=java.lang.reflect.AnnotatedType, arguments=[], modifiers=[], since=9]
+ApiClass [name=java.lang.reflect.AnnotatedWildcardType, since=1.8]
   Fields:
   Constructors:
   Methods:
@@ -1495,12 +1649,14 @@ ApiClass [name=java.net.DatagramSocket, since=1.0]
   Methods:
     ApiMethod [name=setOption, returnType=java.net.DatagramSocket, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>], ApiArgument [name=value, type=T]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getOption, returnType=T, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=supportedOptions, returnType=java.util.Set<java.net.SocketOption<?>>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.net.DatagramSocketImpl, since=1.1]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=setOption, returnType=void, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>], ApiArgument [name=value, type=T]], modifiers=[PROTECTED], since=9]
     ApiMethod [name=getOption, returnType=T, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>]], modifiers=[PROTECTED], since=9]
+    ApiMethod [name=supportedOptions, returnType=java.util.Set<java.net.SocketOption<?>>, arguments=[], modifiers=[PROTECTED], since=9]
 ApiClass [name=java.net.HttpURLConnection, since=1.1]
   Fields:
   Constructors:
@@ -1513,24 +1669,32 @@ ApiClass [name=java.net.NetworkInterface, since=1.4]
     ApiMethod [name=inetAddresses, returnType=java.util.stream.Stream<java.net.InetAddress>, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=subInterfaces, returnType=java.util.stream.Stream<java.net.NetworkInterface>, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=networkInterfaces, returnType=java.util.stream.Stream<java.net.NetworkInterface>, arguments=[], modifiers=[PUBLIC, STATIC], since=9]
+ApiClass [name=java.net.ProxySelector, since=1.5]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=of, returnType=java.net.ProxySelector, arguments=[ApiArgument [name=proxyAddress, type=java.net.InetSocketAddress]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.net.ServerSocket, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=setOption, returnType=java.net.ServerSocket, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>], ApiArgument [name=value, type=T]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getOption, returnType=T, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=supportedOptions, returnType=java.util.Set<java.net.SocketOption<?>>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.net.Socket, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=setOption, returnType=java.net.Socket, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>], ApiArgument [name=value, type=T]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getOption, returnType=T, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=supportedOptions, returnType=java.util.Set<java.net.SocketOption<?>>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.net.SocketImpl, since=1.0]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=setOption, returnType=void, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>], ApiArgument [name=value, type=T]], modifiers=[PROTECTED], since=9]
     ApiMethod [name=getOption, returnType=T, arguments=[ApiArgument [name=name, type=java.net.SocketOption<T>]], modifiers=[PROTECTED], since=9]
+    ApiMethod [name=supportedOptions, returnType=java.util.Set<java.net.SocketOption<?>>, arguments=[], modifiers=[PROTECTED], since=9]
 ApiClass [name=java.net.SocketOptions, since=1.1]
   Fields:
     ApiField [name=SO_REUSEPORT, type=int modifiers=[FINAL], since=9]
@@ -1553,6 +1717,16 @@ ApiClass [name=java.net.URLConnection, since=1.0]
   Methods:
     ApiMethod [name=setDefaultUseCaches, returnType=void, arguments=[ApiArgument [name=protocol, type=java.lang.String], ApiArgument [name=defaultVal, type=boolean]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=getDefaultUseCaches, returnType=boolean, arguments=[ApiArgument [name=protocol, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=9]
+ApiClass [name=java.net.URLDecoder, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=decode, returnType=java.lang.String, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=10]
+ApiClass [name=java.net.URLEncoder, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=encode, returnType=java.lang.String, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=10]
 ApiClass [name=java.net.http.HttpClient, since=11]
   Fields:
   Constructors:
@@ -1745,6 +1919,13 @@ ApiClass [name=java.net.http.HttpResponse.PushPromiseHandler, since=11]
   Methods:
     ApiMethod [name=applyPushPromise, returnType=void, arguments=[ApiArgument [name=initiatingRequest, type=java.net.http.HttpRequest], ApiArgument [name=pushPromiseRequest, type=java.net.http.HttpRequest], ApiArgument [name=acceptor, type=java.util.function.Function<java.net.http.HttpResponse.BodyHandler<T>,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=of, returnType=java.net.http.HttpResponse.PushPromiseHandler<T>, arguments=[ApiArgument [name=pushPromiseHandler, type=java.util.function.Function<java.net.http.HttpRequest,java.net.http.HttpResponse.BodyHandler<T>>], ApiArgument [name=pushPromisesMap, type=java.util.concurrent.ConcurrentMap<java.net.http.HttpRequest,java.util.concurrent.CompletableFuture<java.net.http.HttpResponse<T>>>]], modifiers=[STATIC], since=UNDEFINED]
+ApiClass [name=java.net.http.HttpResponse.ResponseInfo, since=11]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=statusCode, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=headers, returnType=java.net.http.HttpHeaders, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=version, returnType=java.net.http.HttpClient.Version, arguments=[], modifiers=[], since=UNDEFINED]
 ApiClass [name=java.net.http.HttpTimeoutException, since=11]
   Fields:
   Constructors:
@@ -1801,6 +1982,7 @@ ApiClass [name=java.nio.Buffer, since=1.4]
   Constructors:
   Methods:
     ApiMethod [name=slice, returnType=java.nio.Buffer, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=duplicate, returnType=java.nio.Buffer, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.nio.ByteBuffer, since=1.4]
   Fields:
   Constructors:
@@ -1925,11 +2107,17 @@ ApiClass [name=java.security.KeyStore, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=getInstance, returnType=java.security.KeyStore, arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=password, type=char[]]], modifiers=[PUBLIC, STATIC, FINAL], since=9]
+    ApiMethod [name=getInstance, returnType=java.security.KeyStore, arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=param, type=java.security.KeyStore.LoadStoreParameter]], modifiers=[PUBLIC, STATIC, FINAL], since=9]
 ApiClass [name=java.security.KeyStore.Builder, since=1.5]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=newInstance, returnType=java.security.KeyStore.Builder, arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=protection, type=java.security.KeyStore.ProtectionParameter]], modifiers=[PUBLIC, STATIC], since=9]
+ApiClass [name=java.security.KeyStoreSpi, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=engineProbe, returnType=boolean, arguments=[ApiArgument [name=stream, type=java.io.InputStream]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.security.PermissionCollection, since=1.2]
   Fields:
   Constructors:
@@ -1963,6 +2151,7 @@ ApiClass [name=java.security.SecureRandom, since=1.1]
     ApiMethod [name=getParameters, returnType=java.security.SecureRandomParameters, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=nextBytes, returnType=void, arguments=[ApiArgument [name=bytes, type=byte[]], ApiArgument [name=params, type=java.security.SecureRandomParameters]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=reseed, returnType=void, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=reseed, returnType=void, arguments=[ApiArgument [name=params, type=java.security.SecureRandomParameters]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.security.SecureRandomSpi, since=1.2]
   Fields:
   Constructors:
@@ -1981,6 +2170,11 @@ ApiClass [name=java.security.cert.URICertStoreParameters, since=9]
     ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=p, type=java.lang.Object]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=java.security.interfaces.RSAKey, since=1.3]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[], since=11]
 ApiClass [name=java.security.interfaces.XECKey, since=11]
   Fields:
   Constructors:
@@ -2025,6 +2219,7 @@ ApiClass [name=java.security.spec.RSAKeyGenParameterSpec, since=1.3]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=keysize, type=int], ApiArgument [name=publicExponent, type=java.math.BigInteger], ApiArgument [name=keyParams, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getKeyParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.RSAMultiPrimePrivateCrtKeySpec, since=1.4]
   Fields:
   Constructors:
@@ -2040,11 +2235,13 @@ ApiClass [name=java.security.spec.RSAPrivateKeySpec, since=1.2]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=modulus, type=java.math.BigInteger], ApiArgument [name=privateExponent, type=java.math.BigInteger], ApiArgument [name=params, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.RSAPublicKeySpec, since=1.2]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=modulus, type=java.math.BigInteger], ApiArgument [name=publicExponent, type=java.math.BigInteger], ApiArgument [name=params, type=java.security.spec.AlgorithmParameterSpec]], modifiers=[PUBLIC], since=11]
   Methods:
+    ApiMethod [name=getParams, returnType=java.security.spec.AlgorithmParameterSpec, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=java.security.spec.X509EncodedKeySpec, since=1.2]
   Fields:
   Constructors:
@@ -2073,6 +2270,7 @@ ApiClass [name=java.sql.Connection, since=1.1]
     ApiMethod [name=setShardingKeyIfValid, returnType=boolean, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey], ApiArgument [name=superShardingKey, type=java.sql.ShardingKey], ApiArgument [name=timeout, type=int]], modifiers=[], since=9]
     ApiMethod [name=setShardingKeyIfValid, returnType=boolean, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey], ApiArgument [name=timeout, type=int]], modifiers=[], since=9]
     ApiMethod [name=setShardingKey, returnType=void, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey], ApiArgument [name=superShardingKey, type=java.sql.ShardingKey]], modifiers=[], since=9]
+    ApiMethod [name=setShardingKey, returnType=void, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey]], modifiers=[], since=9]
 ApiClass [name=java.sql.ConnectionBuilder, since=9]
   Fields:
   Constructors:
@@ -2082,6 +2280,11 @@ ApiClass [name=java.sql.ConnectionBuilder, since=9]
     ApiMethod [name=shardingKey, returnType=java.sql.ConnectionBuilder, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=superShardingKey, returnType=java.sql.ConnectionBuilder, arguments=[ApiArgument [name=superShardingKey, type=java.sql.ShardingKey]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=build, returnType=java.sql.Connection, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.sql.DatabaseMetaData, since=1.1]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=supportsSharding, returnType=boolean, arguments=[], modifiers=[], since=9]
 ApiClass [name=java.sql.DriverManager, since=1.1]
   Fields:
   Constructors:
@@ -2100,6 +2303,7 @@ ApiClass [name=java.sql.Statement, since=1.1]
     ApiMethod [name=enquoteLiteral, returnType=java.lang.String, arguments=[ApiArgument [name=val, type=java.lang.String]], modifiers=[], since=9]
     ApiMethod [name=enquoteIdentifier, returnType=java.lang.String, arguments=[ApiArgument [name=identifier, type=java.lang.String], ApiArgument [name=alwaysQuote, type=boolean]], modifiers=[], since=9]
     ApiMethod [name=isSimpleIdentifier, returnType=boolean, arguments=[ApiArgument [name=identifier, type=java.lang.String]], modifiers=[], since=9]
+    ApiMethod [name=enquoteNCharLiteral, returnType=java.lang.String, arguments=[ApiArgument [name=val, type=java.lang.String]], modifiers=[], since=9]
 ApiClass [name=java.time.Clock, since=1.8]
   Fields:
   Constructors:
@@ -2221,6 +2425,7 @@ ApiClass [name=java.util.Arrays, since=1.2]
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=a, type=java.lang.Object[]], ApiArgument [name=b, type=java.lang.Object[]]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=a, type=java.lang.Object[]], ApiArgument [name=aFromIndex, type=int], ApiArgument [name=aToIndex, type=int], ApiArgument [name=b, type=java.lang.Object[]], ApiArgument [name=bFromIndex, type=int], ApiArgument [name=bToIndex, type=int]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=a, type=T[]], ApiArgument [name=b, type=T[]], ApiArgument [name=cmp, type=java.util.Comparator<? super T>]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=mismatch, returnType=int, arguments=[ApiArgument [name=a, type=T[]], ApiArgument [name=aFromIndex, type=int], ApiArgument [name=aToIndex, type=int], ApiArgument [name=b, type=T[]], ApiArgument [name=bFromIndex, type=int], ApiArgument [name=bToIndex, type=int], ApiArgument [name=cmp, type=java.util.Comparator<? super T>]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.util.Collection, since=1.2]
   Fields:
   Constructors:
@@ -2236,6 +2441,11 @@ ApiClass [name=java.util.DoubleSummaryStatistics, since=1.8]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=count, type=long], ApiArgument [name=min, type=double], ApiArgument [name=max, type=double], ApiArgument [name=sum, type=double]], modifiers=[PUBLIC], since=10]
   Methods:
+ApiClass [name=java.util.Enumeration, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=asIterator, returnType=java.util.Iterator<E>, arguments=[], modifiers=[], since=9]
 ApiClass [name=java.util.IntSummaryStatistics, since=1.8]
   Fields:
   Constructors:
@@ -2257,6 +2467,7 @@ ApiClass [name=java.util.List, since=1.2]
     ApiMethod [name=of, returnType=java.util.List<E>, arguments=[ApiArgument [name=e1, type=E], ApiArgument [name=e2, type=E], ApiArgument [name=e3, type=E], ApiArgument [name=e4, type=E], ApiArgument [name=e5, type=E], ApiArgument [name=e6, type=E], ApiArgument [name=e7, type=E], ApiArgument [name=e8, type=E], ApiArgument [name=e9, type=E]], modifiers=[STATIC], since=9]
     ApiMethod [name=of, returnType=java.util.List<E>, arguments=[ApiArgument [name=e1, type=E], ApiArgument [name=e2, type=E], ApiArgument [name=e3, type=E], ApiArgument [name=e4, type=E], ApiArgument [name=e5, type=E], ApiArgument [name=e6, type=E], ApiArgument [name=e7, type=E], ApiArgument [name=e8, type=E], ApiArgument [name=e9, type=E], ApiArgument [name=e10, type=E]], modifiers=[STATIC], since=9]
     ApiMethod [name=of, returnType=java.util.List<E>, arguments=[ApiArgument [name=elements, type=E...]], modifiers=[], since=9]
+    ApiMethod [name=copyOf, returnType=java.util.List<E>, arguments=[ApiArgument [name=coll, type=java.util.Collection<? extends E>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.Locale, since=1.1]
   Fields:
   Constructors:
@@ -2293,6 +2504,7 @@ ApiClass [name=java.util.Map, since=1.2]
     ApiMethod [name=of, returnType=java.util.Map<K,V>, arguments=[ApiArgument [name=k1, type=K], ApiArgument [name=v1, type=V], ApiArgument [name=k2, type=K], ApiArgument [name=v2, type=V], ApiArgument [name=k3, type=K], ApiArgument [name=v3, type=V], ApiArgument [name=k4, type=K], ApiArgument [name=v4, type=V], ApiArgument [name=k5, type=K], ApiArgument [name=v5, type=V], ApiArgument [name=k6, type=K], ApiArgument [name=v6, type=V], ApiArgument [name=k7, type=K], ApiArgument [name=v7, type=V], ApiArgument [name=k8, type=K], ApiArgument [name=v8, type=V], ApiArgument [name=k9, type=K], ApiArgument [name=v9, type=V], ApiArgument [name=k10, type=K], ApiArgument [name=v10, type=V]], modifiers=[STATIC], since=9]
     ApiMethod [name=ofEntries, returnType=java.util.Map<K,V>, arguments=[ApiArgument [name=entries, type=java.util.Map.Entry<? extends K,? extends V>...]], modifiers=[], since=9]
     ApiMethod [name=entry, returnType=java.util.Map.Entry<K,V>, arguments=[ApiArgument [name=k, type=K], ApiArgument [name=v, type=V]], modifiers=[STATIC], since=9]
+    ApiMethod [name=copyOf, returnType=java.util.Map<K,V>, arguments=[ApiArgument [name=map, type=java.util.Map<? extends K,? extends V>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.Objects, since=1.7]
   Fields:
   Constructors:
@@ -2301,6 +2513,7 @@ ApiClass [name=java.util.Objects, since=1.7]
     ApiMethod [name=requireNonNullElseGet, returnType=T, arguments=[ApiArgument [name=obj, type=T], ApiArgument [name=supplier, type=java.util.function.Supplier<? extends T>]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=checkIndex, returnType=int, arguments=[ApiArgument [name=index, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=checkFromToIndex, returnType=int, arguments=[ApiArgument [name=fromIndex, type=int], ApiArgument [name=toIndex, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=checkFromIndexSize, returnType=int, arguments=[ApiArgument [name=fromIndex, type=int], ApiArgument [name=size, type=int], ApiArgument [name=length, type=int]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.util.Optional, since=1.8]
   Fields:
   Constructors:
@@ -2355,6 +2568,7 @@ ApiClass [name=java.util.Scanner, since=1.5]
   Methods:
     ApiMethod [name=tokens, returnType=java.util.stream.Stream<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=findAll, returnType=java.util.stream.Stream<java.util.regex.MatchResult>, arguments=[ApiArgument [name=pattern, type=java.util.regex.Pattern]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=findAll, returnType=java.util.stream.Stream<java.util.regex.MatchResult>, arguments=[ApiArgument [name=patString, type=java.lang.String]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.util.ServiceLoader, since=1.6]
   Fields:
   Constructors:
@@ -2384,6 +2598,7 @@ ApiClass [name=java.util.Set, since=1.2]
     ApiMethod [name=of, returnType=java.util.Set<E>, arguments=[ApiArgument [name=e1, type=E], ApiArgument [name=e2, type=E], ApiArgument [name=e3, type=E], ApiArgument [name=e4, type=E], ApiArgument [name=e5, type=E], ApiArgument [name=e6, type=E], ApiArgument [name=e7, type=E], ApiArgument [name=e8, type=E], ApiArgument [name=e9, type=E]], modifiers=[STATIC], since=9]
     ApiMethod [name=of, returnType=java.util.Set<E>, arguments=[ApiArgument [name=e1, type=E], ApiArgument [name=e2, type=E], ApiArgument [name=e3, type=E], ApiArgument [name=e4, type=E], ApiArgument [name=e5, type=E], ApiArgument [name=e6, type=E], ApiArgument [name=e7, type=E], ApiArgument [name=e8, type=E], ApiArgument [name=e9, type=E], ApiArgument [name=e10, type=E]], modifiers=[STATIC], since=9]
     ApiMethod [name=of, returnType=java.util.Set<E>, arguments=[ApiArgument [name=elements, type=E...]], modifiers=[], since=9]
+    ApiMethod [name=copyOf, returnType=java.util.Set<E>, arguments=[ApiArgument [name=coll, type=java.util.Collection<? extends E>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.SplittableRandom, since=1.8]
   Fields:
   Constructors:
@@ -2405,11 +2620,31 @@ ApiClass [name=java.util.concurrent.CompletableFuture, since=1.8]
     ApiMethod [name=delayedExecutor, returnType=java.util.concurrent.Executor, arguments=[ApiArgument [name=delay, type=long], ApiArgument [name=unit, type=java.util.concurrent.TimeUnit]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=completedStage, returnType=java.util.concurrent.CompletionStage<U>, arguments=[ApiArgument [name=value, type=U]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=failedFuture, returnType=java.util.concurrent.CompletableFuture<U>, arguments=[ApiArgument [name=ex, type=java.lang.Throwable]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=failedStage, returnType=java.util.concurrent.CompletionStage<U>, arguments=[ApiArgument [name=ex, type=java.lang.Throwable]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.util.concurrent.Flow, since=9]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=defaultBufferSize, returnType=int, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=java.util.concurrent.Flow.Publisher, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=subscribe, returnType=void, arguments=[ApiArgument [name=subscriber, type=java.util.concurrent.Flow.Subscriber<? super T>]], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.util.concurrent.Flow.Subscriber, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=onSubscribe, returnType=void, arguments=[ApiArgument [name=subscription, type=java.util.concurrent.Flow.Subscription]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onNext, returnType=void, arguments=[ApiArgument [name=item, type=T]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onError, returnType=void, arguments=[ApiArgument [name=throwable, type=java.lang.Throwable]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=onComplete, returnType=void, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=java.util.concurrent.Flow.Subscription, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=request, returnType=void, arguments=[ApiArgument [name=n, type=long]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=cancel, returnType=void, arguments=[], modifiers=[], since=UNDEFINED]
 ApiClass [name=java.util.concurrent.ForkJoinPool, since=1.7]
   Fields:
   Constructors:
@@ -2450,6 +2685,7 @@ ApiClass [name=java.util.concurrent.TimeUnit, since=1.5]
   Methods:
     ApiMethod [name=convert, returnType=long, arguments=[ApiArgument [name=duration, type=java.time.Duration]], modifiers=[PUBLIC], since=11]
     ApiMethod [name=toChronoUnit, returnType=java.time.temporal.ChronoUnit, arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=of, returnType=java.util.concurrent.TimeUnit, arguments=[ApiArgument [name=chronoUnit, type=java.time.temporal.ChronoUnit]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicBoolean, since=1.5]
   Fields:
   Constructors:
@@ -2466,6 +2702,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicBoolean, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=boolean], ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=boolean], ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=boolean], ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=boolean], ApiArgument [name=newValue, type=boolean]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicInteger, since=1.5]
   Fields:
   Constructors:
@@ -2482,6 +2719,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicInteger, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=int, arguments=[ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicIntegerArray, since=1.5]
   Fields:
   Constructors:
@@ -2498,6 +2736,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicIntegerArray, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=int, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=int], ApiArgument [name=newValue, type=int]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicLong, since=1.5]
   Fields:
   Constructors:
@@ -2514,6 +2753,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicLong, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=long, arguments=[ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicLongArray, since=1.5]
   Fields:
   Constructors:
@@ -2530,6 +2770,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicLongArray, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=long, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=long], ApiArgument [name=newValue, type=long]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicReference, since=1.5]
   Fields:
   Constructors:
@@ -2546,6 +2787,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicReference, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=V, arguments=[ApiArgument [name=expectedValue, type=V], ApiArgument [name=newValue, type=V]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=V], ApiArgument [name=newValue, type=V]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=V], ApiArgument [name=newValue, type=V]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=expectedValue, type=V], ApiArgument [name=newValue, type=V]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.atomic.AtomicReferenceArray, since=1.5]
   Fields:
   Constructors:
@@ -2562,6 +2804,7 @@ ApiClass [name=java.util.concurrent.atomic.AtomicReferenceArray, since=1.5]
     ApiMethod [name=compareAndExchangeRelease, returnType=E, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=E], ApiArgument [name=newValue, type=E]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetVolatile, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=E], ApiArgument [name=newValue, type=E]], modifiers=[PUBLIC, FINAL], since=9]
     ApiMethod [name=weakCompareAndSetAcquire, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=E], ApiArgument [name=newValue, type=E]], modifiers=[PUBLIC, FINAL], since=9]
+    ApiMethod [name=weakCompareAndSetRelease, returnType=boolean, arguments=[ApiArgument [name=i, type=int], ApiArgument [name=expectedValue, type=E], ApiArgument [name=newValue, type=E]], modifiers=[PUBLIC, FINAL], since=9]
 ApiClass [name=java.util.concurrent.locks.StampedLock, since=1.8]
   Fields:
   Constructors:
@@ -2570,11 +2813,21 @@ ApiClass [name=java.util.concurrent.locks.StampedLock, since=1.8]
     ApiMethod [name=isReadLockStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
     ApiMethod [name=isLockStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
     ApiMethod [name=isOptimisticReadStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
-ApiClass [name=java.util.jar.Attributes.Name, since=UNDEFINED]
+ApiClass [name=java.util.function.Predicate, since=1.8]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=not, returnType=java.util.function.Predicate<T>, arguments=[ApiArgument [name=target, type=java.util.function.Predicate<? super T>]], modifiers=[STATIC], since=11]
+ApiClass [name=java.util.jar.Attributes.Name, since=1.2]
   Fields:
     ApiField [name=MULTI_RELEASE, type=java.util.jar.Attributes.Name modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
   Methods:
+ApiClass [name=java.util.jar.JarEntry, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getRealName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.util.jar.JarFile, since=1.2]
   Fields:
   Constructors:
@@ -2597,6 +2850,7 @@ ApiClass [name=java.util.logging.LogManager, since=1.4]
     ApiMethod [name=updateConfiguration, returnType=void, arguments=[ApiArgument [name=mapper, type=java.util.function.Function<java.lang.String,java.util.function.BiFunction<java.lang.String,java.lang.String,java.lang.String>>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=updateConfiguration, returnType=void, arguments=[ApiArgument [name=ins, type=java.io.InputStream], ApiArgument [name=mapper, type=java.util.function.Function<java.lang.String,java.util.function.BiFunction<java.lang.String,java.lang.String,java.lang.String>>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=addConfigurationListener, returnType=java.util.logging.LogManager, arguments=[ApiArgument [name=listener, type=java.lang.Runnable]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=removeConfigurationListener, returnType=void, arguments=[ApiArgument [name=listener, type=java.lang.Runnable]], modifiers=[PUBLIC], since=9]
 ApiClass [name=java.util.logging.LogRecord, since=1.4]
   Fields:
   Constructors:
@@ -2636,6 +2890,7 @@ ApiClass [name=java.util.spi.LocaleNameProvider, since=1.6]
   Constructors:
   Methods:
     ApiMethod [name=getDisplayUnicodeExtensionKey, returnType=java.lang.String, arguments=[ApiArgument [name=key, type=java.lang.String], ApiArgument [name=locale, type=java.util.Locale]], modifiers=[PUBLIC], since=10]
+    ApiMethod [name=getDisplayUnicodeExtensionType, returnType=java.lang.String, arguments=[ApiArgument [name=type, type=java.lang.String], ApiArgument [name=key, type=java.lang.String], ApiArgument [name=locale, type=java.util.Locale]], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.util.spi.ResourceBundleProvider, since=9]
   Fields:
   Constructors:
@@ -2743,6 +2998,7 @@ ApiClass [name=javax.annotation.processing.RoundEnvironment, since=1.6]
   Constructors:
   Methods:
     ApiMethod [name=getElementsAnnotatedWithAny, returnType=javax.lang.model.element.Element>, arguments=[ApiArgument [name=annotations, type=javax.lang.model.element.TypeElement...]], modifiers=[], since=9]
+    ApiMethod [name=getElementsAnnotatedWithAny, returnType=javax.lang.model.element.Element>, arguments=[ApiArgument [name=annotations, type=java.util.Set<java.lang.Class<? extends java.lang.annotation.Annotation>>]], modifiers=[], since=9]
 ApiClass [name=javax.crypto.spec.ChaCha20ParameterSpec, since=11]
   Fields:
   Constructors:
@@ -3282,11 +3538,17 @@ ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
   Constructors:
   Methods:
     ApiMethod [name=isName, returnType=boolean, arguments=[ApiArgument [name=name, type=java.lang.CharSequence], ApiArgument [name=version, type=javax.lang.model.SourceVersion]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=isKeyword, returnType=boolean, arguments=[ApiArgument [name=s, type=java.lang.CharSequence], ApiArgument [name=version, type=javax.lang.model.SourceVersion]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=javax.lang.model.element.ElementKind, since=1.6]
   Fields:
     ApiField [name=MODULE, type=javax.lang.model.element.ElementKind modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
   Methods:
+ApiClass [name=javax.lang.model.element.ElementVisitor, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitModule, returnType=R, arguments=[ApiArgument [name=e, type=javax.lang.model.element.ModuleElement], ApiArgument [name=p, type=P]], modifiers=[], since=9]
 ApiClass [name=javax.lang.model.element.ModuleElement, since=9]
   Fields:
   Constructors:
@@ -3375,6 +3637,11 @@ ApiClass [name=javax.lang.model.util.AbstractAnnotationValueVisitor9, since=9]
   Constructors:
     ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
   Methods:
+ApiClass [name=javax.lang.model.util.AbstractElementVisitor6, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitModule, returnType=R, arguments=[ApiArgument [name=e, type=javax.lang.model.element.ModuleElement], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.lang.model.util.AbstractElementVisitor9, since=9]
   Fields:
   Constructors:
@@ -3396,6 +3663,7 @@ ApiClass [name=javax.lang.model.util.ElementFilter, since=1.6]
     ApiMethod [name=opensIn, returnType=java.util.List<javax.lang.model.element.ModuleElement.OpensDirective>, arguments=[ApiArgument [name=directives, type=java.lang.Iterable<? extends javax.lang.model.element.ModuleElement.Directive>]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=providesIn, returnType=java.util.List<javax.lang.model.element.ModuleElement.ProvidesDirective>, arguments=[ApiArgument [name=directives, type=java.lang.Iterable<? extends javax.lang.model.element.ModuleElement.Directive>]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=requiresIn, returnType=java.util.List<javax.lang.model.element.ModuleElement.RequiresDirective>, arguments=[ApiArgument [name=directives, type=java.lang.Iterable<? extends javax.lang.model.element.ModuleElement.Directive>]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=usesIn, returnType=java.util.List<javax.lang.model.element.ModuleElement.UsesDirective>, arguments=[ApiArgument [name=directives, type=java.lang.Iterable<? extends javax.lang.model.element.ModuleElement.Directive>]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=javax.lang.model.util.ElementKindVisitor9, since=9]
   Fields:
   Constructors:
@@ -3424,7 +3692,7 @@ ApiClass [name=javax.lang.model.util.Elements, since=1.6]
     ApiMethod [name=getOrigin, returnType=javax.lang.model.util.Elements.Origin, arguments=[ApiArgument [name=c, type=javax.lang.model.AnnotatedConstruct], ApiArgument [name=a, type=javax.lang.model.element.AnnotationMirror]], modifiers=[], since=9]
     ApiMethod [name=getOrigin, returnType=javax.lang.model.util.Elements.Origin, arguments=[ApiArgument [name=m, type=javax.lang.model.element.ModuleElement], ApiArgument [name=directive, type=javax.lang.model.element.ModuleElement.Directive]], modifiers=[], since=9]
     ApiMethod [name=isBridge, returnType=boolean, arguments=[ApiArgument [name=e, type=javax.lang.model.element.ExecutableElement]], modifiers=[], since=9]
-    ApiMethod [name=getModuleOf, returnType=javax.lang.model.element.ModuleElement, arguments=[ApiArgument [name=type, type=javax.lang.model.element.Element]], modifiers=[], since=9]
+    ApiMethod [name=getModuleOf, returnType=javax.lang.model.element.ModuleElement, arguments=[ApiArgument [name=e, type=javax.lang.model.element.Element]], modifiers=[], since=9]
 ApiClass [name=javax.lang.model.util.Elements.Origin, since=9]
   Fields:
     ApiField [name=EXPLICIT, type=javax.lang.model.util.Elements.Origin modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
@@ -3465,12 +3733,17 @@ ApiClass [name=javax.lang.model.util.TypeKindVisitor9, since=9]
     ApiConstructor [arguments=[], modifiers=[PROTECTED], since=UNDEFINED]
     ApiConstructor [arguments=[ApiArgument [name=defaultValue, type=R]], modifiers=[PROTECTED], since=UNDEFINED]
   Methods:
-    ApiMethod [name=visitNoTypeAsModule, returnType=R, arguments=[ApiArgument [name=t, type=javax.lang.model.type.NoType], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=visitNoTypeAsModule, returnType=R, arguments=[ApiArgument [name=t, type=javax.lang.model.type.NoType], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=10]
 ApiClass [name=javax.management.ConstructorParameters, since=9]
   Fields:
     ApiField [name=value, type=java.lang.String[] modifiers=[], since=UNDEFINED]
   Constructors:
   Methods:
+ApiClass [name=javax.net.ssl.ExtendedSSLSession, since=1.7]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getStatusResponses, returnType=java.util.List<byte[]>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.net.ssl.SSLEngine, since=1.5]
   Fields:
   Constructors:
@@ -3478,6 +3751,7 @@ ApiClass [name=javax.net.ssl.SSLEngine, since=1.5]
     ApiMethod [name=getApplicationProtocol, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getHandshakeApplicationProtocol, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=setHandshakeApplicationProtocolSelector, returnType=void, arguments=[ApiArgument [name=selector, type=java.util.function.BiFunction<javax.net.ssl.SSLEngine,java.util.List<java.lang.String>,java.lang.String>]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=getHandshakeApplicationProtocolSelector, returnType=java.util.function.BiFunction<javax.net.ssl.SSLEngine,java.util.List<java.lang.String>,java.lang.String>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.net.ssl.SSLEngineResult, since=1.5]
   Fields:
   Constructors:
@@ -3498,6 +3772,7 @@ ApiClass [name=javax.net.ssl.SSLParameters, since=1.6]
     ApiMethod [name=setMaximumPacketSize, returnType=void, arguments=[ApiArgument [name=maximumPacketSize, type=int]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getMaximumPacketSize, returnType=int, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getApplicationProtocols, returnType=java.lang.String[], arguments=[], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=setApplicationProtocols, returnType=void, arguments=[ApiArgument [name=protocols, type=java.lang.String[]]], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.net.ssl.SSLSocket, since=1.4]
   Fields:
   Constructors:
@@ -3505,6 +3780,7 @@ ApiClass [name=javax.net.ssl.SSLSocket, since=1.4]
     ApiMethod [name=getApplicationProtocol, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getHandshakeApplicationProtocol, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=setHandshakeApplicationProtocolSelector, returnType=void, arguments=[ApiArgument [name=selector, type=java.util.function.BiFunction<javax.net.ssl.SSLSocket,java.util.List<java.lang.String>,java.lang.String>]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=getHandshakeApplicationProtocolSelector, returnType=java.util.function.BiFunction<javax.net.ssl.SSLSocket,java.util.List<java.lang.String>,java.lang.String>, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.print.attribute.standard.DialogOwner, since=11]
   Fields:
   Constructors:
@@ -3539,6 +3815,21 @@ ApiClass [name=javax.security.auth.kerberos.KerberosCredMessage, since=9]
     ApiMethod [name=toString, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=hashCode, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=equals, returnType=boolean, arguments=[ApiArgument [name=other, type=java.lang.Object]], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=javax.sql.CommonDataSource, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=createShardingKeyBuilder, returnType=java.sql.ShardingKeyBuilder, arguments=[], modifiers=[], since=9]
+ApiClass [name=javax.sql.ConnectionPoolDataSource, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=createPooledConnectionBuilder, returnType=javax.sql.PooledConnectionBuilder, arguments=[], modifiers=[], since=9]
+ApiClass [name=javax.sql.DataSource, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=createConnectionBuilder, returnType=java.sql.ConnectionBuilder, arguments=[], modifiers=[], since=9]
 ApiClass [name=javax.sql.PooledConnectionBuilder, since=9]
   Fields:
   Constructors:
@@ -3557,6 +3848,11 @@ ApiClass [name=javax.sql.XAConnectionBuilder, since=9]
     ApiMethod [name=shardingKey, returnType=javax.sql.XAConnectionBuilder, arguments=[ApiArgument [name=shardingKey, type=java.sql.ShardingKey]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=superShardingKey, returnType=javax.sql.XAConnectionBuilder, arguments=[ApiArgument [name=superShardingKey, type=java.sql.ShardingKey]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=build, returnType=javax.sql.XAConnection, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=javax.sql.XADataSource, since=1.4]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=createXAConnectionBuilder, returnType=javax.sql.XAConnectionBuilder, arguments=[], modifiers=[], since=9]
 ApiClass [name=javax.swing.ButtonModel, since=1.2]
   Fields:
   Constructors:
@@ -3567,6 +3863,7 @@ ApiClass [name=javax.swing.InputVerifier, since=1.3]
   Constructors:
   Methods:
     ApiMethod [name=verifyTarget, returnType=boolean, arguments=[ApiArgument [name=target, type=javax.swing.JComponent]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=shouldYieldFocus, returnType=boolean, arguments=[ApiArgument [name=source, type=javax.swing.JComponent], ApiArgument [name=target, type=javax.swing.JComponent]], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.swing.JComponent, since=1.2]
   Fields:
   Constructors:
@@ -3579,6 +3876,7 @@ ApiClass [name=javax.swing.JList.AccessibleJList.AccessibleJListChild, since=UND
     ApiMethod [name=getAccessibleAction, returnType=javax.accessibility.AccessibleAction, arguments=[], modifiers=[PUBLIC], since=9]
     ApiMethod [name=doAccessibleAction, returnType=boolean, arguments=[ApiArgument [name=i, type=int]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=getAccessibleActionDescription, returnType=java.lang.String, arguments=[ApiArgument [name=i, type=int]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=getAccessibleActionCount, returnType=int, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.swing.JToggleButton, since=1.2]
   Fields:
   Constructors:
@@ -3590,6 +3888,7 @@ ApiClass [name=javax.swing.ListSelectionModel, since=1.2]
   Constructors:
   Methods:
     ApiMethod [name=getSelectedIndices, returnType=int[], arguments=[], modifiers=[], since=11]
+    ApiMethod [name=getSelectedItemsCount, returnType=int, arguments=[], modifiers=[], since=11]
 ApiClass [name=javax.swing.SwingContainer, since=9]
   Fields:
     ApiField [name=value, type=boolean modifiers=[], since=UNDEFINED]
@@ -3614,6 +3913,7 @@ ApiClass [name=javax.swing.plaf.TextUI, since=UNDEFINED]
   Methods:
     ApiMethod [name=modelToView2D, returnType=java.awt.geom.Rectangle2D, arguments=[ApiArgument [name=t, type=javax.swing.text.JTextComponent], ApiArgument [name=pos, type=int], ApiArgument [name=bias, type=javax.swing.text.Position.Bias]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=viewToModel2D, returnType=int, arguments=[ApiArgument [name=t, type=javax.swing.text.JTextComponent], ApiArgument [name=pt, type=java.awt.geom.Point2D], ApiArgument [name=biasReturn, type=javax.swing.text.Position.Bias[]]], modifiers=[PUBLIC], since=9]
+    ApiMethod [name=getToolTipText2D, returnType=java.lang.String, arguments=[ApiArgument [name=t, type=javax.swing.text.JTextComponent], ApiArgument [name=pt, type=java.awt.geom.Point2D]], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.swing.plaf.basic.BasicGraphicsUtils, since=UNDEFINED]
   Fields:
   Constructors:
@@ -3621,6 +3921,7 @@ ApiClass [name=javax.swing.plaf.basic.BasicGraphicsUtils, since=UNDEFINED]
     ApiMethod [name=drawString, returnType=void, arguments=[ApiArgument [name=c, type=javax.swing.JComponent], ApiArgument [name=g, type=java.awt.Graphics2D], ApiArgument [name=string, type=java.lang.String], ApiArgument [name=x, type=float], ApiArgument [name=y, type=float]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=drawStringUnderlineCharAt, returnType=void, arguments=[ApiArgument [name=c, type=javax.swing.JComponent], ApiArgument [name=g, type=java.awt.Graphics2D], ApiArgument [name=string, type=java.lang.String], ApiArgument [name=underlinedIndex, type=int], ApiArgument [name=x, type=float], ApiArgument [name=y, type=float]], modifiers=[PUBLIC, STATIC], since=9]
     ApiMethod [name=getClippedString, returnType=java.lang.String, arguments=[ApiArgument [name=c, type=javax.swing.JComponent], ApiArgument [name=fm, type=java.awt.FontMetrics], ApiArgument [name=string, type=java.lang.String], ApiArgument [name=availTextWidth, type=int]], modifiers=[PUBLIC, STATIC], since=9]
+    ApiMethod [name=getStringWidth, returnType=float, arguments=[ApiArgument [name=c, type=javax.swing.JComponent], ApiArgument [name=fm, type=java.awt.FontMetrics], ApiArgument [name=string, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=9]
 ApiClass [name=javax.swing.text.JTextComponent, since=UNDEFINED]
   Fields:
   Constructors:
@@ -3656,7 +3957,7 @@ ApiClass [name=javax.swing.text.WrappedPlainView, since=UNDEFINED]
     ApiMethod [name=drawLine, returnType=void, arguments=[ApiArgument [name=p0, type=int], ApiArgument [name=p1, type=int], ApiArgument [name=g, type=java.awt.Graphics2D], ApiArgument [name=x, type=float], ApiArgument [name=y, type=float]], modifiers=[PROTECTED], since=9]
     ApiMethod [name=drawUnselectedText, returnType=float, arguments=[ApiArgument [name=g, type=java.awt.Graphics2D], ApiArgument [name=x, type=float], ApiArgument [name=y, type=float], ApiArgument [name=p0, type=int], ApiArgument [name=p1, type=int]], modifiers=[PROTECTED], since=9]
     ApiMethod [name=drawSelectedText, returnType=float, arguments=[ApiArgument [name=g, type=java.awt.Graphics2D], ApiArgument [name=x, type=float], ApiArgument [name=y, type=float], ApiArgument [name=p0, type=int], ApiArgument [name=p1, type=int]], modifiers=[PROTECTED], since=9]
-ApiClass [name=javax.tools.DocumentationTool.DocumentationTask, since=UNDEFINED]
+ApiClass [name=javax.tools.DocumentationTool.DocumentationTask, since=1.8]
   Fields:
   Constructors:
   Methods:
@@ -3670,7 +3971,8 @@ ApiClass [name=javax.tools.ForwardingJavaFileManager, since=1.6]
     ApiMethod [name=getServiceLoader, returnType=java.util.ServiceLoader<S>, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location], ApiArgument [name=service, type=java.lang.Class<S>]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=inferModuleName, returnType=java.lang.String, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location]], modifiers=[PUBLIC], since=9]
     ApiMethod [name=listLocationsForModules, returnType=java.lang.Iterable<java.util.Set<javax.tools.JavaFileManager.Location>>, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location]], modifiers=[PUBLIC], since=9]
-ApiClass [name=javax.tools.JavaCompiler.CompilationTask, since=UNDEFINED]
+    ApiMethod [name=contains, returnType=boolean, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location], ApiArgument [name=fo, type=javax.tools.FileObject]], modifiers=[PUBLIC], since=9]
+ApiClass [name=javax.tools.JavaCompiler.CompilationTask, since=1.6]
   Fields:
   Constructors:
   Methods:
@@ -3684,6 +3986,12 @@ ApiClass [name=javax.tools.JavaFileManager, since=1.6]
     ApiMethod [name=getServiceLoader, returnType=java.util.ServiceLoader<S>, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location], ApiArgument [name=service, type=java.lang.Class<S>]], modifiers=[], since=9]
     ApiMethod [name=inferModuleName, returnType=java.lang.String, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location]], modifiers=[], since=9]
     ApiMethod [name=listLocationsForModules, returnType=java.lang.Iterable<java.util.Set<javax.tools.JavaFileManager.Location>>, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location]], modifiers=[], since=9]
+    ApiMethod [name=contains, returnType=boolean, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location], ApiArgument [name=fo, type=javax.tools.FileObject]], modifiers=[], since=9]
+ApiClass [name=javax.tools.JavaFileManager.Location, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=isModuleOrientedLocation, returnType=boolean, arguments=[], modifiers=[], since=9]
 ApiClass [name=javax.tools.StandardJavaFileManager, since=1.6]
   Fields:
   Constructors:
@@ -3694,6 +4002,7 @@ ApiClass [name=javax.tools.StandardJavaFileManager, since=1.6]
     ApiMethod [name=setLocationForModule, returnType=void, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location], ApiArgument [name=moduleName, type=java.lang.String], ApiArgument [name=paths, type=java.util.Collection<? extends java.nio.file.Path>]], modifiers=[], since=9]
     ApiMethod [name=getLocationAsPaths, returnType=java.nio.file.Path>, arguments=[ApiArgument [name=location, type=javax.tools.JavaFileManager.Location]], modifiers=[], since=9]
     ApiMethod [name=asPath, returnType=java.nio.file.Path, arguments=[ApiArgument [name=file, type=javax.tools.FileObject]], modifiers=[], since=9]
+    ApiMethod [name=setPathFactory, returnType=void, arguments=[ApiArgument [name=f, type=javax.tools.StandardJavaFileManager.PathFactory]], modifiers=[], since=9]
 ApiClass [name=javax.tools.StandardJavaFileManager.PathFactory, since=9]
   Fields:
   Constructors:
@@ -3709,11 +4018,17 @@ ApiClass [name=javax.tools.StandardLocation, since=1.6]
     ApiField [name=PATCH_MODULE_PATH, type=javax.tools.StandardLocation modifiers=[PUBLIC, STATIC, FINAL], since=9]
   Constructors:
   Methods:
+    ApiMethod [name=isModuleOrientedLocation, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=9]
 ApiClass [name=javax.tools.Tool, since=1.6]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=name, returnType=java.lang.String, arguments=[], modifiers=[], since=9]
+ApiClass [name=javax.xml.XMLConstants, since=1.5]
+  Fields:
+    ApiField [name=USE_CATALOG, type=java.lang.String modifiers=[PUBLIC, STATIC, FINAL], since=9]
+  Constructors:
+  Methods:
 ApiClass [name=javax.xml.catalog.Catalog, since=9]
   Fields:
   Constructors:
@@ -3735,6 +4050,24 @@ ApiClass [name=javax.xml.catalog.CatalogFeatures, since=9]
     ApiMethod [name=defaults, returnType=javax.xml.catalog.CatalogFeatures, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
     ApiMethod [name=get, returnType=java.lang.String, arguments=[ApiArgument [name=cf, type=javax.xml.catalog.CatalogFeatures.Feature]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=builder, returnType=javax.xml.catalog.CatalogFeatures.Builder, arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+ApiClass [name=javax.xml.catalog.CatalogFeatures.Builder, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=with, returnType=javax.xml.catalog.CatalogFeatures.Builder, arguments=[ApiArgument [name=feature, type=javax.xml.catalog.CatalogFeatures.Feature], ApiArgument [name=value, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=build, returnType=javax.xml.catalog.CatalogFeatures, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=javax.xml.catalog.CatalogFeatures.Feature, since=9]
+  Fields:
+    ApiField [name=FILES, type=javax.xml.catalog.CatalogFeatures.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PREFER, type=javax.xml.catalog.CatalogFeatures.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DEFER, type=javax.xml.catalog.CatalogFeatures.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RESOLVE, type=javax.xml.catalog.CatalogFeatures.Feature modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=javax.xml.catalog.CatalogFeatures.Feature[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=javax.xml.catalog.CatalogFeatures.Feature, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=getPropertyName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=defaultValue, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=javax.xml.catalog.CatalogManager, since=9]
   Fields:
   Constructors:
@@ -3830,12 +4163,26 @@ ApiClass [name=javax.xml.xpath.XPath, since=1.5]
     ApiMethod [name=evaluateExpression, returnType=T, arguments=[ApiArgument [name=expression, type=java.lang.String], ApiArgument [name=item, type=java.lang.Object], ApiArgument [name=type, type=java.lang.Class<T>]], modifiers=[], since=9]
     ApiMethod [name=evaluateExpression, returnType=javax.xml.xpath.XPathEvaluationResult<?>, arguments=[ApiArgument [name=expression, type=java.lang.String], ApiArgument [name=item, type=java.lang.Object]], modifiers=[], since=9]
     ApiMethod [name=evaluateExpression, returnType=T, arguments=[ApiArgument [name=expression, type=java.lang.String], ApiArgument [name=source, type=org.xml.sax.InputSource], ApiArgument [name=type, type=java.lang.Class<T>]], modifiers=[], since=9]
+    ApiMethod [name=evaluateExpression, returnType=javax.xml.xpath.XPathEvaluationResult<?>, arguments=[ApiArgument [name=expression, type=java.lang.String], ApiArgument [name=source, type=org.xml.sax.InputSource]], modifiers=[], since=9]
 ApiClass [name=javax.xml.xpath.XPathEvaluationResult, since=9]
   Fields:
   Constructors:
   Methods:
     ApiMethod [name=type, returnType=javax.xml.xpath.XPathEvaluationResult.XPathResultType, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=value, returnType=T, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=javax.xml.xpath.XPathEvaluationResult.XPathResultType, since=9]
+  Fields:
+    ApiField [name=ANY, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BOOLEAN, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NUMBER, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STRING, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NODESET, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NODE, type=javax.xml.xpath.XPathEvaluationResult.XPathResultType modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=javax.xml.xpath.XPathEvaluationResult.XPathResultType[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=javax.xml.xpath.XPathEvaluationResult.XPathResultType, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=getQNameType, returnType=javax.xml.namespace.QName, arguments=[ApiArgument [name=clsType, type=java.lang.Class<?>]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=javax.xml.xpath.XPathExpression, since=1.5]
   Fields:
   Constructors:
@@ -3843,6 +4190,7 @@ ApiClass [name=javax.xml.xpath.XPathExpression, since=1.5]
     ApiMethod [name=evaluateExpression, returnType=T, arguments=[ApiArgument [name=item, type=java.lang.Object], ApiArgument [name=type, type=java.lang.Class<T>]], modifiers=[], since=9]
     ApiMethod [name=evaluateExpression, returnType=javax.xml.xpath.XPathEvaluationResult<?>, arguments=[ApiArgument [name=item, type=java.lang.Object]], modifiers=[], since=9]
     ApiMethod [name=evaluateExpression, returnType=T, arguments=[ApiArgument [name=source, type=org.xml.sax.InputSource], ApiArgument [name=type, type=java.lang.Class<T>]], modifiers=[], since=9]
+    ApiMethod [name=evaluateExpression, returnType=javax.xml.xpath.XPathEvaluationResult<?>, arguments=[ApiArgument [name=source, type=org.xml.sax.InputSource]], modifiers=[], since=9]
 ApiClass [name=javax.xml.xpath.XPathFactory, since=1.5]
   Fields:
   Constructors:
@@ -3864,6 +4212,16 @@ ApiClass [name=jdk.javadoc.doclet.Doclet, since=9]
     ApiMethod [name=getSupportedOptions, returnType=jdk.javadoc.doclet.Doclet.Option>, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getSupportedSourceVersion, returnType=javax.lang.model.SourceVersion, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=run, returnType=boolean, arguments=[ApiArgument [name=environment, type=jdk.javadoc.doclet.DocletEnvironment]], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.javadoc.doclet.Doclet.Option, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getArgumentCount, returnType=int, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getDescription, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getKind, returnType=jdk.javadoc.doclet.Doclet.Option.Kind, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getNames, returnType=java.util.List<java.lang.String>, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=getParameters, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=process, returnType=boolean, arguments=[ApiArgument [name=option, type=java.lang.String], ApiArgument [name=arguments, type=java.util.List<java.lang.String>]], modifiers=[], since=UNDEFINED]
 ApiClass [name=jdk.javadoc.doclet.DocletEnvironment, since=9]
   Fields:
   Constructors:
@@ -3879,6 +4237,14 @@ ApiClass [name=jdk.javadoc.doclet.DocletEnvironment, since=9]
     ApiMethod [name=getSourceVersion, returnType=javax.lang.model.SourceVersion, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getModuleMode, returnType=jdk.javadoc.doclet.DocletEnvironment.ModuleMode, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getFileKind, returnType=javax.tools.JavaFileObject.Kind, arguments=[ApiArgument [name=type, type=javax.lang.model.element.TypeElement]], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.javadoc.doclet.DocletEnvironment.ModuleMode, since=9]
+  Fields:
+    ApiField [name=API, type=jdk.javadoc.doclet.DocletEnvironment.ModuleMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ALL, type=jdk.javadoc.doclet.DocletEnvironment.ModuleMode modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.javadoc.doclet.DocletEnvironment.ModuleMode[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.javadoc.doclet.DocletEnvironment.ModuleMode, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=jdk.javadoc.doclet.Reporter, since=9]
   Fields:
   Constructors:
@@ -3895,6 +4261,19 @@ ApiClass [name=jdk.javadoc.doclet.Taglet, since=9]
     ApiMethod [name=getName, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=init, returnType=void, arguments=[ApiArgument [name=env, type=jdk.javadoc.doclet.DocletEnvironment], ApiArgument [name=doclet, type=jdk.javadoc.doclet.Doclet]], modifiers=[], since=UNDEFINED]
     ApiMethod [name=toString, returnType=java.lang.String, arguments=[ApiArgument [name=tags, type=java.util.List<? extends com.sun.source.doctree.DocTree>], ApiArgument [name=element, type=javax.lang.model.element.Element]], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.javadoc.doclet.Taglet.Location, since=9]
+  Fields:
+    ApiField [name=OVERVIEW, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MODULE, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PACKAGE, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TYPE, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONSTRUCTOR, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=METHOD, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FIELD, type=jdk.javadoc.doclet.Taglet.Location modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.javadoc.doclet.Taglet.Location[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.javadoc.doclet.Taglet.Location, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=jdk.jfr.AnnotationElement, since=9]
   Fields:
   Constructors:
@@ -4207,6 +4586,7 @@ ApiClass [name=jdk.jfr.consumer.RecordedObject, since=9]
   Methods:
     ApiMethod [name=hasField, returnType=boolean, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=getValue, returnType=T, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
+    ApiMethod [name=objectAt, returnType=java.lang.Object, arguments=[ApiArgument [name=index, type=int]], modifiers=[PROTECTED], since=UNDEFINED]
     ApiMethod [name=getFields, returnType=java.util.List<jdk.jfr.ValueDescriptor>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=getBoolean, returnType=boolean, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
     ApiMethod [name=getByte, returnType=byte, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, FINAL], since=UNDEFINED]
@@ -4275,7 +4655,7 @@ ApiClass [name=jdk.jshell.EvalException, since=9]
   Constructors:
   Methods:
     ApiMethod [name=getExceptionClassName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
-    ApiMethod [name=getCause, returnType=jdk.jshell.JShellException, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=getCause, returnType=jdk.jshell.JShellException, arguments=[], modifiers=[PUBLIC], since=11]
 ApiClass [name=jdk.jshell.ExpressionSnippet, since=9]
   Fields:
   Constructors:
@@ -4313,6 +4693,21 @@ ApiClass [name=jdk.jshell.JShell, since=9]
     ApiMethod [name=onSnippetEvent, returnType=jdk.jshell.JShell.Subscription, arguments=[ApiArgument [name=listener, type=java.util.function.Consumer<jdk.jshell.SnippetEvent>]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=onShutdown, returnType=jdk.jshell.JShell.Subscription, arguments=[ApiArgument [name=listener, type=java.util.function.Consumer<jdk.jshell.JShell>]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=unsubscribe, returnType=void, arguments=[ApiArgument [name=token, type=jdk.jshell.JShell.Subscription]], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.JShell.Builder, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=in, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=in, type=java.io.InputStream]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=out, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=out, type=java.io.PrintStream]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=err, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=err, type=java.io.PrintStream]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=tempVariableNameGenerator, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=generator, type=java.util.function.Supplier<java.lang.String>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=idGenerator, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=generator, type=java.util.function.BiFunction<jdk.jshell.Snippet,java.lang.Integer,java.lang.String>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=remoteVMOptions, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=options, type=java.lang.String...]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=compilerOptions, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=options, type=java.lang.String...]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=executionEngine, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=executionControlSpec, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=executionEngine, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=executionControlProvider, type=jdk.jshell.spi.ExecutionControlProvider], ApiArgument [name=executionControlParameters, type=java.util.Map<java.lang.String,java.lang.String>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=fileManager, returnType=jdk.jshell.JShell.Builder, arguments=[ApiArgument [name=mapping, type=java.util.function.Function<javax.tools.StandardJavaFileManager,javax.tools.StandardJavaFileManager>]], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=build, returnType=jdk.jshell.JShell, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=jdk.jshell.MethodSnippet, since=9]
   Fields:
   Constructors:
@@ -4332,6 +4727,61 @@ ApiClass [name=jdk.jshell.Snippet, since=9]
     ApiMethod [name=kind, returnType=jdk.jshell.Snippet.Kind, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=subKind, returnType=jdk.jshell.Snippet.SubKind, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=source, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.Snippet.Kind, since=9]
+  Fields:
+    ApiField [name=IMPORT, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TYPE_DECL, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=METHOD, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VAR, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EXPRESSION, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STATEMENT, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ERRONEOUS, type=jdk.jshell.Snippet.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.jshell.Snippet.Kind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.jshell.Snippet.Kind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=isPersistent, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.Snippet.Status, since=9]
+  Fields:
+    ApiField [name=VALID, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RECOVERABLE_DEFINED, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RECOVERABLE_NOT_DEFINED, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DROPPED, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OVERWRITTEN, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=REJECTED, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NONEXISTENT, type=jdk.jshell.Snippet.Status modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.jshell.Snippet.Status[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.jshell.Snippet.Status, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=isActive, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isDefined, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.Snippet.SubKind, since=9]
+  Fields:
+    ApiField [name=SINGLE_TYPE_IMPORT_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TYPE_IMPORT_ON_DEMAND_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SINGLE_STATIC_IMPORT_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STATIC_IMPORT_ON_DEMAND_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CLASS_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=INTERFACE_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ENUM_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ANNOTATION_TYPE_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=METHOD_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VAR_DECLARATION_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VAR_DECLARATION_WITH_INITIALIZER_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TEMP_VAR_EXPRESSION_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VAR_VALUE_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ASSIGNMENT_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OTHER_EXPRESSION_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STATEMENT_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNKNOWN_SUBKIND, type=jdk.jshell.Snippet.SubKind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.jshell.Snippet.SubKind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.jshell.Snippet.SubKind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=isExecutable, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=hasValue, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=kind, returnType=jdk.jshell.Snippet.Kind, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=jdk.jshell.SnippetEvent, since=9]
   Fields:
   Constructors:
@@ -4357,6 +4807,56 @@ ApiClass [name=jdk.jshell.SourceCodeAnalysis, since=9]
     ApiMethod [name=wrappers, returnType=java.util.List<jdk.jshell.SourceCodeAnalysis.SnippetWrapper>, arguments=[ApiArgument [name=input, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=sourceToSnippets, returnType=java.util.List<jdk.jshell.Snippet>, arguments=[ApiArgument [name=input, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
     ApiMethod [name=dependents, returnType=java.util.Collection<jdk.jshell.Snippet>, arguments=[ApiArgument [name=snippet, type=jdk.jshell.Snippet]], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.Completeness, since=9]
+  Fields:
+    ApiField [name=COMPLETE, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPLETE_WITH_SEMI, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DEFINITELY_INCOMPLETE, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONSIDERED_INCOMPLETE, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EMPTY, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNKNOWN, type=jdk.jshell.SourceCodeAnalysis.Completeness modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.jshell.SourceCodeAnalysis.Completeness[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.jshell.SourceCodeAnalysis.Completeness, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=isComplete, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.CompletionInfo, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=completeness, returnType=jdk.jshell.SourceCodeAnalysis.Completeness, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=remaining, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=source, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.Documentation, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=signature, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=javadoc, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.QualifiedNames, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getNames, returnType=java.util.List<java.lang.String>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=getSimpleNameLength, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isUpToDate, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isResolvable, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.SnippetWrapper, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=source, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=wrapped, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=fullClassName, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=kind, returnType=jdk.jshell.Snippet.Kind, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=sourceToWrappedPosition, returnType=int, arguments=[ApiArgument [name=pos, type=int]], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=wrappedToSourcePosition, returnType=int, arguments=[ApiArgument [name=pos, type=int]], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.jshell.SourceCodeAnalysis.Suggestion, since=9]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=continuation, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+    ApiMethod [name=matchesType, returnType=boolean, arguments=[], modifiers=[], since=UNDEFINED]
 ApiClass [name=jdk.jshell.UnresolvedReferenceException, since=9]
   Fields:
   Constructors:
@@ -4479,6 +4979,56 @@ ApiClass [name=jdk.jshell.spi.ExecutionControl, since=9]
     ApiMethod [name=close, returnType=void, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=generate, returnType=jdk.jshell.spi.ExecutionControl, arguments=[ApiArgument [name=env, type=jdk.jshell.spi.ExecutionEnv], ApiArgument [name=name, type=java.lang.String], ApiArgument [name=parameters, type=java.util.Map<java.lang.String,java.lang.String>]], modifiers=[STATIC], since=UNDEFINED]
     ApiMethod [name=generate, returnType=jdk.jshell.spi.ExecutionControl, arguments=[ApiArgument [name=env, type=jdk.jshell.spi.ExecutionEnv], ApiArgument [name=spec, type=java.lang.String]], modifiers=[STATIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.spi.ExecutionControl.ClassBytecodes, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=name, type=java.lang.String], ApiArgument [name=bytecodes, type=byte[]]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=bytecodes, returnType=byte[], arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=name, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.spi.ExecutionControl.ClassInstallException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String], ApiArgument [name=installed, type=boolean[]]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=installed, returnType=boolean[], arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.spi.ExecutionControl.EngineTerminationException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=jdk.jshell.spi.ExecutionControl.ExecutionControlException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=jdk.jshell.spi.ExecutionControl.InternalException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=jdk.jshell.spi.ExecutionControl.NotImplementedException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=jdk.jshell.spi.ExecutionControl.ResolutionException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=id, type=int], ApiArgument [name=stackElements, type=java.lang.StackTraceElement[]]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=id, returnType=int, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+ApiClass [name=jdk.jshell.spi.ExecutionControl.StoppedException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+ApiClass [name=jdk.jshell.spi.ExecutionControl.UserException, since=9]
+  Fields:
+  Constructors:
+    ApiConstructor [arguments=[ApiArgument [name=message, type=java.lang.String], ApiArgument [name=causeExceptionClass, type=java.lang.String], ApiArgument [name=stackElements, type=java.lang.StackTraceElement[]]], modifiers=[PUBLIC], since=UNDEFINED]
+  Methods:
+    ApiMethod [name=causeExceptionClass, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=jdk.jshell.spi.ExecutionControlProvider, since=9]
   Fields:
   Constructors:
@@ -4703,6 +5253,17 @@ ApiClass [name=jdk.nashorn.api.tree.Diagnostic, since=9]
     ApiMethod [name=getColumnNumber, returnType=long, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getCode, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getMessage, returnType=java.lang.String, arguments=[], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.nashorn.api.tree.Diagnostic.Kind, since=9]
+  Fields:
+    ApiField [name=ERROR, type=jdk.nashorn.api.tree.Diagnostic.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WARNING, type=jdk.nashorn.api.tree.Diagnostic.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MANDATORY_WARNING, type=jdk.nashorn.api.tree.Diagnostic.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NOTE, type=jdk.nashorn.api.tree.Diagnostic.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OTHER, type=jdk.nashorn.api.tree.Diagnostic.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.nashorn.api.tree.Diagnostic.Kind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.nashorn.api.tree.Diagnostic.Kind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
 ApiClass [name=jdk.nashorn.api.tree.DiagnosticListener, since=9]
   Fields:
   Constructors:
@@ -4895,6 +5456,111 @@ ApiClass [name=jdk.nashorn.api.tree.Tree, since=9]
     ApiMethod [name=getEndPosition, returnType=long, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=getKind, returnType=jdk.nashorn.api.tree.Tree.Kind, arguments=[], modifiers=[], since=UNDEFINED]
     ApiMethod [name=accept, returnType=R, arguments=[ApiArgument [name=visitor, type=jdk.nashorn.api.tree.TreeVisitor<R,D>], ApiArgument [name=data, type=D]], modifiers=[], since=UNDEFINED]
+ApiClass [name=jdk.nashorn.api.tree.Tree.Kind, since=9]
+  Fields:
+    ApiField [name=ARRAY_ACCESS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ARRAY_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BLOCK, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BREAK, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CLASS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CLASS_EXPRESSION, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CASE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CATCH, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMPILATION_UNIT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONDITIONAL_EXPRESSION, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONTINUE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DO_WHILE_LOOP, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DEBUGGER, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FOR_IN_LOOP, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FUNCTION_EXPRESSION, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=ERROR, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EXPRESSION_STATEMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MEMBER_SELECT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FOR_LOOP, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=IDENTIFIER, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=IF, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=INSTANCE_OF, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LABELED_STATEMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MODULE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EXPORT_ENTRY, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=IMPORT_ENTRY, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FUNCTION, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=FUNCTION_INVOCATION, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NEW, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OBJECT_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PARENTHESIZED, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PROPERTY, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=REGEXP_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TEMPLATE_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RETURN, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EMPTY_STATEMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SWITCH, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=THROW, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TRY, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VARIABLE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WHILE_LOOP, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=WITH, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=POSTFIX_INCREMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=POSTFIX_DECREMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PREFIX_INCREMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PREFIX_DECREMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNARY_PLUS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNARY_MINUS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BITWISE_COMPLEMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LOGICAL_COMPLEMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DELETE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=TYPEOF, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=VOID, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=COMMA, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MULTIPLY, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DIVIDE, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=REMAINDER, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PLUS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MINUS, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LEFT_SHIFT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RIGHT_SHIFT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNSIGNED_RIGHT_SHIFT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LESS_THAN, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GREATER_THAN, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LESS_THAN_EQUAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=GREATER_THAN_EQUAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=IN, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=EQUAL_TO, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NOT_EQUAL_TO, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STRICT_EQUAL_TO, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STRICT_NOT_EQUAL_TO, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=AND, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=XOR, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OR, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONDITIONAL_AND, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=CONDITIONAL_OR, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MULTIPLY_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=DIVIDE_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=REMAINDER_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=PLUS_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=MINUS_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=LEFT_SHIFT_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=RIGHT_SHIFT_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=UNSIGNED_RIGHT_SHIFT_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=AND_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=XOR_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OR_ASSIGNMENT, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=SPREAD, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=YIELD, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NUMBER_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=BOOLEAN_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=STRING_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=NULL_LITERAL, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+    ApiField [name=OTHER, type=jdk.nashorn.api.tree.Tree.Kind modifiers=[PUBLIC, STATIC, FINAL], since=UNDEFINED]
+  Constructors:
+  Methods:
+    ApiMethod [name=values, returnType=jdk.nashorn.api.tree.Tree.Kind[], arguments=[], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=valueOf, returnType=jdk.nashorn.api.tree.Tree.Kind, arguments=[ApiArgument [name=name, type=java.lang.String]], modifiers=[PUBLIC, STATIC], since=UNDEFINED]
+    ApiMethod [name=asInterface, returnType=jdk.nashorn.api.tree.Tree>, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isLiteral, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isExpression, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
+    ApiMethod [name=isStatement, returnType=boolean, arguments=[], modifiers=[PUBLIC], since=UNDEFINED]
 ApiClass [name=jdk.nashorn.api.tree.TreeVisitor, since=9]
   Fields:
   Constructors:
@@ -5000,6 +5666,7 @@ ApiClass [name=jdk.net.ExtendedSocketOptions, since=1.8]
     ApiField [name=TCP_QUICKACK, type=java.net.SocketOption<java.lang.Boolean> modifiers=[PUBLIC, STATIC, FINAL], since=10]
     ApiField [name=TCP_KEEPIDLE, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
     ApiField [name=TCP_KEEPINTERVAL, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
+    ApiField [name=TCP_KEEPCOUNT, type=java.net.SocketOption<java.lang.Integer> modifiers=[PUBLIC, STATIC, FINAL], since=11]
   Constructors:
   Methods:
 ApiClass [name=jdk.nio.Channels, since=11]

@@ -56,7 +56,7 @@ public class TestApiDocFilter
   
   private void filter(String... filters) throws IOException
   {
-    ApiDoc apiDoc = ApiDocParser.parse(Paths.get("target", "api-doc", "13", "docs"));
+    ApiDoc apiDoc = ApiDocParser.parse(Paths.get("target", "api-doc", "14", "docs"));
     List<Version> versions = Arrays.stream(filters).map(Version::valueOf).collect(Collectors.toList());
     ApiDoc filteredApiDoc = ApiDocFilter.filter(apiDoc, versions);
     String version = Arrays.stream(filters).collect(Collectors.joining("-"));

@@ -13,10 +13,19 @@ import ch.rweiss.whatisnew.java.apidoc.model.ApiDoc;
 public class TestApiDocParser
 {
   @Test
-  public void parseApiDoc() throws IOException
+  public void parseApiDoc13() throws IOException
   {
     ApiDoc apiDoc = ApiDocParser.parse(Paths.get("target", "api-doc", "13", "docs"));
     Path path = ApiDocDumper.dumpApiDoc(apiDoc, Paths.get("target", "api-doc-dumps", "java13-apidoc.txt"));
     assertThat(path).hasSameContentAs(Paths.get("testResources", "java13-apidoc.txt"));
   }
+  
+  @Test
+  public void parseApiDoc14() throws IOException
+  {
+    ApiDoc apiDoc = ApiDocParser.parse(Paths.get("target", "api-doc", "14", "docs"));
+    Path path = ApiDocDumper.dumpApiDoc(apiDoc, Paths.get("target", "api-doc-dumps", "java14-apidoc.txt"));
+    assertThat(path).hasSameContentAs(Paths.get("testResources", "java14-apidoc.txt"));
+  }
+
 }

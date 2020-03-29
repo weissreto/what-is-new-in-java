@@ -112,6 +112,11 @@ final class MavenProjectGenerator
     printer.println();
     printer.print("            <arg>jdk.jfr/jdk.jfr.internal=ALL-UNNAMED</arg>");
     printer.println();
+    if (versions.contains(Version.valueOf("14")))
+    {
+      printer.print("            <arg>--enable-preview</arg>");
+      printer.println();
+    }
     printer.print("          </compilerArgs>");
     printer.println();
     printer.print("        </configuration>");

@@ -3,6 +3,7 @@ ApiClass [name=com.sun.source.doctree.DocCommentTree, since=1.8]
   Constructors:
   Methods:
     ApiMethod [name=getPreamble, returnType=com.sun.source.doctree.DocTree>, arguments=[], modifiers=[], since=10]
+    ApiMethod [name=getPostamble, returnType=com.sun.source.doctree.DocTree>, arguments=[], modifiers=[], since=10]
 ApiClass [name=com.sun.source.doctree.DocTreeVisitor, since=1.8]
   Fields:
   Constructors:
@@ -42,6 +43,11 @@ ApiClass [name=java.awt.Toolkit, since=1.0]
   Constructors:
   Methods:
     ApiMethod [name=getMenuShortcutKeyMaskEx, returnType=int, arguments=[], modifiers=[PUBLIC], since=10]
+ApiClass [name=java.awt.geom.Path2D, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=trimToSize, returnType=void, arguments=[], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.io.ByteArrayOutputStream, since=1.0]
   Fields:
   Constructors:
@@ -61,6 +67,11 @@ ApiClass [name=java.io.PrintWriter, since=1.1]
     ApiConstructor [arguments=[ApiArgument [name=fileName, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=10]
     ApiConstructor [arguments=[ApiArgument [name=file, type=java.io.File], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=10]
   Methods:
+ApiClass [name=java.io.Reader, since=1.1]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=transferTo, returnType=long, arguments=[ApiArgument [name=out, type=java.io.Writer]], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.lang.Runtime.Version, since=9]
   Fields:
   Constructors:
@@ -90,6 +101,17 @@ ApiClass [name=java.lang.management.ThreadMXBean, since=1.5]
   Constructors:
   Methods:
     ApiMethod [name=getThreadInfo, returnType=java.lang.management.ThreadInfo[], arguments=[ApiArgument [name=ids, type=long[]], ApiArgument [name=lockedMonitors, type=boolean], ApiArgument [name=lockedSynchronizers, type=boolean], ApiArgument [name=maxDepth, type=int]], modifiers=[], since=10]
+    ApiMethod [name=dumpAllThreads, returnType=java.lang.management.ThreadInfo[], arguments=[ApiArgument [name=lockedMonitors, type=boolean], ApiArgument [name=lockedSynchronizers, type=boolean], ApiArgument [name=maxDepth, type=int]], modifiers=[], since=10]
+ApiClass [name=java.net.URLDecoder, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=decode, returnType=java.lang.String, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=10]
+ApiClass [name=java.net.URLEncoder, since=1.0]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=encode, returnType=java.lang.String, arguments=[ApiArgument [name=s, type=java.lang.String], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC, STATIC], since=10]
 ApiClass [name=java.nio.file.FileStore, since=1.7]
   Fields:
   Constructors:
@@ -110,11 +132,21 @@ ApiClass [name=java.util.IntSummaryStatistics, since=1.8]
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=count, type=long], ApiArgument [name=min, type=int], ApiArgument [name=max, type=int], ApiArgument [name=sum, type=long]], modifiers=[PUBLIC], since=10]
   Methods:
+ApiClass [name=java.util.List, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=copyOf, returnType=java.util.List<E>, arguments=[ApiArgument [name=coll, type=java.util.Collection<? extends E>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.LongSummaryStatistics, since=1.8]
   Fields:
   Constructors:
     ApiConstructor [arguments=[ApiArgument [name=count, type=long], ApiArgument [name=min, type=long], ApiArgument [name=max, type=long], ApiArgument [name=sum, type=long]], modifiers=[PUBLIC], since=10]
   Methods:
+ApiClass [name=java.util.Map, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=copyOf, returnType=java.util.Map<K,V>, arguments=[ApiArgument [name=map, type=java.util.Map<? extends K,? extends V>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.Optional, since=1.8]
   Fields:
   Constructors:
@@ -148,6 +180,11 @@ ApiClass [name=java.util.Scanner, since=1.5]
     ApiConstructor [arguments=[ApiArgument [name=source, type=java.nio.file.Path], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=10]
     ApiConstructor [arguments=[ApiArgument [name=source, type=java.nio.channels.ReadableByteChannel], ApiArgument [name=charset, type=java.nio.charset.Charset]], modifiers=[PUBLIC], since=10]
   Methods:
+ApiClass [name=java.util.Set, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=copyOf, returnType=java.util.Set<E>, arguments=[ApiArgument [name=coll, type=java.util.Collection<? extends E>]], modifiers=[STATIC], since=10]
 ApiClass [name=java.util.SplittableRandom, since=1.8]
   Fields:
   Constructors:
@@ -161,6 +198,11 @@ ApiClass [name=java.util.concurrent.locks.StampedLock, since=1.8]
     ApiMethod [name=isReadLockStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
     ApiMethod [name=isLockStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
     ApiMethod [name=isOptimisticReadStamp, returnType=boolean, arguments=[ApiArgument [name=stamp, type=long]], modifiers=[PUBLIC, STATIC], since=10]
+ApiClass [name=java.util.jar.JarEntry, since=1.2]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=getRealName, returnType=java.lang.String, arguments=[], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.util.jar.JarFile, since=1.2]
   Fields:
   Constructors:
@@ -171,6 +213,7 @@ ApiClass [name=java.util.spi.LocaleNameProvider, since=1.6]
   Constructors:
   Methods:
     ApiMethod [name=getDisplayUnicodeExtensionKey, returnType=java.lang.String, arguments=[ApiArgument [name=key, type=java.lang.String], ApiArgument [name=locale, type=java.util.Locale]], modifiers=[PUBLIC], since=10]
+    ApiMethod [name=getDisplayUnicodeExtensionType, returnType=java.lang.String, arguments=[ApiArgument [name=type, type=java.lang.String], ApiArgument [name=key, type=java.lang.String], ApiArgument [name=locale, type=java.util.Locale]], modifiers=[PUBLIC], since=10]
 ApiClass [name=java.util.stream.Collectors, since=1.8]
   Fields:
   Constructors:
@@ -185,6 +228,11 @@ ApiClass [name=javax.lang.model.SourceVersion, since=1.6]
   Constructors:
   Methods:
 ApiClass [name=javax.lang.model.util.TypeKindVisitor6, since=1.6]
+  Fields:
+  Constructors:
+  Methods:
+    ApiMethod [name=visitNoTypeAsModule, returnType=R, arguments=[ApiArgument [name=t, type=javax.lang.model.type.NoType], ApiArgument [name=p, type=P]], modifiers=[PUBLIC], since=10]
+ApiClass [name=javax.lang.model.util.TypeKindVisitor9, since=9]
   Fields:
   Constructors:
   Methods:

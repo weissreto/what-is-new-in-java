@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnJre;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
 
 public class TestWhatIsNewInJava
 {
@@ -20,7 +23,7 @@ public class TestWhatIsNewInJava
   public void generator9() throws Exception
   {
     generator("9");
-    assertThat(countFiles("9")).isEqualTo(463L);
+    assertThat(countFiles("9")).isEqualTo(520L);
     assertThat(mvnCompile("9")).isEqualTo(0);
   }
 
@@ -28,7 +31,7 @@ public class TestWhatIsNewInJava
   public void generator10() throws Exception
   {
     generator("10");
-    assertThat(countFiles("10")).isEqualTo(38L);
+    assertThat(countFiles("10")).isEqualTo(47L);
     assertThat(mvnCompile("10")).isEqualTo(0);
   }
 
@@ -36,7 +39,7 @@ public class TestWhatIsNewInJava
   public void generator11() throws Exception
   {
     generator("11");
-    assertThat(countFiles("11")).isEqualTo(80L);
+    assertThat(countFiles("11")).isEqualTo(85L);
     assertThat(mvnCompile("11")).isEqualTo(0);
   }
 
@@ -44,23 +47,33 @@ public class TestWhatIsNewInJava
   public void generator12() throws Exception
   {
     generator("12");
-    assertThat(countFiles("12")).isEqualTo(50L);
+    assertThat(countFiles("12")).isEqualTo(54L);
     assertThat(mvnCompile("12")).isEqualTo(0);
   }
 
   @Test
+  @DisabledOnJre(JRE.JAVA_14)
   public void generator13() throws Exception
   {
     generator("13");
-    assertThat(countFiles("13")).isEqualTo(25L);
+    assertThat(countFiles("13")).isEqualTo(28L);
     assertThat(mvnCompile("13")).isEqualTo(0);
+  }
+
+  @Test
+  @EnabledOnJre(JRE.JAVA_14)
+  public void generator14() throws Exception
+  {
+    generator("14");
+    assertThat(countFiles("14")).isEqualTo(42L);
+    assertThat(mvnCompile("14")).isEqualTo(0);
   }
 
   @Test
   public void generator9_10_11() throws Exception
   {
     generator("9", "10", "11");
-    assertThat(countFiles("9", "10", "11")).isEqualTo(546L);
+    assertThat(countFiles("9", "10", "11")).isEqualTo(610L);
     assertThat(mvnCompile("9", "10", "11")).isEqualTo(0);
   }
 
@@ -68,7 +81,7 @@ public class TestWhatIsNewInJava
   {
     String version = toVersion(filters);
     String[] args = new String[filters.length+2];
-    args[0] = Paths.get("target", "api-doc", "13", "docs").toString();
+    args[0] = Paths.get("target", "api-doc", "14", "docs").toString();
     args[1] = Paths.get("target", "what-is-new-in-java", version).toString();
     System.arraycopy(filters, 0, args, 2, filters.length);
     
