@@ -18,6 +18,7 @@ The following GIT repositories provide pre-generated projects for different Java
 * [What is new in Java 9, 10 and 11](https://github.com/weissreto/what-is-new-in-java-9-10-11)
 * [What is new in Java 12](https://github.com/weissreto/what-is-new-in-java-12)
 * [What is new in Java 13](https://github.com/weissreto/what-is-new-in-java-13)
+* [What is new in Java 14](https://github.com/weissreto/what-is-new-in-java-14)
 
 ## How to build the library
 
